@@ -1,9 +1,9 @@
-import Image from "next/image";
+
 
 export default function Home() {
   return (
-    <main>
-      
+    <main className="font-palatino">
+      hello my name is rahin
     </main>
   );
 }
