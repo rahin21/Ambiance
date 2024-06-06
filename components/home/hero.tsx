@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import LinkOverLogo from "../linkOverLogo";
 
 type dataType = {
   heading: string;
@@ -67,21 +68,7 @@ const Hero = ({
         ) : (
           <span></span>
         )}
-        <div className="group flex justify-center items-center mt-7 mb-5">
-          <Image
-            className="absolute opacity-30"
-            height="10"
-            width="100"
-            src="/icons/main-logo.png"
-            alt="logo"
-          />
-          <Link
-            href={link}
-            className="relative text-[15px] tracking-[3px] opacity-60 py-5 group-hover:opacity-80 transition-all ease-in-out duration-300"
-          >
-            {linkHeader}
-          </Link>
-        </div>
+        <LinkOverLogo link={link} linkHeader={linkHeader}/>
       </div>
     </div>
   );

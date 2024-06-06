@@ -56,12 +56,12 @@ function Footer() {
         </div>
         <div className="footer-description footer-link-text p-1">
           <span>Email: </span>
-          <a
+          <Link
             className="email-link footer-link-text"
             href="mailto:info@lauraleeclark.com"
           >
             info@lauraleeclark.com
-          </a>
+          </Link>
         </div>
         <div className="flex justify-center items-center p-2">
           <div className=" py-1 bg-gray-500 w-20"></div>
