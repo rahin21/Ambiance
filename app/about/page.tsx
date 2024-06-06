@@ -1,14 +1,20 @@
-import React from 'react'
+import React from "react";
 import type { Metadata } from "next";
+import Image from "next/image";
+import ClientInfo from "@/components/about/clientInfo";
+import Magazine from "@/components/about/magazine";
 
 export const metadata: Metadata = {
-  title: "Home"
-}
+  title: "Home",
+};
 
 function page() {
   return (
-    <div>page</div>
-  )
+    <div className="flex flex-col items-center justify-center">
+      <ClientInfo/>
+      <Magazine/>
+    </div>
+  );
 }
 
-export default page
+export default page;

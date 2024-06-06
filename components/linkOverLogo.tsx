@@ -14,7 +14,7 @@ function LinkOverLogo({link, linkHeader}: {link:string; linkHeader:string}) {
       />
       <Link
         href={link}
-        className="relative text-lightText text-[15px] tracking-[3px] opacity-60 py-5 group-hover:opacity-80 transition-all ease-in-out duration-300"
+        className="relative text-lightText text-[15px] tracking-[3px] opacity-60 py-5 group-hover:opacity-90 transition-all ease-in-out duration-300"
       >
         {linkHeader}
       </Link>

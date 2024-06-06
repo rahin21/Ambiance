@@ -21,7 +21,7 @@ function Nav() {
       <nav className="flex font-openSans text-[11px] tracking-widest mx-[24rem] justify-between">
         {navItems.map((navItem,i)=>(
 
-        <div key={i} className="group hover:italic cursor-pointer lg:visible invisible">
+        <div key={i} className="group hover:italic cursor-pointer lg:block hidden">
           <Link className={`${currentPath === navItem.href? "italic": "" }  my-5`} href={navItem.href}>
             {navItem.label}
           </Link>
