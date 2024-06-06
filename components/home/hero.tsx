@@ -3,13 +3,6 @@ import Link from "next/link";
 import React from "react";
 import LinkOverLogo from "../linkOverLogo";
 
-type dataType = {
-  heading: string;
-  subHeading: string;
-  p1: string;
-  p2: string;
-  link: string;
-}[];
 
 const Hero = ({
   heading,
@@ -68,7 +61,7 @@ const Hero = ({
         ) : (
           <span></span>
         )}
-        <LinkOverLogo link={link} linkHeader={linkHeader}/>
+        <LinkOverLogo link={link} linkHeader={linkHeader} />
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import ClientInfo from "@/components/about/clientInfo";
 import Magazine from "@/components/about/magazine";
 
 export const metadata: Metadata = {
-  title: "Home",
+  title: "About",
 };
 
 function page() {

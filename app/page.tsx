@@ -3,11 +3,12 @@
 import Hero from "@/components/home/hero";
 import Slider from "@/components/home/slider";
 import datas from "@/constants/homeData";
+import { homeSliderImages } from '@/constants/homeSliderImages';
 
 export default function Home() {
   return (
     <main className=" flex flex-col items-center justify-center lg:mx-0 mx-5">
-      <Slider />
+      <Slider sliderImages={homeSliderImages} />
       {datas.map((data, i) => (
         <Hero
           key={i}

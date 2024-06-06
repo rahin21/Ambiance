@@ -2,7 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-function LinkOverLogo({link, linkHeader}: {link:string; linkHeader:string}) {
+function LinkOverLogo({
+  link,
+  linkHeader,
+}: {
+  link: string;
+  linkHeader: string;
+}) {
   return (
     <div className="group flex justify-center items-center mt-7 mb-5">
       <Image
