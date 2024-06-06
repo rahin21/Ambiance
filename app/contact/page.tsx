@@ -8,9 +8,9 @@ export const metadata: Metadata = {
 }
 function page() {
   return (
-    <div className='flex flex-col items-center justify-center'>
+    <div className='flex flex-col items-center justify-center lg:px-0 px-4'>
       <Image src={'/images/contact/contact.webp'} width='1140' height={100} alt='contact'/>
-      <div className='flex justify-between items-start min-w-[60%] gap-5 pt-3'>
+      <div className='lg:flex justify-between items-start min-w-[60%] gap-5 pt-3'>
       <ContactBox/>
       <Form/>
       </div>

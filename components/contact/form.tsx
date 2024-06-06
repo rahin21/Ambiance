@@ -4,7 +4,7 @@ import React from "react";
 
 function Form() {
   return (
-    <form className="flex flex-col font-openSans gap-3 min-w-[48%]">
+    <form className="flex flex-col font-openSans gap-3 min-w-[48%] lg:mt-0 mt-3">
       <input className="bg-primary border-none text-[#a7a1a4] text-center leading-3 px-5 text-[13px] focus-visible:outline-[#a7a1a4] focus-visible:[outline-style:solid] py-2" type="text" placeholder="NAME" />
       <input className="bg-primary border-none text-[#a7a1a4] text-center leading-3 px-5 text-[13px] focus-visible:outline-[#a7a1a4] focus-visible:[outline-style:solid] py-2" type="text" placeholder="EMAIL ADDRESS" />
       <input className="bg-primary border-none text-[#a7a1a4] text-center leading-3 px-5 text-[13px] focus-visible:outline-[#a7a1a4] focus-visible:[outline-style:solid] py-2" type="text" placeholder="PHONE NUMBER" />
