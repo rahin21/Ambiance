@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import localfont from "next/font/local"
 
 import "./globals.css";
+import Nav from "@/components/nav";
+import Footer from "@/components/footer";
 
 const dipotic = localfont({
   src: [{
@@ -37,7 +39,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${dipotic.variable} ${openSans.variable} ${palatino.variable}`}>{children}</body>
+      <body className={`${dipotic.variable} ${openSans.variable} ${palatino.variable}`}>
+        <Nav/>
+        {children}
+        <Footer/>
+        </body>
     </html>
   );
 }
