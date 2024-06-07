@@ -81,13 +81,13 @@ function Footer() {
         <div className="py-1">
           <Link
             className="footer-description footer-link-text"
-            href="/privacy-policy.html"
+            href="/privacy-policy"
           >
             PRIVACY POLICY
           </Link>
         </div>
         <div>
-          <Link className="footer-description footer-link-text p-1" href="/">
+          <Link className="footer-description footer-link-text p-1" href="/protected">
             PORTECTED
           </Link>
         </div>

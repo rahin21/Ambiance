@@ -2,12 +2,12 @@ export const showroom = [
     {
       name: "GREIGE TEXTILES",
       img:"/images/showroom/gallery/showroom-gallery-1.webp",
-      link: '/kips-bay'
+      link: '/showroom/greige-textiles'
     },
     {
       name: "NICHOLA TAYLORSON",
       img:"/images/showroom/gallery/showroom-gallery-2.webp",
-      link: '/kips-bay'
+      link: '/showroom/greige-textiles'
     },
     {
       name: "ELYSE GRAHAM",
