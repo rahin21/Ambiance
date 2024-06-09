@@ -1,5 +1,7 @@
+"use client"
 import Image from "next/image";
 import React from "react";
+import { motion } from "framer-motion"
 
 const bestHomeData = [
   {
@@ -30,7 +32,7 @@ const bestHomeData = [
 
 function Heading() {
   return (
-    <div className="flex flex-col justify-content-center text-justify font-semibold tracking-[2px] leading-7 text-[13px] text-lightText">
+    <div className="flex flex-col justify-center text-justify items-center font-semibold tracking-[2px] py-10 leading-7 text-[13px] text-lightText">
       <h1 className="header font-palatino text-[17px] tracking-[5px]">
         OUR EXCLUSIVE LINES
       </h1>
@@ -41,7 +43,11 @@ function Heading() {
         <Image width="80" height="10" src="/divider.png" alt="divder" />
       </div>
 
-      <div className="container mx-auto grid grid-cols-2 sm:flex sm:justify-center sm:flex-wrap gap-12">
+      <motion.div
+      initial={{opacity:0}}
+      whileInView={{opacity:1}}
+      transition={{duration:0.5,delay:0.1}}
+       className="container mx-auto grid grid-cols-2 sm:flex sm:justify-center sm:flex-wrap gap-12">
         {bestHomeData.map((data, i) => (
           <div key={i}>
             <Image
@@ -54,7 +60,7 @@ function Heading() {
             <p>{data.p2}</p>
           </div>
         ))}
-      </div>
+      </motion.div>
 
       <div className="flex justify-center p-8 ">
         <Image width="80" height="10" src="/divider.png" alt="divder" />

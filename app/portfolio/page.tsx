@@ -1,30 +1,42 @@
+
 import React from "react";
 import type { Metadata } from "next";
 import { portfolio } from "@/constants/portfolioData";
 import Image from "next/image";
 import Link from "next/link";
 import LinkOverLogo from "@/components/linkOverLogo";
+import PaginationControls from "@/components/paginationControl";
+
+import PortfolioGallery from "@/components/portfolio/portfolioGallery";
 
 export const metadata: Metadata = {
   title: "Portfolio",
 };
-function page() {
+
+function page({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
+
+  const page = searchParams["page"] ?? "1";
+  const per_page = searchParams["per_page"] ?? "6";
+  // mocked, skipped and limited in the real app
+  const start = (Number(page) - 1) * Number(per_page); // 0, 7, 14 ...
+  const end = start + Number(per_page); // 7, 14, 21 ...
+
+  const entries = portfolio.slice(start, end);
+
   return (
     <div className="container mx-auto lg:w-[60%] lg:px-0">
-      <div className=" grid md:grid-cols-2 gap-0 md:gap-4  grid-cols-1  px-5">
-        {portfolio.map((data, i) => (
-          <div key={i} className="flex flex-col justify-center items-center">
-            <Link href={data.link} className="pb-5 pt-10">
-              <Image src={data.img} width="480" height="0" alt="award" />
-            </Link>
-            <Link
-              href={data.link}
-              className="font-palatino text-lg tracking-[5px] opacity-70 hover:opacity-90 transition-all ease-in-out duration-200"
-            >
-              {data.name}
-            </Link>
-          </div>
-        ))}
+      <PortfolioGallery entries={entries}/>
+      <div className="flex justify-center pt-10">
+        <PaginationControls
+         hasNextPage={end < portfolio.length}
+         hasPrevPage={start > 0}
+         totalData={portfolio.length}
+         route={"portfolio"}
+        />
       </div>
       <div className="lg:my-28 my-10">
         <LinkOverLogo link="/contact" linkHeader="CONTACT US" />

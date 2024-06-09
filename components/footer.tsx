@@ -4,6 +4,7 @@ import React from "react";
 import CopyRight from "./copyRight";
 import { FaFacebookF } from "react-icons/fa6";
 import { ImInstagram } from "react-icons/im";
+import { FaPinterest } from "react-icons/fa";
 
 function Footer() {
   return (
@@ -12,30 +13,24 @@ function Footer() {
       <div className="bg-primary font-openSans text-[13px] tracking-[2px] font-semibold text-[#a7a1a4] mt-16 py-4">
         <h2 className="footer-header font-palatino text-lightText py-1">SHOWROOM HOURS</h2>
         <p className="footer-link-text footer-description py-1">M-F 9am-5pm</p>
-        <div className="flex justify-center items-center py-1">
+        <div className="flex justify-center items-center gap-3 py-1">
           <Link
             className="icon-link"
             href="https://www.facebook.com/LauraLeeClarkID/"
           >
-            <FaFacebookF className=""/>
+            <FaFacebookF className=" text-lg"/>
           </Link>
           <Link
-            className="icon-link opacity-30"
+            className="icon-link"
             href="https://www.pinterest.com/lauraleeclarkid/?eq=laura%20lee%20car&etslf=8558"
           >
-            <Image
-              className="mx-1"
-              width="16"
-              height="10"
-              src="/icons/footer/pinterest.svg"
-              alt=""
-            />
+            <FaPinterest className=" text-lg"/>
           </Link>
           <Link
             className="icon-link ms-1"
             href="https://www.instagram.com/lauraleeclarkinteriordesign/"
           >
-            <ImInstagram className=""/>
+            <ImInstagram className=" text-lg"/>
           </Link>
         </div>
 

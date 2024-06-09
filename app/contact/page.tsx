@@ -1,21 +1,23 @@
-import React from 'react'
+import React from "react";
 import type { Metadata } from "next";
-import Image from 'next/image';
-import ContactBox from '@/components/contact/contactBox';
-import Form from '@/components/contact/form';
+import ContactBox from "@/components/contact/contactBox";
+import Form from "@/components/contact/form";
+import ContactImg from "@/components/contact/contactImg";
+
+
 export const metadata: Metadata = {
-  title: "Contact"
-}
+  title: "Contact",
+};
 function page() {
   return (
-    <div className='flex flex-col items-center justify-center lg:px-0 px-4'>
-      <Image src={'/images/contact/contact.webp'} width='1140' height={100} alt='contact'/>
-      <div className='lg:flex justify-between items-start min-w-[60%] gap-5 pt-3'>
-      <ContactBox/>
-      <Form/>
+    <div className="flex flex-col items-center justify-center mt-8 lg:me-2 lg:px-0 px-4">
+      <ContactImg/>
+      <div className="lg:flex justify-between items-start min-w-[59.6%] gap-5 pt-3">
+        <ContactBox />
+        <Form />
       </div>
     </div>
-  )
+  );
 }
 
-export default page
+export default page;

@@ -6,16 +6,26 @@ import { showroomSliderImages } from "@/constants/showroomSliderImages";
 import Heading from "@/components/showroom/heading";
 import Gallery from "@/components/showroom/gallery";
 import Image from "next/image";
+
+
 export const metadata: Metadata = {
   title: "Showroom",
 };
-function page() {
+
+
+function page({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
+  
+    
   return (
     <div className="flex flex-col items-center justify-center lg:mx-0 mx-5 mt-8">
       <Slider sliderImages={showroomSliderImages} />
       <Heading />
-      <Gallery />
-      <div className="text-center text-lightText tracking-[2px] leading-7 text-[13px] lg:py-16 mt-10 py-10">
+      <Gallery searchParams={searchParams} />
+      <div className="text-center text-lightText tracking-[2px] leading-7 text-[13px] lg:py-16 mt-10 py-10" >
         <h1 className="header font-palatino text-[17px] tracking-[5px]">
           #LAURALEECLARKSHOWROOM
         </h1>
