@@ -19,10 +19,10 @@ function ClientInfo() {
           alt="contact"
         />
         <div className="flex flex-col justify-content-center text-justify [text-align-last:center] font-semibold tracking-[2px] leading-7 lg:mt-0 mt-5 text-[13px] text-lightText">
-          <h1 className="header font-palatino text-[17px] lg:tracking-[5px] tracking-[3px]">
+          <h1 className="header font-palatino text-[17px] lg:text-[20px] lg:tracking-[5px] tracking-[3px]">
             LAURA LEE CLARK FALCONER
           </h1>
-          <p className="semi-header pt-2 font-dipotic text-[18px] font-medium">
+          <p className="semi-header pt-2 font-dipotic text-[17px] lg:text-[20px] font-medium">
             principal designer
           </p>
 
@@ -30,7 +30,7 @@ function ClientInfo() {
             <Image width="80" height="10" src="/divider.png" alt="divder" />
           </div>
           <div>
-            <p className="primary-text description [word-spacing:2px] pb-5">
+            <p className="primary-text description [word-spacing:2px] text-[16px] pb-5">
               Interior Designer Laura Lee Clark Falconer understands that a
               truly successful design blends a collection of high-quality pieces
               from various periods and styles, while also using tasteful
@@ -40,14 +40,14 @@ function ClientInfo() {
               integrating antique elements, all the while striving for a
               sophisticated look.”
             </p>
-            <p className="primary-text description [word-spacing:2px] pb-5">
+            <p className="primary-text description [word-spacing:2px] text-[16px] pb-5">
               By listening to each client’s needs and desires, she earns their
               trust in order to establish the foundation and principles for
               successful design. This designer’s staff is as dedicated as she is
               to the firm’s valued clientele and they maintain a high level of
               organization and consistent contact with suppliers.
             </p>
-            <p className="primary-text description [word-spacing:2px] pb-5">
+            <p className="primary-text description [word-spacing:2px] text-[16px] pb-5">
               A student of the Parsons School of Design in Italy, she offers her
               clients more than 30 years of experience in high-end residential
               design. She is also the recipient of several ASID Silver Style

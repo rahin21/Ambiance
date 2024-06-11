@@ -6,7 +6,7 @@ export const metadata: Metadata = {
 };
 function page() {
   return (
-    <div className="container mx-auto lg:px-48 text-justify text-[13px] [text-align-last:center] font-openSans leading-8 tracking-[2px] font-semibold text-lightText opacity-80 px-10">
+    <div className="container mx-auto lg:px-48 text-justify text-[16px] [text-align-last:center] font-openSans leading-8 tracking-[2px] font-semibold text-lightText opacity-80 px-10">
       {/* TERMS AND CONDITIONS  */}
       <div>
         <p className="primary-text description pt-3">TERMS AND CONDITIONS</p>

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 function page() {
   return (
     <div className="container mx-auto">
-      <div className=" grid lg:grid-cols-2 px-10 py-10 lg:px-40">
+      <div className=" grid lg:grid-cols-2 px-10 py-10 lg:px-40 text-[16px]">
         <div className="flex flex-col items-center justify-center">
           <Link className=" pb-8" href="/beverly-drive">
             <Image

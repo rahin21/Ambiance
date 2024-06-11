@@ -23,7 +23,7 @@ function Header({ navItems }: { navItems: navItemType }) {
           </button>
         </div>
 
-        <div className="container font-openSans py-3 text-[8.6px] lg:block hidden">
+        <div className="container font-openSans py-3 text-[11px] lg:block hidden">
           <Link className=" tracking-[2px]" href={"tel:2142657272"}>
             214-265-7272
           </Link>

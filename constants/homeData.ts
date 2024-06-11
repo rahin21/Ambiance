@@ -1,4 +1,4 @@
-const datas = [
+const data = [
     {
         heading:"INTERIOR DESIGN",
         subHeading:"our philosophy",
@@ -25,4 +25,4 @@ const datas = [
     }
 ]
 
-export default datas;
+export default data;

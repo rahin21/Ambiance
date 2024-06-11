@@ -26,10 +26,10 @@ function page({
       <Heading />
       <Gallery searchParams={searchParams} />
       <div className="text-center text-lightText tracking-[2px] leading-7 text-[13px] lg:py-16 mt-10 py-10" >
-        <h1 className="header font-palatino text-[17px] tracking-[5px]">
+        <h1 className="header font-palatino text-[20px] tracking-[5px]">
           #LAURALEECLARKSHOWROOM
         </h1>
-        <p className="semi-header pt-2 font-dipotic text-[18px] font-medium">
+        <p className="semi-header pt-2 font-dipotic text-[20px] font-medium">
           shop the showroom floor
         </p>
         <div className="flex justify-center p-8 ">

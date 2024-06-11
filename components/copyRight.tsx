@@ -18,7 +18,7 @@ const CopyRight = () => {
       </div>
       <div className="mt-4 mb-8 text-[#a7a1a4]">
         <Link
-          className=" font-sans tracking-[2px] text-[11px] font-bold pt-5"
+          className=" font-sans tracking-[2px] text-[15px] font-bold pt-5"
           href={"https://www.instagram.com/lauraleeclarkinteriordesign/"}
         >
           {" "}

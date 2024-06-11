@@ -18,13 +18,12 @@ function Nav() {
   return (
     <div className=" text-gray-500">
       <Header navItems={navItems} />
-      <nav className="flex font-openSans text-[11px] tracking-widest mx-[24rem] justify-between">
+      <nav className="flex font-openSans text-[13px] tracking-widest mx-[24rem] justify-between pt-4">
         {navItems.map((navItem,i)=>(
 
-        <div key={i} className="group hover:italic cursor-pointer lg:block hidden">
-          <Link className={`${currentPath === navItem.href? "italic": "" }  my-5`} href={navItem.href}>
+        <div key={i} className="group hover:italic cursor-pointer text-center lg:block hidden ">
+          <Link className={`${currentPath === navItem.href? "italic": "" } my-5`} href={navItem.href}>
             {navItem.label}
-          </Link>
           <Image
             src={"/divider.png"}
             width={70}
@@ -32,6 +31,7 @@ function Nav() {
             alt="company logo"
             className={`${currentPath === navItem.href? "visible": "invisible" } group-hover:visible my-1`}
           />
+          </Link>
         </div>
         ))}
         

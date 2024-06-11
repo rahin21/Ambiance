@@ -9,16 +9,16 @@ function page() {
   return (
     <div className="container mx-auto lg:px-0 px-5">
       <div className="flex flex-col justify-content-center text-justify [text-align-last:center] font-semibold tracking-[2px] leading-7 text-[13px] text-lightText">
-        <h1 className="header font-palatino text-[17px] tracking-[5px] py-8">
+        <h1 className="header font-palatino text-[20px] tracking-[5px] py-8">
           BEVERLY DRIVE
         </h1>
-        <p className="semi-header pt-2 font-openSans font-medium py-2">
+        <p className="semi-header pt-2 font-openSans font-medium py-2 text-[16px]">
           This content is password protected. To view it please enter your
           password below:
         </p>
       </div>
       <div className="flex flex-col text-center items-center">
-        <label className="text-[14px] text-lightText tracking-[2px] pb-1 ">Password:</label>
+        <label className="text-lightText tracking-[2px] pb-1 text-[16px]">Password:</label>
         <input
           className="bg-primary border-none text-[#a7a1a4] text-center md:w-[25%] w-full leading-3 px-5 text-[13px] focus-visible:outline-[#a7a1a4] focus-visible:[outline-style:solid] py-2"
           type="password"

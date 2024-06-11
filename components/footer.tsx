@@ -10,7 +10,7 @@ function Footer() {
   return (
     <div className="text-center mt-10">
       <CopyRight />
-      <div className="bg-primary font-openSans text-[13px] tracking-[2px] font-semibold text-[#a7a1a4] mt-16 py-4">
+      <div className="bg-primary font-openSans text-[16px] tracking-[2px] font-semibold text-[#a7a1a4] mt-16 py-4">
         <h2 className="footer-header font-palatino text-lightText py-1">SHOWROOM HOURS</h2>
         <p className="footer-link-text footer-description py-1">M-F 9am-5pm</p>
         <div className="flex justify-center items-center gap-3 py-1">

@@ -6,20 +6,15 @@ import { FaFacebookF } from "react-icons/fa6";
 import { ImInstagram } from "react-icons/im";
 import { FaPinterest } from "react-icons/fa";
 import { motion } from "framer-motion";
-import { variantsSlideIn } from "@/libs/motion";
 
 function ContactBox() {
   return (
     <motion.div
-      initial={variantsSlideIn.left}
-      whileInView={variantsSlideIn.onscreen}
-      transition={{
-        type: "tween",
-        duration: 1,
-        ease: "easeOut",
-      }}
-      viewport={{ once: true, amount: 0.1 }}
-      className="flex flex-col items-center bg-primary font-openSans text-[14px] tracking-[2px] font-semibold text-[#a7a1a4] p-4 min-w-[50%]"
+    initial={{ opacity: 0, y: 100 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.8, delay: 0.5, ease: [0, 0.71, 0.2, 1.01] }}
+    viewport={{ once: true, amount: 0.01 }}
+      className="flex flex-col items-center bg-primary font-openSans text-[16px] tracking-[2px] font-semibold text-[#a7a1a4] p-4 min-w-[50%]"
     >
       <Image
         src={"/images/contact/contactUsLogo.png"}
