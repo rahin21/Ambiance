@@ -9,11 +9,11 @@ import 'react-photo-view/dist/react-photo-view.css';
 
 function ImagePreviewer({images}: {images:string[]}) {
   return (
-    <PhotoProvider maskClassName='white'>
-    <div className="foo grid grid-cols-3 sm:gap-10 gap-1 xl:mx-[12.5rem] lg:mx-[6rem] mx-5">
+    <PhotoProvider maskClassName='white' maskOpacity={0.9}>
+    <div className="foo grid grid-cols-2 md:grid-cols-3 sm:gap-10 gap-3">
       {images.map((item, index) => (
         <PhotoView key={index} src={item}>
-          <Image src={item} width='380' height="100" alt="" className='xl:h-[350px] lg:h-[250px] sm:h-[200px] h-[115px]' />
+          <Image src={item} width='480' height="100" alt="" className='xl:h-[450px] lg:h-[250px] sm:h-[200px] h-[180px]' />
         </PhotoView>
       ))}
     </div>

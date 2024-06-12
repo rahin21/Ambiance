@@ -14,11 +14,11 @@ function Form() {
       className="min-w-[48%]"
       >
       <form className="flex flex-col font-openSans gap-3 lg:mt-0 mt-3">
-        <Input placeholder="NAME" />
-        <Input placeholder="EMAIL ADDRESS" />
-        <Input placeholder="PHONE NUMBER" />
-        <Input placeholder="LOCATION" />
-        <Input placeholder="PROJECT DETAILS" />
+        <Input type="text" placeholder="NAME" />
+        <Input type="text" placeholder="EMAIL ADDRESS" />
+        <Input type="text" placeholder="PHONE NUMBER" />
+        <Input type="text" placeholder="LOCATION" />
+        <textarea className="bg-primary border-none text-[#a7a1a4] h-[4.25rem] text-center leading-3 px-5 text-[16px] focus-visible:outline-[#a7a1a4] focus-visible:[outline-style:solid] py-2" placeholder="DETAILS" />
         <select
           name="iam"
           id="dropdown"

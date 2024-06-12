@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 function page() {
   return (
-    <div className="container mx-auto">
+    <div className="container">
       <div className="py-5">
         <LinkOverLogo link="/portfolio" linkHeader="BACK TO GALLERIES" />
       </div>

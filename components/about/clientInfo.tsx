@@ -11,7 +11,7 @@ function ClientInfo() {
       animate={{y:0}}
       transition={{
         duration:0.5,}}
-     className="flex lg:flex-row flex-col justify-between lg:items-start items-center mt-8 gap-8 lg:px-0 px-5 lg:w-[60%]">
+     className="flex lg:flex-row justify-between lg:items-start items-center flex-col pt-5 gap-8 lg:px-0 px-5 ">
         <Image
           src={"/images/about/LauraLeeClark.webp"}
           width={440}
@@ -20,7 +20,7 @@ function ClientInfo() {
         />
         <div className="flex flex-col justify-content-center text-justify [text-align-last:center] font-semibold tracking-[2px] leading-7 lg:mt-0 mt-5 text-[13px] text-lightText">
           <h1 className="header font-palatino text-[17px] lg:text-[20px] lg:tracking-[5px] tracking-[3px]">
-            LAURA LEE CLARK FALCONER
+          DEBORAH DIERSHAW
           </h1>
           <p className="semi-header pt-2 font-dipotic text-[17px] lg:text-[20px] font-medium">
             principal designer
@@ -31,7 +31,7 @@ function ClientInfo() {
           </div>
           <div>
             <p className="primary-text description [word-spacing:2px] text-[16px] pb-5">
-              Interior Designer Laura Lee Clark Falconer understands that a
+              Interior Designer Deborah Diershaw understands that a
               truly successful design blends a collection of high-quality pieces
               from various periods and styles, while also using tasteful
               restraint. “I find that careful editing is essential to good

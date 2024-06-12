@@ -14,7 +14,7 @@ function Slider({ sliderImages }: { sliderImages: string[] }) {
     <motion.div
       initial={{ scale: 0.5 }}
       animate={{ scale: 1 }}
-      className="lg:w-[71rem] md:w-[50rem] sm:w-[40rem] w-screen px-5 mb-[-30px]"
+      className="container w-screen md:px-0 px-5 lg:px-24 mb-[-30px]"
     >
 
       <Swiper
@@ -23,7 +23,7 @@ function Slider({ sliderImages }: { sliderImages: string[] }) {
         loop={true}
         autoplay={{ delay: 3000, disableOnInteraction: false }}
         modules={[Autoplay]}
-        className="mySwiper"
+        className="mySwiper "
       >
         {sliderImages.map((img, i) => (
           <SwiperSlide key={i}>
@@ -32,7 +32,7 @@ function Slider({ sliderImages }: { sliderImages: string[] }) {
               draggable={false}
               src={img}
               alt="slider-1"
-              width="1500"
+              width="1400"
               height="100"
             />
           </SwiperSlide>

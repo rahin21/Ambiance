@@ -22,7 +22,7 @@ const CopyRight = () => {
           href={"https://www.instagram.com/lauraleeclarkinteriordesign/"}
         >
           {" "}
-          JOIN THE CONVERSATION @LAURALEECLARKINTERIORDESIGN
+          JOIN THE CONVERSATION @DEBORAHDIERSHAWINTERIORDESIGN
         </Link>
       </div>
       <div className="h-[1px] w-full bg-gray-300"></div>

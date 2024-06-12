@@ -11,18 +11,19 @@ function Nav() {
   const navItems = [
     { label: "ABOUT", href: "/about" },
     { label: "PORTFOLIO", href: "/portfolio" },
-    { label: "SHOWROOM", href: "/showroom" },
+    { label: "NEWS", href: "/news" },
+    { label: "GET STARTED", href: "/get-started" },
     { label: "CONTACT", href: "/contact" },
   ];
 
   return (
-    <div className=" text-gray-500">
+    <div className="text-gray-500">
       <Header navItems={navItems} />
-      <nav className="flex font-openSans text-[13px] tracking-widest mx-[24rem] justify-between pt-4">
+      <nav className="container flex justify-between font-openSans text-[15px] tracking-widest pt-4">
         {navItems.map((navItem,i)=>(
 
-        <div key={i} className="group hover:italic cursor-pointer text-center lg:block hidden ">
-          <Link className={`${currentPath === navItem.href? "italic": "" } my-5`} href={navItem.href}>
+        <div key={i} className="group hover:italic cursor-pointer lg:flex text-center  hidden ">
+          <Link className={`${currentPath === navItem.href? "italic": "" } my-5 lg:flex lg:flex-col lg:justify-center lg:items-center`} href={navItem.href}>
             {navItem.label}
           <Image
             src={"/divider.png"}

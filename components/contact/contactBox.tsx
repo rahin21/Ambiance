@@ -23,7 +23,7 @@ function ContactBox() {
         alt="company logo"
         className="mx-4"
       />
-      <h2 className="footer-header contact-heading font-palatino py-1 text-lightText">
+      <h2 className="font-palatino py-1 text-lightText">
         CONTACT US
       </h2>
       <Link

@@ -1,5 +1,5 @@
 "use client";
-import { showroom } from "@/constants/showroomData";
+import { news } from "@/constants/newsData";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -17,7 +17,7 @@ function Gallery({
   const start = (Number(page) - 1) * Number(per_page); // 0, 7, 14 ...
   const end = start + Number(per_page); // 7, 14, 21 ...
 
-  const entries = showroom.slice(start, end);
+  const entries = news.slice(start, end);
   return (
     <motion.div
     initial={{opacity:0}}
@@ -33,7 +33,7 @@ function Gallery({
             className="flex flex-col justify-center items-center lg:px-8 px-0"
           >
             <Link href={data.link} className="pb-5 pt-10">
-              <Image src={data.img} width="480" height="0" alt="award" />
+              <Image src={data.img} width="580" height="0" alt="award" />
             </Link>
             <Link
               href={data.link}
@@ -46,9 +46,9 @@ function Gallery({
       </div>
       <div className="flex justify-center pt-10">
         <PaginationControls
-          hasNextPage={end < showroom.length}
+          hasNextPage={end < news.length}
           hasPrevPage={start > 0}
-          totalData={showroom.length}
+          totalData={news.length}
           route={"showroom"}
         />
       </div>

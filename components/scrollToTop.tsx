@@ -19,7 +19,7 @@ function ScrollToTop() {
   return (
     showButton && (
       <div className="flex fixed bottom-10 right-10 text-lightText">
-        <button className="bg-primary flex justify-center items-center w-10 h-10 rounded-full text-3xl" onClick={handleScrolltoTop}>
+        <button className="bg-primary flex justify-center items-center w-10 h-10 rounded-full text-3xl border-lightText border-[1px]" onClick={handleScrolltoTop}>
           <MdOutlineKeyboardArrowUp/>
         </button>
       </div>

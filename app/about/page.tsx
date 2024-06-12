@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 function page() {
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="container">
       <ClientInfo/>
       <Magazine/>
     </div>

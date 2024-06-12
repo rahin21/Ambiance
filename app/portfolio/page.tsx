@@ -2,8 +2,6 @@
 import React from "react";
 import type { Metadata } from "next";
 import { portfolio } from "@/constants/portfolioData";
-import Image from "next/image";
-import Link from "next/link";
 import LinkOverLogo from "@/components/linkOverLogo";
 import PaginationControls from "@/components/paginationControl";
 
@@ -28,7 +26,7 @@ function page({
   const entries = portfolio.slice(start, end);
 
   return (
-    <div className="container mx-auto lg:w-[60%] lg:px-0">
+    <div className="container pt-5 lg:px-0">
       <PortfolioGallery entries={entries}/>
       <div className="flex justify-center pt-10">
         <PaginationControls

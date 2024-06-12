@@ -4,39 +4,25 @@ import React from "react";
 import LinkOverLogo from "../linkOverLogo";
 import { arr, aboutImages } from "@/constants/aboutData";
 
-
 function Magazine() {
   return (
     <div className="flex flex-col items-center justify-center lg:mx-0 mx-5">
       <div className="h-[1px] w-full bg-gray-300 mt-8"></div>
-      <h1 className=" text-lightText text-center font-palatino text-[17px] lg:tracking-[5px] tracking-[3px] py-8">
-        RECOGNITION
+      <h1 className=" text-lightText text-center font-palatino text-[20px] lg:tracking-[5px] tracking-[3px] py-8">
+        GALLERY
       </h1>
-      {/* award */}
-      <div className="flex justify-between lg:w-[60%]">
-        {arr.map((a) => (
-          <a key={a} href={"../../assets/pdfs/dummy.pdf"}>
-            <Image
-              src={"/images/about/awards/awards-1-1.jpg"}
-              width="420"
-              height="0"
-              alt="award"
-            />
-          </a>
-        ))}
-      </div>
+
       {/* magazine */}
-      <div className="lg:flex lg:flex-wrap md:grid md:grid-cols-3 md:gap-3 grid grid-cols-2 gap-3 justify-between lg:w-[70%] ">
+      <div className="lg:flex lg:flex-wrap md:grid md:grid-cols-3 md:gap-3 grid grid-cols-2 gap-3 justify-center">
         {aboutImages.map((img, i) => (
-          <a key={i} href={"../../assets/pdfs/dummy.pdf"}>
-            <Image
-              src={`/images/about/magazine/${img}`}
-              width="320"
-              height="322"
-              alt="award"
-              className="md:h-[400px] h-[250px]  my-3"
-            />
-          </a>
+          <Image
+            key={i}
+            src={`/images/about/gallery/${img}`}
+            width="320"
+            height="322"
+            alt="award"
+            className="sm:h-[320px] h-[190px]  my-3"
+          />
         ))}
       </div>
       <div className="my-8">

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 function page() {
   return (
-    <div className="flex flex-col items-center justify-center mt-8 lg:me-2 lg:px-0 px-4">
+    <div className="container">
       <ContactImg/>
       <div className="lg:flex justify-between items-start min-w-[59.6%] gap-5 pt-3">
         <ContactBox />

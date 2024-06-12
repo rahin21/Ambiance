@@ -10,9 +10,9 @@ import { motion } from "framer-motion";
 
 export default function Home() {
   return (
-    <main className=" flex flex-col items-center justify-center lg:mx-0 mx-5 mt-8 " >
+    <main className="container flex flex-col items-center justify-center mt-5 " >
       <motion.div
-      className="card-container pb-14"
+      className="pb-14"
       initial={{ opacity: 0, y:100}}
       animate={{ opacity: 1,  y:0}}
       transition={{ duration: 0.8,

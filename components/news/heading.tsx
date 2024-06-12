@@ -54,7 +54,7 @@ const bestHomeData = [
 
 function Heading() {
   return (
-    <div className="flex flex-col justify-center text-justify items-center font-semibold tracking-[2px] pt-20 pb-10 leading-7 text-[13px] text-lightText">
+    <div className="flex flex-col justify-center text-justify items-center font-semibold tracking-[2px] pt-20 pb-10 leading-7 text-lightText">
       <h1 className="header font-palatino text-[20px] tracking-[5px]">
         OUR EXCLUSIVE LINES
       </h1>
@@ -65,7 +65,7 @@ function Heading() {
         <Image width="80" height="10" src="/divider.png" alt="divder" />
       </div>
 
-      <Swiper
+      {/* <Swiper
         slidesPerView={6}
         className="mySwiper container lg:w-[80%] w-screen sm:mx-0 mx-5"
         navigation={true}
@@ -96,7 +96,7 @@ function Heading() {
               <Image
                 width="150"
                 height="100"
-                src="/images/showroom/bestDhome.webp"
+                src="/images/news/bestDhome.webp"
                 alt="divder"
               />
               <p className="text-[15px]">{data.p1}</p>
@@ -104,11 +104,11 @@ function Heading() {
             </div>
           </SwiperSlide>
         ))}
-      </Swiper>
+      </Swiper> */}
 
-      <div className="flex justify-center p-8 ">
+      {/* <div className="flex justify-center p-8 ">
         <Image width="80" height="10" src="/divider.png" alt="divder" />
-      </div>
+      </div> */}
     </div>
   );
 }
