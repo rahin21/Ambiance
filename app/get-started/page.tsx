@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 const questions = [
   {
-    ques: "What is Ambiance Design?",
+    ques: "What is Ambiance?",
     ans: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae libero optio eligendi fugit nihil reprehenderit aliquam, perferendis natus voluptate commodi quasi cupiditate quia nesciunt quo harum ducimus molestias illo nobis?",
   },
   {
@@ -20,19 +20,19 @@ const questions = [
     ans: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae libero optio eligendi fugit nihil reprehenderit aliquam, perferendis natus voluptate commodi quasi cupiditate quia nesciunt quo harum ducimus molestias illo nobis?",
   },
   {
-    ques: "What is Ambiance Design?",
+    ques: "What is Ambiance?",
     ans: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae libero optio eligendi fugit nihil reprehenderit aliquam, perferendis natus voluptate commodi quasi cupiditate quia nesciunt quo harum ducimus molestias illo nobis?",
   },
   {
-    ques: "What is Ambiance Design?",
+    ques: "What is Ambiance?",
     ans: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae libero optio eligendi fugit nihil reprehenderit aliquam, perferendis natus voluptate commodi quasi cupiditate quia nesciunt quo harum ducimus molestias illo nobis?",
   },
   {
-    ques: "What is Ambiance Design?",
+    ques: "What is Ambiance?",
     ans: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae libero optio eligendi fugit nihil reprehenderit aliquam, perferendis natus voluptate commodi quasi cupiditate quia nesciunt quo harum ducimus molestias illo nobis?",
   },
   {
-    ques: "What is Ambiance Design?",
+    ques: "What is Ambiance?",
     ans: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae libero optio eligendi fugit nihil reprehenderit aliquam, perferendis natus voluptate commodi quasi cupiditate quia nesciunt quo harum ducimus molestias illo nobis?",
   },
 ];

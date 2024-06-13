@@ -1,4 +1,4 @@
-import Image from "next/image";
+
 import Link from "next/link";
 import React from "react";
 import CopyRight from "./copyRight";
@@ -7,6 +7,7 @@ import { ImInstagram } from "react-icons/im";
 import { FaPinterest } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { SiGooglemybusiness } from "react-icons/si";
+import Social from "./footer/social";
 
 function Footer() {
   return (
@@ -30,55 +31,24 @@ function Footer() {
             className="email-link footer-link-text"
             href="mailto:info@lauraleeclark.com"
           >
-            info@deborah-diershaw.com
+            info@ambiancedesigns.biz
           </Link>
         </div>
 
-        <div className="flex justify-center items-center gap-5 p-5">
-          <Link
-            className="icon-link"
-            href="https://www.facebook.com/LauraLeeClarkID/"
-          >
-            <FaFacebookF className=" text-3xl" />
-          </Link>
-          <Link
-            className="icon-link"
-            href="https://www.pinterest.com/lauraleeclarkid/?eq=laura%20lee%20car&etslf=8558"
-          >
-            <FaPinterest className=" text-3xl" />
-          </Link>
-          <Link
-            className="icon-link ms-1"
-            href="https://www.instagram.com/lauraleeclarkinteriordesign/"
-          >
-            <ImInstagram className=" text-3xl" />
-          </Link>
-          <Link
-            className="icon-link ms-1"
-            href="https://www.instagram.com/lauraleeclarkinteriordesign/"
-          >
-            <FaXTwitter className=" text-3xl" />
-          </Link>
-          <Link
-            className="icon-link ms-1"
-            href="https://www.instagram.com/lauraleeclarkinteriordesign/"
-          >
-            <SiGooglemybusiness className=" text-3xl" />
-          </Link>
-        </div>
+        <Social className="pt-2"/>
         <div className="flex  justify-center items-center p-2">
           <div className=" py-1 bg-gray-500 w-20"></div>
         </div>
         <div className="p-1 flex sm:flex-row flex-col justify-center items-center sm:gap-3">
           <div className="footer-description footer-link-text">
-            © 2024 AMBIANCE DESIGN
+            © 2024 AMBIANCE 
           </div>
           <div className="footer-description footer-link-text px-1 "> . </div>
           <a
-            className="footer-description footer-link-text"
+            className="footer-description footer-link-text uppercase"
             href="https://clickandco.co/"
           >
-            A CLICK & CO. WEBSITE
+            All Rights Reserved
           </a>
         </div>
         <div className="py-1">

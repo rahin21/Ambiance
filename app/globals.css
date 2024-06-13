@@ -2,9 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-
-html,body{
+html{
   overflow-x: hidden;
-  background: #fff;
   scroll-behavior: smooth;
+  }
+body{
+  background: #fff;
+  padding-top: 88px;
+}
+@media screen and (min-width:1024px) {
+  body{
+    padding-top: 0px;
+  }
+  
 }

@@ -13,6 +13,7 @@ function Nav() {
     { label: "PORTFOLIO", href: "/portfolio" },
     { label: "NEWS", href: "/news" },
     { label: "GET STARTED", href: "/get-started" },
+    { label: "SORT IT OUT", href: "/sortitout.ambiancedesigns.biz" },
     { label: "CONTACT", href: "/contact" },
   ];
 

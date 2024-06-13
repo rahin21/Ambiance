@@ -49,7 +49,7 @@ function Gallery({
           hasNextPage={end < news.length}
           hasPrevPage={start > 0}
           totalData={news.length}
-          route={"showroom"}
+          route={"news"}
         />
       </div>
       <div />
