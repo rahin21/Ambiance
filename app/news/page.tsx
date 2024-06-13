@@ -25,6 +25,7 @@ function page({
       <Slider sliderImages={newsSliderImages} />
       <Heading />
       <Gallery searchParams={searchParams} />
+     
       
     </div>
   );

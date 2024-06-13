@@ -32,6 +32,16 @@ const PaginationControls: FC<PaginationControlsProps> = ({
     if (i > totalPages) break;
     pageNumbers.push(i);
   }
+  if (totalPages > 3) {
+    if (pageNumbers.length < 3) {
+      if (pageNumbers.at(-1) === 2) {
+        pageNumbers.push(3);
+      }
+      if (pageNumbers.at(-1) === totalPages) {
+        pageNumbers.unshift(totalPages - 2);
+      }
+    }
+  }
 
   return (
     <div className="flex items-center gap-4 text-lightText">
@@ -48,37 +58,72 @@ const PaginationControls: FC<PaginationControlsProps> = ({
       >
         <MdKeyboardArrowLeft />
       </button>
+
+
+
+      {Number(page) > 3  ? (
+      <>
+      
+        <Link
+          href={`/${route}?page=${Number(page)}&per_page=${per_page}#gallery`}
+          className="text-xl font-semibold"
+        >
+          {1}
+        </Link>
+        ...
+      </>
+      ) :
+      Number(page) > 2?
+      <Link
+          href={`/${route}?page=${Number(page)}&per_page=${per_page}#gallery`}
+          className="text-xl font-semibold"
+        >
+          {1}
+        </Link>
+      :
+      <>
+      </>
+      }
+
       {pageNumbers.map((pageNumber, i) => (
         <Link
           href={`/${route}?page=${Number(
             pageNumber
           )}&per_page=${per_page}#gallery`}
-          className={`text-xl font-semibold ${Number(page)===pageNumber? "text-black underline decoration-1":""}`}
+          className={`text-xl font-semibold ${
+            Number(page) === pageNumber
+              ? "text-black underline decoration-1"
+              : ""
+          }`}
           key={i}
         >
           {pageNumber}
         </Link>
       ))}
-      {/* {totalPages === 3 ? (
+      {Number(page) < totalPages - 2  ? (
+        <>
+        ...
         <Link
-          href={`/${route}?page=${Number(3)}&per_page=${per_page}#gallery`}
+          href={`/${route}?page=${Number(
+            totalPages
+          )}&per_page=${per_page}#gallery`}
           className="text-xl font-semibold"
         >
-          {3}
+          {totalPages}
         </Link>
-      ) : totalPages > 3 && Number(page)<totalPages-1? (
-        <>
-          ...
-          <Link
-            href={`/${route}?page=${Number(
-              totalPages
-            )}&per_page=${per_page}#gallery`}
-            className="text-xl font-semibold"
-          >
-            {totalPages}
-          </Link>
-        </>
-      ) : <></>} */}
+      </>
+      ) : Number(page) < totalPages - 1 ?
+      <Link
+      href={`/${route}?page=${Number(
+        totalPages
+        )}&per_page=${per_page}#gallery`}
+        className="text-xl font-semibold"
+        >
+          {totalPages}
+        </Link>
+      : (
+        <></> 
+      )}
 
       <button
         className={`${

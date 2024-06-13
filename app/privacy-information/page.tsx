@@ -2,8 +2,9 @@ import React from "react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy",
+  title: "Privacy Information",
 };
+
 function page() {
   return (
     <div className="container mx-auto lg:px-48 text-justify text-[16px] [text-align-last:center] font-openSans leading-8 tracking-[2px] font-semibold text-lightText opacity-80 px-10">
@@ -389,7 +390,7 @@ function page() {
           You have the right to ask us not to process your personal information
           for marketing purposes. You can do this at any time by clicking on the
           “unsubscribe” link in any marketing email we send you. You can also
-          opt out of marketing by emailing info@lauraleeclark.com. Data
+          opt out of marketing by emailing info@ambiancedesigns.biz. Data
           protection law gives you the right to access your personal
           information, to object to the use of your personal information for
           certain purposes, and the right to erase, restrict or receive a
@@ -431,7 +432,7 @@ function page() {
         <p className="primary-text description">
           If you have any questions about these policies, please contact us:{" "}
           <strong>
-            Laura Lee Clark Phone: 214-265-7272 info@lauraleeclark.com
+            Laura Lee Clark Phone: 214-265-7272 info@ambiancedesigns.biz
           </strong>
           Last updated: July 3, 2019
         </p>

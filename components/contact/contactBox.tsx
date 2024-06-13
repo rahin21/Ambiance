@@ -42,9 +42,9 @@ function ContactBox() {
         <span>.</span>
         <Link
           className="email-link footer-link-text"
-          href="mailto:info@lauraleeclark.com"
+          href="mailto:info@ambiancedesigns.biz"
         >
-          info@lauraleeclark.com
+          info@ambiancedesigns.biz
         </Link>
       </div>
       <h2 className="footer-header font-palatino text-lightText py-1">

@@ -44,6 +44,9 @@ function Gallery({
           </div>
         ))}
       </div>
+      {news.length <= 6 ? (
+        <></>
+      ) : (
       <div className="flex justify-center pt-10">
         <PaginationControls
           hasNextPage={end < news.length}
@@ -52,6 +55,7 @@ function Gallery({
           route={"news"}
         />
       </div>
+      )}
       <div />
     </motion.div>
   );

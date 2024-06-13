@@ -26,7 +26,7 @@ function Header({ navItems }: { navItems: navItemType }) {
             />
           </Link>
           <button className="" onClick={showMenu}>
-            <GiHamburgerMenu className="text-xl" />
+            <GiHamburgerMenu className="text-3xl" />
           </button>
         </div>
 
@@ -36,14 +36,14 @@ function Header({ navItems }: { navItems: navItemType }) {
             href={"tel:2142657272"}
             onClick={showMenu}
           >
-            1-817-925-2478
+            1.817.925.2478
           </Link>
           <span className="px-5">.</span>
           <Link
             className="tracking-[2px] uppercase"
-            href={"email:INFO@ambiancedesigns.biz"}
+            href={"email:info@ambiancedesigns.biz"}
           >
-            INFO@ambiancedesigns.biz
+            info@ambiancedesigns.biz
           </Link>
         </div>
         <div className={`pb-5 ${
@@ -64,7 +64,7 @@ function Header({ navItems }: { navItems: navItemType }) {
       </div>
       <Link
         href={"/"}
-        className="hidden lg:flex items-center justify-center"
+        className="flex items-center justify-center"
       >
         <Image
           src={"/images/logo.jpeg"}

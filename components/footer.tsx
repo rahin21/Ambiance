@@ -20,8 +20,8 @@ function Footer() {
 
         <div>
           <span>Phone: </span>
-          <Link className="py-1" href="tel:2142657272">
-            1-817-925-2478
+          <Link className="py-1" href="tel:18179252478">
+            1.817.925.2478
           </Link>
         </div>
 
@@ -29,7 +29,7 @@ function Footer() {
           <span>Email: </span>
           <Link
             className="email-link footer-link-text"
-            href="mailto:info@lauraleeclark.com"
+            href="mailto:info@ambiancedesigns.biz"
           >
             info@ambiancedesigns.biz
           </Link>
@@ -53,10 +53,18 @@ function Footer() {
         </div>
         <div className="py-1">
           <Link
-            className="footer-description footer-link-text"
-            href="/privacy-policy"
+            className="footer-description footer-link-text uppercase"
+            href="/terms-of-services"
           >
-            PRIVACY POLICY
+            Terms Of services
+          </Link>
+        </div>
+        <div className="py-1">
+          <Link
+            className="footer-description footer-link-text uppercase"
+            href="/privacy-information"
+          >
+            PRIVACY Information
           </Link>
         </div>
         <div>
@@ -64,7 +72,7 @@ function Footer() {
             className="footer-description footer-link-text p-1"
             href="/protected"
           >
-            PORTECTED
+            PROTECTED
           </Link>
         </div>
       </div>
