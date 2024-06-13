@@ -36,7 +36,7 @@ function Header({ navItems }: { navItems: navItemType }) {
             href={"tel:2142657272"}
             onClick={showMenu}
           >
-            (817)-925-2478
+            1-817-925-2478
           </Link>
           <span className="px-5">.</span>
           <Link

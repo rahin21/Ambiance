@@ -20,7 +20,7 @@ function Nav() {
   return (
     <div className="text-gray-500">
       <Header navItems={navItems} />
-      <nav className="container flex justify-between font-openSans text-[15px] tracking-widest pt-4">
+      <nav className="container flex justify-between font-openSans text-[15px] tracking-widest py-4">
         {navItems.map((navItem,i)=>(
 
         <div key={i} className="group hover:italic cursor-pointer lg:flex text-center  hidden ">

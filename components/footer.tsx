@@ -21,7 +21,7 @@ function Footer() {
         <div>
           <span>Phone: </span>
           <Link className="py-1" href="tel:2142657272">
-            (817)-925-2478
+            1-817-925-2478
           </Link>
         </div>
 
