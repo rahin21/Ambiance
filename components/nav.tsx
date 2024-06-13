@@ -24,7 +24,7 @@ function Nav() {
         {navItems.map((navItem,i)=>(
 
         <div key={i} className="group hover:italic cursor-pointer lg:flex text-center  hidden ">
-          <Link className={`${currentPath === navItem.href? "italic": "" } my-5 lg:flex lg:flex-col lg:justify-center lg:items-center`} href={navItem.href}>
+          <Link className={`${currentPath === navItem.href? "italic": "" } lg:flex lg:flex-col lg:justify-center lg:items-center`} href={navItem.href}>
             {navItem.label}
           <Image
             src={"/divider.png"}

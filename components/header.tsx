@@ -64,11 +64,11 @@ function Header({ navItems }: { navItems: navItemType }) {
       </div>
       <Link
         href={"/"}
-        className="hidden lg:flex items-center justify-center lg:pt-0 pt-10"
+        className="hidden lg:flex items-center justify-center"
       >
         <Image
           src={"/images/logo.jpeg"}
-          width={270}
+          width={220}
           height={100}
           alt="company logo"
         />
