@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import localfont from "next/font/local"
 
-import "../globals.css";
-import Nav from "@/components/nav";
-import Footer from "@/components/footer";
 import ScrollToTop from "@/components/scrollToTop";
 
 const dipotic = localfont({
