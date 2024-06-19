@@ -1,32 +1,39 @@
 import React from "react";
-
 import type { Metadata } from "next";
-import Image from "next/image";
-import Input from "@/components/contact/input";
+
 import LoginForm from "@/components/loginForm";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { redirect } from "next/navigation";
+import { Button } from "@/components/ui/button";
 export const metadata: Metadata = {
-  title: "Dashboard",
+  title: "Login",
 };
 
 
-function page() {
+async function page() {
+  const session = await getServerSession(authOptions);
+  if(!session?.user){
   return (
-    <div className="container mx-auto lg:px-0 px-5">
+    <div className="container flex flex-col justify-center mx-auto lg:px-0 px-5 h-screen">
+
       <div className="flex flex-col justify-content-center text-justify [text-align-last:center] font-semibold tracking-[2px] leading-7 text-[13px] text-lightText">
         <h1 className="header font-palatino text-[20px] tracking-[5px] py-8 uppercase">
-        Dashboard
+        Login
         </h1>
         <p className="semi-header pt-2 font-openSans font-medium py-2 text-[16px]">
           This content is password protected. To view it please enter your
-          password below:
+          credentials below:
         </p>
       </div>
       <div className="flex flex-col text-center items-center">
           <LoginForm/>
-
       </div>
     </div>
   );
+} else {
+  redirect('/admin')
+}
 }
 
 export default page;

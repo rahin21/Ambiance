@@ -70,7 +70,7 @@ function Footer() {
         <div>
           <Link
             className="footer-description footer-link-text p-1"
-            href="/protected"
+            href="/login"
           >
             PROTECTED
           </Link>

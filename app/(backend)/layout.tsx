@@ -41,10 +41,9 @@ export default function BackendLayout({
   return (
     <html lang="en">
       <body className={`${dipotic.variable} ${openSans.variable} ${palatino.variable}`}>
-        <Nav/>
+
         {children}
-        <ScrollToTop/>
-        <Footer/>
+
         </body>
     </html>
   );
