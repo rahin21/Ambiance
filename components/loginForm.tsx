@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 import {
   FormControl,
@@ -10,38 +10,35 @@ import {
   FormHelperText,
   Button,
 } from '@chakra-ui/react';
-import { Field, Form, Formik } from 'formik';
 
 import { Input } from '@chakra-ui/react'
 
-const formSchema = z.object({
-  email: z.string().min(2, {
-    message: "email must be at least 2 characters.",
-  }),
-  password: z.string().min(2, {
-    message: "password must be at least 2 characters.",
-  }),
-});
 
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
-function LoginForm() {
-  const router = useRouter();
+const formSchema = z.object({
+  email: z.string().email("Invalid Email").min(5, "Email is too short"),
+  password: z.string().min(8, "Password is too short"),
+});
+type formSchema = z.infer<typeof formSchema>;
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      email: "",
-      password: "",
-    },
-  });
+function LoginForm() {
+
+  const router = useRouter();
+  
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isSubmitting },
+  } = useForm<formSchema>({
+    resolver: zodResolver(formSchema)});
 
   // 2. Define a submit handler.
-  async function onSubmit(values: z.infer<typeof formSchema>) {
+  const onSubmit:SubmitHandler<formSchema> = async (values: formSchema) => {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    console.log(values)
+    console.log(values);
     const loginData = await signIn("credentials", {
       email: values.email,
       password: values.password,
@@ -53,55 +50,44 @@ function LoginForm() {
       router.push("/admin");
     }
   }
-  return (
-    <Formik<z.infer<typeof formSchema>>
-      initialValues={{
-        email: '',
-        password: '',
-      }}
-      onSubmit={(values) => onSubmit(values)}
-    >
 
-    <Form {...form}>
-        <Field
-          control={form.control}
-          name="email"
-          >
-          {({ field }:{field:any}) => (
+  return (
+  
+    <form onSubmit={handleSubmit(onSubmit)}>
+
             
-            <FormControl>
-                <FormLabel className="">Email:</FormLabel>
-                <Input
-                  placeholder="Email"
-                  type="email"
-                  className="text-start placeholder:text-start"
-                  {...field}
-                />
-              <FormErrorMessage />
+            <FormControl isInvalid={errors.email}>
+                <FormLabel htmlFor="email" className="">Email:</FormLabel>
+                
+                  <Input
+                    placeholder="Email"
+                    type="email"
+                    className="text-start placeholder:text-start"
+                    {...register("email")}
+                  />
+              
+              <FormErrorMessage>
+              {errors.email && errors.email.message}
+              </FormErrorMessage>
               </FormControl>
-          )}
-          </Field>
-          <Field
-          control={form.control}
-          name="password"
-          >
-          {({ field }:{field:any}) => (
-            
-            <FormControl>
-                <FormLabel className="">Password:</FormLabel>
+         
+
+            <FormControl isInvalid={errors.email}>
+                <FormLabel htmlFor="password" className="">Password:</FormLabel>
                 <Input
                   placeholder="Password"
                   type="password"
                   className="text-start placeholder:text-start"
-                  {...field}
+                  {...register("password")}
                 />
-              <FormErrorMessage />
+                
+              <FormErrorMessage >
+                {errors.password && errors.password.message}
+              </FormErrorMessage>
               </FormControl>
-          )}
-          </Field>
+
         <Button type="submit">Submit</Button>
-    </Form>
-    </Formik>
+    </form>
   );
 }
 
