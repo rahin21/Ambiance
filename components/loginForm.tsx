@@ -1,9 +1,18 @@
 "use client";
 import React from "react";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import {
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  FormHelperText,
+  Button,
+} from '@chakra-ui/react';
+import { Field, Form, Formik } from 'formik';
+
+import { Input } from '@chakra-ui/react'
 
 const formSchema = z.object({
   email: z.string().min(2, {
@@ -15,31 +24,7 @@ const formSchema = z.object({
 });
 
 import { signIn } from "next-auth/react";
-
-import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-
-import { Input } from "@/components/ui/input";
-import axios from "axios";
-import { isPasswordCorrect } from "@/constants/passwordChecker";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 function LoginForm() {
   const router = useRouter();
@@ -56,7 +41,7 @@ function LoginForm() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    // console.log(values)
+    console.log(values)
     const loginData = await signIn("credentials", {
       email: values.email,
       password: values.password,
@@ -69,45 +54,54 @@ function LoginForm() {
     }
   }
   return (
-    <Card className="max-w-[600px] w-[600px] mx-auto">
-      <CardHeader>
-        <CardTitle className="header font-palatino text-[20px] tracking-[5px] py-8 uppercase">Login</CardTitle>
+    <Formik<z.infer<typeof formSchema>>
+      initialValues={{
+        email: '',
+        password: '',
+      }}
+      onSubmit={(values) => onSubmit(values)}
+    >
 
-      </CardHeader>
-      <CardContent>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="">Email:</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Email" className="text-start placeholder:text-start" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="">Password:</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Password" className="text-start placeholder:text-start" type="password" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Button type="submit">Submit</Button>
-          </form>
-        </Form>
-      </CardContent>
-    </Card>
+    <Form {...form}>
+        <Field
+          control={form.control}
+          name="email"
+          >
+          {({ field }:{field:any}) => (
+            
+            <FormControl>
+                <FormLabel className="">Email:</FormLabel>
+                <Input
+                  placeholder="Email"
+                  type="email"
+                  className="text-start placeholder:text-start"
+                  {...field}
+                />
+              <FormErrorMessage />
+              </FormControl>
+          )}
+          </Field>
+          <Field
+          control={form.control}
+          name="password"
+          >
+          {({ field }:{field:any}) => (
+            
+            <FormControl>
+                <FormLabel className="">Password:</FormLabel>
+                <Input
+                  placeholder="Password"
+                  type="password"
+                  className="text-start placeholder:text-start"
+                  {...field}
+                />
+              <FormErrorMessage />
+              </FormControl>
+          )}
+          </Field>
+        <Button type="submit">Submit</Button>
+    </Form>
+    </Formik>
   );
 }
 
