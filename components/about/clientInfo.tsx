@@ -1,9 +1,8 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import LinkOverLogo from "../linkOverLogo";
 import { motion } from "framer-motion";
-import { variantsSlideIn } from "@/libs/motion";
+
 function ClientInfo() {
   return (
     <motion.div

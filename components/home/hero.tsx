@@ -3,7 +3,6 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import LinkOverLogo from "../linkOverLogo";
 import { motion, Variants } from "framer-motion";
-import { variantsSlideIn } from "../../libs/motion";
 
 const Hero = ({
   heading,

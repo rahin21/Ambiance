@@ -1,6 +1,6 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { connectToDatabase } from "../../helpers/server-helpers";
+import { connectToDatabase } from "../helpers/server-helpers";
 import prisma from "@/prisma";
 import bcrypt from "bcrypt";
 import {PrismaAdapter} from "@next-auth/prisma-adapter"
