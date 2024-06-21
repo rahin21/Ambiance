@@ -11,9 +11,9 @@ import {
 } from "@chakra-ui/react";
 import LoginForm from "@/components/loginForm";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/[...nextauth]/authOptions";
 import { redirect } from "next/navigation";
 import { Container } from "@chakra-ui/react";
+import { authOptions } from "@/lib/auth";
 
 export const metadata: Metadata = {
   title: "Login",

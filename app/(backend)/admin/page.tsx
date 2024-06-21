@@ -1,8 +1,8 @@
 import React from 'react'
-import { authOptions } from '@/app/api/[...nextauth]/authOptions'
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
 import Logout from '@/components/logout';
+import { authOptions } from '@/lib/auth';
 
 
 async function page() {
