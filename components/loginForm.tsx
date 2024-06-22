@@ -1,6 +1,6 @@
 //@ts-nocheck
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { z } from "zod";
@@ -11,6 +11,7 @@ import {
   FormHelperText,
   Button,
   Center,
+  Text,
 } from "@chakra-ui/react";
 
 import { Input } from "@chakra-ui/react";
@@ -26,7 +27,7 @@ type formSchema = z.infer<typeof formSchema>;
 
 function LoginForm() {
   const router = useRouter();
-
+  const [wrongCreds, setWrongCreds] = useState(false);
   const {
     handleSubmit,
     register,
@@ -40,6 +41,7 @@ function LoginForm() {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     // console.log(values);
+    setWrongCreds(false);
     console.log("Submit button clicked");
     const loginData = await signIn("credentials", {
       email: values.email,
@@ -48,6 +50,7 @@ function LoginForm() {
     });
     if (loginData?.error) {
       console.log(loginData.error);
+      setWrongCreds(true);
     } else {
       router.push("/admin");
     }
@@ -55,6 +58,11 @@ function LoginForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      {wrongCreds && (
+        <Text color={"red"} textAlign={"center"}>
+          Email or password does not match!
+        </Text>
+      )}
       <FormControl isInvalid={errors.email}>
         <FormLabel htmlFor="email" className="">
           Email:

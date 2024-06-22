@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
 import Logout from '@/components/logout';
 import { authOptions } from '@/lib/auth';
+import NavBar from './sidebar/navBar';
 
 
 async function page() {
@@ -10,8 +11,7 @@ async function page() {
   if(session?.user){
     return (
       <>
-      <div>Welcome admin panel</div>
-      <Logout/>
+      <NavBar/>    
       </>
     )
   }
