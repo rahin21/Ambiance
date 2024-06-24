@@ -14,3 +14,35 @@ model User {
   password String
   role String
 }
+
+model Menu {
+  id    String  @id @default(auto()) @map("_id") @db.ObjectId
+  name String @unique
+  link String
+}
+
+model Contact {
+  id    String  @id @default(auto()) @map("_id") @db.ObjectId
+  phone String @unique
+  email String @unique
+}
+
+model Social {
+  id    String  @id @default(auto()) @map("_id") @db.ObjectId
+  facebook String
+  pinterest String 
+  insta String 
+  xtwitter String
+  googleBusiness String
+}
+
+model HomePost {
+  id    String  @id @default(auto()) @map("_id") @db.ObjectId
+  imageLink String
+  heading String
+  subHeading String
+  description String 
+  linkHeading String
+  link String
+}
+
