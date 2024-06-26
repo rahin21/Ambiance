@@ -1,6 +1,15 @@
 import prisma from "@/prisma";
 import { connectToDatabase } from "../../helpers/server-helpers";
 import { NextResponse } from "next/server";
+import { z } from "zod";
+
+const menuSchema = z.object({
+  key: z.string().min(2),
+  items: z.object({
+    name: z.string().min(2),
+    link: z.string(),
+  }),
+});
 
 export const GET = async () => {
   try {
@@ -17,16 +26,14 @@ export const GET = async () => {
 export const POST = async (req: Request) => {
   try {
     await connectToDatabase();
-    let { name, link } =
-      await req.json();
-    if (
-      !name || !link
-    )
-      return NextResponse.json({ message: "Invalid Data" }, { status: 422 });
+    let body = await req.json();
+    const validation = menuSchema.safeParse(body);
+    if (!validation.success)
+      return NextResponse.json(validation.error.format(), { status: 422 });
     const menu = await prisma.menu.create({
-      data: { name, link },
+      data: body,
     });
-    return NextResponse.json({ menu }, { status: 201 });
+    return NextResponse.json(menu, { status: 201 });
   } catch (error) {
     console.log(error);
     return NextResponse.json({ message: "Server Error" }, { status: 500 });

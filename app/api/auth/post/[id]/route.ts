@@ -3,17 +3,17 @@ import prisma from "@/prisma";
 import { NextResponse } from "next/server";
 
 export const GET = async (req: Request) => {
-  // GET a contact by id
+  // GET a post by id
   await connectToDatabase();
-  const url = req.url.split("contact/")[1];
+  const url = req.url.split("post/")[1];
 
   try {
-    const getUniqueContact = await prisma.contact.findUnique({
+    const getUniquePost = await prisma.post.findUnique({
       where: {
         id: url || "",
       },
     });
-    return NextResponse.json({ getUniqueContact }, { status: 200 });
+    return NextResponse.json({ getUniquePost }, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error: "Server Error" }, { status: 500 });
   } finally {
@@ -22,23 +22,26 @@ export const GET = async (req: Request) => {
 };
 
 export const PUT = async (req: Request) => {
-  // UPDATE a contact by id
+  // UPDATE a post by id
   await connectToDatabase();
-  let { email, phone } = await req.json();
-  const url = req.url.split("contact/")[1];
-  if (!email || !phone)
+  let { key, img, gallery } = await req.json();
+  const url = req.url.split("post/")[1];
+  if (!key || !img || !gallery)
     return NextResponse.json({ message: "Invalid Data" }, { status: 422 });
   try {
-    const updateContact = await prisma.contact.update({
+    const updatePost = await prisma.post.update({
       where: {
         id: url || "",
       },
       data: {
-        email,
-        phone,
+        key,
+        img,
+        gallery:{
+          push:gallery
+        }
       },
     });
-    return NextResponse.json({ updateContact }, { status: 201 });
+    return NextResponse.json({ updatePost }, { status: 201 });
   } catch (error) {
     return NextResponse.json({ error: "Server Error" }, { status: 500 });
   } finally {
@@ -47,15 +50,15 @@ export const PUT = async (req: Request) => {
 };
 
 export const DELETE = async (req: Request) => {
-  // DELETE a contact by id
-  const url = req.url.split("contact/")[1];
+  // DELETE a post by id
+  const url = req.url.split("post/")[1];
   try {
-    const deleteContact = await prisma.contact.delete({
+    const deletePost = await prisma.post.delete({
       where: {
         id: url || "",
       },
     });
-    return NextResponse.json({ deleteContact }, { status: 201 });
+    return NextResponse.json({ deletePost }, { status: 201 });
   } catch (error) {
     return NextResponse.json({ error: "Server Error" }, { status: 500 });
   } finally {

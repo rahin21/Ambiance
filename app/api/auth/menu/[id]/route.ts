@@ -1,6 +1,16 @@
 import { connectToDatabase } from "@/app/api/helpers/server-helpers"
 import prisma from "@/prisma"
 import { NextResponse } from "next/server"
+import { z } from "zod";
+
+const menuSchema = z.object({
+  key: z.string().min(2),
+  items: z.object({
+    name:z.string().min(2),
+    link:z.string()
+  })
+})
+
 
 export const GET = async (req:Request) => {
     // GET a menu by id
@@ -24,19 +34,17 @@ export const GET = async (req:Request) => {
 export const PUT = async (req:Request) => {
     // UPDATE a menu by id
     await connectToDatabase();
-    let { name, link } = await req.json();
+    let body = await req.json();
     const url = req.url.split('menu/')[1]
-    if (!name || !link)
-        return NextResponse.json({ message: "Invalid Data" }, { status: 422 });
+    const validation = menuSchema.safeParse(body);
+    if (!validation.success)
+        return NextResponse.json(validation.error.format(), { status: 422 });
     try {
         const updateMenu = await prisma.menu.update({
             where:{
                 id: url|| "" 
             },
-            data:{
-                name,
-                link
-            }
+            data:body
         })
         return NextResponse.json({updateMenu},{status:201})
     } catch (error) {
@@ -52,7 +60,7 @@ export const DELETE = async (req:Request) => {
     try {
         const deleteMenu = await prisma.menu.delete({
             where:{
-                id: url || "" 
+                key: url || "" 
             }
         })
         return NextResponse.json({deleteMenu},{status:201})

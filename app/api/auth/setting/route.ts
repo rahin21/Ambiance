@@ -5,8 +5,8 @@ import { NextResponse } from "next/server";
 export const GET = async () => {
     try {
         await connectToDatabase();
-        const contact = await prisma.contact.findMany();
-        return NextResponse.json({contact}, {status:200})
+        const setting = await prisma.setting.findMany();
+        return NextResponse.json({setting}, {status:200})
     } catch (error) {
         return NextResponse.json({error: "Server Error"}, {status: 500})
     } finally {
@@ -17,13 +17,13 @@ export const GET = async () => {
 export const POST = async (req: Request) => {
     try {
       await connectToDatabase();
-      let { email, phone } = await req.json();
-      if (!email || !phone)
+      let { name, description } = await req.json();
+      if (!name || !description)
         return NextResponse.json({ message: "Invalid Data" }, { status: 422 });
-      const contact = await prisma.contact.create({
-        data: { email, phone },
+      const setting = await prisma.setting.create({
+        data: { name, description },
       });
-      return NextResponse.json({ contact }, {status: 201});
+      return NextResponse.json({ setting }, {status: 201});
     } catch (error) {
       console.log(error);
       return NextResponse.json({message:"Server Error"}, {status: 500})

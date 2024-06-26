@@ -3,17 +3,17 @@ import prisma from "@/prisma";
 import { NextResponse } from "next/server";
 
 export const GET = async (req: Request) => {
-  // GET a social by id
+  // GET a about by id
   await connectToDatabase();
-  const url = req.url.split("social/")[1];
+  const url = req.url.split("about/")[1];
 
   try {
-    const getUniqueSocial = await prisma.social.findUnique({
+    const getUniqueAbout = await prisma.about.findUnique({
       where: {
         id: url || "",
       },
     });
-    return NextResponse.json({ getUniqueSocial }, { status: 200 });
+    return NextResponse.json({ getUniqueAbout }, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error: "Server Error" }, { status: 500 });
   } finally {
@@ -22,27 +22,22 @@ export const GET = async (req: Request) => {
 };
 
 export const PUT = async (req: Request) => {
-  // UPDATE a social by id
+  // UPDATE a about by id
   await connectToDatabase();
-  let { facebook, pinterest, insta, xtwitter, googleBusiness } =
-    await req.json();
-  const url = req.url.split("social/")[1];
-  if (!facebook || !pinterest || !insta || !xtwitter || !googleBusiness)
+  let { avatar, title, subTitle } = await req.json();
+  const url = req.url.split("about/")[1];
+  if (!avatar || !title || !subTitle)
     return NextResponse.json({ message: "Invalid Data" }, { status: 422 });
   try {
-    const updateSocial = await prisma.social.update({
+    const updateAbout = await prisma.about.update({
       where: {
         id: url || "",
       },
       data: {
-        facebook,
-        pinterest,
-        insta,
-        xtwitter,
-        googleBusiness,
+        avatar, title, subTitle 
       },
     });
-    return NextResponse.json({ updateSocial }, { status: 201 });
+    return NextResponse.json({ updateAbout }, { status: 201 });
   } catch (error) {
     return NextResponse.json({ error: "Server Error" }, { status: 500 });
   } finally {
@@ -51,15 +46,15 @@ export const PUT = async (req: Request) => {
 };
 
 export const DELETE = async (req: Request) => {
-  // DELETE a social by id
-  const url = req.url.split("social/")[1];
+  // DELETE a about by id
+  const url = req.url.split("about/")[1];
   try {
-    const deleteSocial = await prisma.social.delete({
+    const deleteAbout = await prisma.about.delete({
       where: {
         id: url || "",
       },
     });
-    return NextResponse.json({ deleteSocial }, { status: 201 });
+    return NextResponse.json({ deleteAbout }, { status: 201 });
   } catch (error) {
     return NextResponse.json({ error: "Server Error" }, { status: 500 });
   } finally {

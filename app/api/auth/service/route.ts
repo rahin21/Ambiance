@@ -5,8 +5,8 @@ import { NextResponse } from "next/server";
 export const GET = async () => {
   try {
     await connectToDatabase();
-    const homePost = await prisma.homePost.findMany();
-    return NextResponse.json({ homePost }, { status: 200 });
+    const service = await prisma.service.findMany();
+    return NextResponse.json({ service }, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error: "Server Error" }, { status: 500 });
   } finally {
@@ -17,21 +17,24 @@ export const GET = async () => {
 export const POST = async (req: Request) => {
   try {
     await connectToDatabase();
-    let { imageLink, heading, subHeading, description, linkHeading, link } =
+    let { thumbnail, title, subTitle, description, linkId } =
       await req.json();
     if (
-      imageLink ||
-      !heading ||
-      !subHeading ||
+      !thumbnail ||
+      !title ||
+      !subTitle ||
       !description ||
-      !linkHeading ||
-      !link
+      !linkId
     )
       return NextResponse.json({ message: "Invalid Data" }, { status: 422 });
-    const homePost = await prisma.homePost.create({
-      data: { imageLink, heading, subHeading, description, linkHeading, link },
-    });
-    return NextResponse.json({ homePost }, { status: 201 });
+    const service = await prisma.service.create({
+      data: { thumbnail, title, subTitle, description, linkId },
+      include:{
+        link:true
+      }
+    },
+  );
+    return NextResponse.json({ service }, { status: 201 });
   } catch (error) {
     console.log(error);
     return NextResponse.json({ message: "Server Error" }, { status: 500 });
