@@ -1,11 +1,12 @@
 import { connectToDatabase } from "@/app/api/helpers/server-helpers";
 import prisma from "@/prisma";
+import { ParamsType } from "@/types/paramTypes";
 import { NextResponse } from "next/server";
 
-export const GET = async (req: Request) => {
+export const GET = async (req: Request,{params}:{params:ParamsType}) => {
   // GET a link by id
   await connectToDatabase();
-  const url = req.url.split("link/")[1];
+  const url = params.id;
 
   try {
     const getUniqueLink = await prisma.link.findUnique({
@@ -21,11 +22,11 @@ export const GET = async (req: Request) => {
   }
 };
 
-export const PUT = async (req: Request) => {
+export const PUT = async (req: Request,{params}:{params:ParamsType}) => {
   // UPDATE a link by id
   await connectToDatabase();
   let { text,  plainUrl} = await req.json();
-  const url = req.url.split("link/")[1];
+  const url = params.id;
   if (!text || !plainUrl)
     return NextResponse.json({ message: "Invalid Data" }, { status: 422 });
   try {
@@ -46,9 +47,9 @@ export const PUT = async (req: Request) => {
   }
 };
 
-export const DELETE = async (req: Request) => {
+export const DELETE = async (req: Request,{params}:{params:ParamsType}) => {
   // DELETE a link by id
-  const url = req.url.split("link/")[1];
+  const url = params.id;
   try {
     const deleteLink = await prisma.link.delete({
       where: {

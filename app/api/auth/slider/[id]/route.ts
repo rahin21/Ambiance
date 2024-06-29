@@ -1,11 +1,12 @@
 import { connectToDatabase } from "@/app/api/helpers/server-helpers";
 import prisma from "@/prisma";
+import { ParamsType } from "@/types/paramTypes";
 import { NextResponse } from "next/server";
 
-export const GET = async (req: Request) => {
+export const GET = async (req: Request,{params}:{params:ParamsType}) => {
   // GET a slider by id
   await connectToDatabase();
-  const url = req.url.split("slider/")[1];
+  const url = params.id;
 
   try {
     const getUniqueSlider = await prisma.slider.findUnique({
@@ -21,11 +22,11 @@ export const GET = async (req: Request) => {
   }
 };
 
-export const PUT = async (req: Request) => {
+export const PUT = async (req: Request,{params}:{params:ParamsType}) => {
   // UPDATE a slider by id
   await connectToDatabase();
   let { key, img } = await req.json();
-  const url = req.url.split("slider/")[1];
+  const url = params.id;
   if (!key || !img)
     return NextResponse.json({ message: "Invalid Data" }, { status: 422 });
   try {
@@ -46,9 +47,9 @@ export const PUT = async (req: Request) => {
   }
 };
 
-export const DELETE = async (req: Request) => {
+export const DELETE = async (req: Request,{params}:{params:ParamsType}) => {
   // DELETE a slider by id
-  const url = req.url.split("slider/")[1];
+  const url = params.id;
   try {
     const deleteSlider = await prisma.slider.delete({
       where: {

@@ -1,19 +1,20 @@
 import { connectToDatabase } from "@/app/api/helpers/server-helpers"
 import prisma from "@/prisma"
+import { ParamsType } from "@/types/paramTypes";
 import { NextResponse } from "next/server"
 
-export const GET = async (req:Request) => {
-    // GET a homePost by id
+export const GET = async (req:Request,{params}:{params:ParamsType}) => {
+    // GET a service by id
     await connectToDatabase();
-    const url = req.url.split('home-post/')[1]
+    const url = params.id
 
     try {
-        const getUniqueHomePost = await prisma.homePost.findUnique({
+        const getUniqueService = await prisma.service.findUnique({
             where:{
                 id: url || "" 
             }
         })
-        return NextResponse.json({getUniqueHomePost: getUniqueHomePost},{status:200})
+        return NextResponse.json({getUniqueService: getUniqueService},{status:200})
     } catch (error) {
         return NextResponse.json({error: "Server Error"}, {status: 500})
     } finally {
@@ -21,28 +22,27 @@ export const GET = async (req:Request) => {
     }
 }
 
-export const PUT = async (req:Request) => {
-    // UPDATE a homePost by id
+export const PUT = async (req:Request,{params}:{params:ParamsType}) => {
+    // UPDATE a service by id
     await connectToDatabase();
-    let { imageLink, heading, subHeading, description, linkHeading, link } = await req.json();
-    const url = req.url.split('home-post/')[1]
-    if (imageLink ||
-        !heading ||
-        !subHeading ||
+    let { thumbnail, title, subTitle, description, linkId } = await req.json();
+    const url = params.id
+    if (!thumbnail ||
+        !title ||
+        !subTitle ||
         !description ||
-        !linkHeading ||
-        !link)
+        !linkId)
         return NextResponse.json({ message: "Invalid Data" }, { status: 422 });
     try {
-        const updateHomePost = await prisma.homePost.update({
+        const updateService = await prisma.service.update({
             where:{
                 id: url|| "" 
             },
             data:{
-                imageLink, heading, subHeading, description, linkHeading, link
+                thumbnail, title, subTitle, description, linkId
             }
         })
-        return NextResponse.json({updateHomePost},{status:201})
+        return NextResponse.json({updateService},{status:201})
     } catch (error) {
         return NextResponse.json({error: "Server Error"}, {status: 500})
     } finally {
@@ -50,16 +50,16 @@ export const PUT = async (req:Request) => {
     }
 }
 
-export const DELETE = async (req:Request) => {
-    // DELETE a homePost by id
-    const url = req.url.split('home-post/')[1]
+export const DELETE = async (req:Request,{params}:{params:ParamsType}) => {
+    // DELETE a service by id
+    const url = params.id
     try {
-        const deleteHomePost = await prisma.homePost.delete({
+        const deleteService = await prisma.service.delete({
             where:{
                 id: url || "" 
             }
         })
-        return NextResponse.json({deleteHomePost: deleteHomePost},{status:201})
+        return NextResponse.json({deleteService: deleteService},{status:201})
     } catch (error) {
         return NextResponse.json({error: "Server Error"}, {status: 500})
     } finally {

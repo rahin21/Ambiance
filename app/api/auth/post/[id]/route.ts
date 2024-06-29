@@ -2,10 +2,14 @@ import { connectToDatabase } from "@/app/api/helpers/server-helpers";
 import prisma from "@/prisma";
 import { NextResponse } from "next/server";
 
-export const GET = async (req: Request) => {
-  // GET a post by id
+interface ParamsType {
+  id:string
+}
+
+export const GET = async ({params}:{params:ParamsType}) => {
+
   await connectToDatabase();
-  const url = req.url.split("post/")[1];
+  const url = params.id
 
   try {
     const getUniquePost = await prisma.post.findUnique({
@@ -21,11 +25,11 @@ export const GET = async (req: Request) => {
   }
 };
 
-export const PUT = async (req: Request) => {
+export const PUT = async (req: Request,{params}:{params:ParamsType}) => {
   // UPDATE a post by id
   await connectToDatabase();
   let { key, img, gallery } = await req.json();
-  const url = req.url.split("post/")[1];
+  const url = params.id;
   if (!key || !img || !gallery)
     return NextResponse.json({ message: "Invalid Data" }, { status: 422 });
   try {
@@ -49,9 +53,9 @@ export const PUT = async (req: Request) => {
   }
 };
 
-export const DELETE = async (req: Request) => {
+export const DELETE = async ({params}:{params:ParamsType}) => {
   // DELETE a post by id
-  const url = req.url.split("post/")[1];
+  const url = params.id;
   try {
     const deletePost = await prisma.post.delete({
       where: {
