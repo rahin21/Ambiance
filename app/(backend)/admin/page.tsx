@@ -3,21 +3,24 @@ import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
 import Logout from '@/components/logout';
 import { authOptions } from '@/lib/auth';
-import NavBar from './sidebar/navBar';
+import { Metadata } from 'next';
+import DefaultLayout from '@/components/tailAdmin/Layouts/DefautlLayout';
 
+export const metadata: Metadata = {
+  title: "Admin",
+};
 
 async function page() {
-  const session = await getServerSession(authOptions);
-  if(session?.user){
+  
     return (
+      
       <>
-      <NavBar/>    
+      admin
       </>
+  
     )
-  }
-  else{
-    redirect('/login')
-  }
+  
+
 
 }
 

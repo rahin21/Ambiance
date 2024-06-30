@@ -1,33 +1,7 @@
+import "@/components/tailAdmin/css/satoshi.css";
+import "@/components/tailAdmin/css/style.css";
+
 import type { Metadata } from "next";
-import localfont from "next/font/local";
-
-import ScrollToTop from "@/components/scrollToTop";
-import { Providers } from "./providers";
-
-const dipotic = localfont({
-  src: [
-    {
-      path: "../../assets/fonts/dipotic/Didot-Italic.otf",
-    },
-  ],
-  variable: "--font-dipotic",
-});
-const openSans = localfont({
-  src: [
-    {
-      path: "../../assets/fonts/open-sans/OpenSans-VariableFont_wdth,wght.ttf",
-    },
-  ],
-  variable: "--font-openSans",
-});
-const palatino = localfont({
-  src: [
-    {
-      path: "../../assets/fonts/palatino/Palatino LT Bold.ttf",
-    },
-  ],
-  variable: "--font-palatino",
-});
 
 export const metadata: Metadata = {
   title: {
@@ -44,10 +18,8 @@ export default function BackendLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${dipotic.variable} ${openSans.variable} ${palatino.variable}`}
-      >
-        <Providers>{children}</Providers>
+      <body>
+        {children}
       </body>
     </html>
   );

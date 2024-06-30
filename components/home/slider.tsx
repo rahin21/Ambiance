@@ -14,7 +14,7 @@ function Slider({ sliderImages }: { sliderImages: string[] }) {
     <motion.div
       initial={{ scale: 0.5 }}
       animate={{ scale: 1 }}
-      className="container w-screen md:px-0 px-5 lg:px-24 mb-[-30px]"
+      className="container w-screen md:px-0 px-5 lg:px-20 mb-[-30px]"
     >
 
       <Swiper
