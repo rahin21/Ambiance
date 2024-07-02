@@ -10,10 +10,10 @@ const config: Config = {
     container: {
       center: true,
       padding: {
-        DEFAULT: '1rem',
-        sm: '2rem',
-        lg: '4rem',
-        xl: '5rem',
+        DEFAULT: "1rem",
+        sm: "2rem",
+        lg: "4rem",
+        xl: "5rem",
         // '2xl': '6rem',
       },
     },
@@ -23,11 +23,11 @@ const config: Config = {
       "3xl": "2000px",
       ...defaultTheme.screens,
     },
-      extend: {
-        colors:{
-          "primary": "#efece8",
-          "lightText": "#606268",
-          current: "currentColor",
+    extend: {
+      colors: {
+        primary: "#efece8",
+        lightText: "#606268",
+        current: "currentColor",
         transparent: "transparent",
         white: "#FFFFFF",
         black: "#1C2434",
@@ -69,10 +69,10 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
-      fontFamily:{
-        dipotic: ['var(--font-dipotic)'],
-        openSans: ['var(--font-openSans)'],
-        palatino: ['var(--font-palatino)'],
+      fontFamily: {
+        dipotic: ["var(--font-dipotic)"],
+        openSans: ["var(--font-openSans)"],
+        palatino: ["var(--font-palatino)"],
         satoshi: ["Satoshi", "sans-serif"],
       },
       fontSize: {
@@ -344,8 +344,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/typography'),
-  ],
+  plugins: [require("@tailwindcss/typography")],
 };
 export default config;

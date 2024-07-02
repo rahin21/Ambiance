@@ -9,10 +9,12 @@ datasource db {
 
 model User {
   id       String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
   email    String @unique
   password String
   phone    String
   role     String
+  avatar String
 }
 
 model Menu {
@@ -23,7 +25,8 @@ model Menu {
 
 model Setting {
   id    String @id @default(auto()) @map("_id") @db.ObjectId
-  name  String @unique
+  key  String @unique
+  name  String 
   description String
 }
 
@@ -59,14 +62,7 @@ model About {
 
 model Post{
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  key   String @unique
+  key String @unique
   img String
   gallery String[]
-}
-
-model Privacy{
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  key String
-  title String
-  description String
 }

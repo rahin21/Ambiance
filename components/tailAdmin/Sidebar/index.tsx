@@ -12,9 +12,10 @@ import { LuBriefcase } from "react-icons/lu";
 import { FaRegQuestionCircle } from "react-icons/fa";
 import { TbSettings } from "react-icons/tb";
 import { IoPersonOutline } from "react-icons/io5";
-import { BiLogOut } from "react-icons/bi";
-import { signOut } from "next-auth/react";
-
+import { TfiLayoutSliderAlt } from "react-icons/tfi";
+import { MdHomeRepairService } from "react-icons/md";
+import { MdOutlinePages } from "react-icons/md";
+import { BsFillPostcardFill } from "react-icons/bs";
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -26,47 +27,56 @@ const menuGroups = [
     name: "MENU",
     menuItems: [
       {
-        icon: <FiHome className="text-xl"/>,
-        label: "Home",
-        route: "/admin/home",
-      },
-      {
-        icon: <IoMdInformationCircleOutline className="text-xl"/>,
-        label: "About",
-        route: "/admin/about",
-      },
-      {
-        icon: <RiContactsBook3Line className="text-xl"/>,
-        label: "Contact",
-        route: "/admin/contact",
-      },
-      {
-        icon:<LuBriefcase className="text-xl"/>,
-        label: "Portfolio",
-        route: "/admin/portfolio",
-      },
-      {
-        icon: <FaRegQuestionCircle className="text-xl"/>,
-        label: "FAQ",
-        route: "/admin/faq",
+        icon: <MdOutlinePages className="text-xl" />,
+        label: "Pages",
+        route: "#",
+        children: [
+          { label: "Home", route: "/admin/home" },
+          { label: "About", route: "/admin/about" },
+          { label: "Portfolio", route: "/admin/portfolio" },
+          { label: "News", route: "/admin/news" },
+          { label: "FAQs", route: "/admin/faqs" },
+          { label: "Contact", route: "/admin/contact" },
+          { label: "Privacy Information", route: "/admin/privacy" },
+          { label: "Terms of Services", route: "/admin/terms-of-services" },
+        ],
       },
       {
         icon: <TbSettings className="text-xl" />,
         label: "Settings",
-        route: "/admin/setting",
+        route: "#",
+        children: [
+          { label: "Menus", route: "/admin/menus" },
+          { label: "Site", route: "/admin/site" },
+        ],
       },
-    ],
-  },
-  {
-    name: "OTHERS",
-    menuItems: [
       {
-        icon:<IoPersonOutline className="text-xl"/>,
-        label: "Profile",
-        route: "/admin/profile",
+        icon: <MdHomeRepairService className="text-xl" />,
+        label: "Services",
+        route: "/admin/services",
+      },
+      {
+        icon: <TfiLayoutSliderAlt className="text-xl" />,
+        label: "Sliders",
+        route: "/admin/sliders",
+      },
+      {
+        icon: <BsFillPostcardFill className="text-xl" />,
+        label: "Posts",
+        route: "/admin/posts",
       },
     ],
   },
+  // {
+  //   name: "OTHERS",
+  //   menuItems: [
+  //     {
+  //       icon: <IoPersonOutline className="text-xl" />,
+  //       label: "Profile",
+  //       route: "/admin/profile",
+  //     },
+  //   ],
+  // },
 ];
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {

@@ -1,4 +1,11 @@
 export interface ParamsType {
-    id:string
+    key:string
   }
-  
+export interface menuType{
+    id: string
+    key:string
+    items:{
+      name:string
+      link:string
+    }[]
+  }
