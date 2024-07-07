@@ -17,11 +17,11 @@ export const GET = async () => {
 export const POST = async (req: Request) => {
     try {
       await connectToDatabase();
-      let { name, description } = await req.json();
-      if (!name || !description)
+      let {key, name, description } = await req.json();
+      if (!key || !name || !description)
         return NextResponse.json({ message: "Invalid Data" }, { status: 422 });
       const setting = await prisma.setting.create({
-        data: { name, description },
+        data: { key, name, description },
       });
       return NextResponse.json({ setting }, {status: 201});
     } catch (error) {
