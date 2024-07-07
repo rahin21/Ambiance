@@ -52,49 +52,7 @@ function LoginForm() {
   };
 
   return (
-    // <form onSubmit={handleSubmit(onSubmit)}>
-
-    //     <Text color={"red"} textAlign={"center"}>
-    //       Email or password does not match!
-    //     </Text>
-
-    //   <FormControl isInvalid={errors.email}>
-    //     <FormLabel htmlFor="email" className="">
-    //       Email:
-    //     </FormLabel>
-
-    //     <Input
-    //       placeholder="Email"
-    //       type="email"
-    //       className="text-start placeholder:text-start"
-    //       {...register("email")}
-    //     />
-
-    //     <FormErrorMessage>
-    //       {errors.email && errors.email.message}
-    //     </FormErrorMessage>
-    //   </FormControl>
-
-    //   <FormControl isInvalid={errors.email}>
-    //     <FormLabel htmlFor="password" className="">
-    //       Password:
-    //     </FormLabel>
-    //     <Input
-    //       placeholder="Password"
-    //       type="password"
-    //       className="text-start placeholder:text-start"
-    //       {...register("password")}
-    //     />
-
-    //     <FormErrorMessage>
-    //       {errors.password && errors.password.message}
-    //     </FormErrorMessage>
-    //   </FormControl>
-
-    //   <Center paddingTop={"20px"}>
-    //     <Button type="submit">Submit</Button>
-    //   </Center>
-    // </form>
+    
     <>
       <div className="container">
         <div className="flex justify-center items-center h-screen">

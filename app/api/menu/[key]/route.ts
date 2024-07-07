@@ -26,7 +26,7 @@ export const GET = async (req: Request, { params }: { params: ParamsType }) => {
         key: key || "",
       },
     });
-    return NextResponse.json({ getUniqueMenu }, { status: 200 });
+    return NextResponse.json( getUniqueMenu , { status: 200 });
   } catch (error) {
     return NextResponse.json({ error: "Server Error" }, { status: 500 });
   } finally {
@@ -45,7 +45,7 @@ export const PUT = async (req: Request, { params }: { params: ParamsType }) => {
   try {
     const updateMenu = await prisma.menu.update({
       where: {
-        id: key || "",
+        key: key || "",
       },
       data: body,
     });
@@ -62,12 +62,11 @@ export const DELETE = async (
   { params }: { params: ParamsType }
 ) => {
   // DELETE a menu by id
-  const { searchParams } = new URL(req.url);
-  const url = searchParams.get("id");
+ const key = params.key
   try {
     const deleteMenu = await prisma.menu.delete({
       where: {
-        key: url || "",
+        key: key || "",
       },
     });
     return NextResponse.json({ deleteMenu }, { status: 201 });
