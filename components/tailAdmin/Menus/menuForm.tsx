@@ -57,7 +57,7 @@ function MenuForm({
   const onSubmit: SubmitHandler<FormSchema> = async (data) => {
     if (isUpdate) {
       try {
-        const res = await axios.put(`http://localhost:3000/api/menu/${key}`, {
+        const res = await axios.put(`/api/menu/${key}`, {
           key: data.key,
           items: data.items,
         });
