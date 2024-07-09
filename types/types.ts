@@ -9,3 +9,9 @@ export interface menuType{
       link:string
     }[]
   }
+  export interface settingType{
+    id:string;
+    key:string;
+    name:string;
+    description:string;
+  }

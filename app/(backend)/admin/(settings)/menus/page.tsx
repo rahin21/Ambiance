@@ -1,18 +1,26 @@
 // import MenuForm from "../components/menuForm";
-import MenuForm from "@/components/tailAdmin/Menus/menuForm";
-import { menuType } from "@/types/paramTypes";
+import MenuForm from "@/components/tailAdmin/Setting/menuForm";
+import { menuType } from "@/types/types";
 import axios from "axios";
 import Link from "next/link";
 
-async function Menus() {
-  let data = [];
-  try {
-    const res = await axios.get("http://localhost:3000/api/menu");
-    data = res.data;
-  } catch (error) {
-    console.log(error);
+async function getData() {
+  const res = await fetch('http://localhost:3000/api/menu', { next:{tags:["menu"]}})
+  // The return value is *not* serialized
+  // You can return Date, Map, Set, etc.
+ 
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch data')
   }
+ 
+  return res.json()
+}
+ 
 
+async function Menus() {
+  const data = await getData();
+  // console.log(data);
   return (
     <div>
       <div className="">

@@ -1,9 +1,8 @@
-'use client'
+"use client"
+import React, { useState } from 'react'
 
-import { useState } from 'react'
-
-export function UploadForm() {
-  const [file, setFile] = useState<File>()
+function ServiceForm() {
+    const [file, setFile] = useState<File>()
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -25,10 +24,9 @@ export function UploadForm() {
       console.error(e)
     }
   }
-
   return (
     <form onSubmit={onSubmit}>
-      <input
+        <input
         type="file"
         name="file"
         onChange={(e) => setFile(e.target.files?.[0])}
@@ -37,3 +35,5 @@ export function UploadForm() {
     </form>
   )
 }
+
+export default ServiceForm

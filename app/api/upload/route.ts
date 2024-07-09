@@ -1,23 +1,49 @@
-import { writeFile } from 'fs/promises'
-import { NextRequest, NextResponse } from 'next/server'
+import { writeFile, mkdir } from 'fs/promises';
+import { NextRequest, NextResponse } from 'next/server';
+import path from 'path';
 
+const files: File[] = [];
+let targetDIR:FormDataEntryValue;
 export async function POST(request: NextRequest) {
-  const data = await request.formData()
-  const path_name = data.get('path_name') as string  // Extract path_name from form data
-  const file = data.get('file') as File
-
-  if (!file || !path_name) {
-    return NextResponse.json({ success: false })
+  const data = await request.formData();
+  data.forEach((value, key) => {
+    if (key.startsWith('file_') && value instanceof File) {
+      files.push(value);
+    }
+    if (key.startsWith('targetDIR')){
+      targetDIR=value;
+    }
+  });
+  
+  if (files.length === 0) {
+    return NextResponse.json({ success: false });
   }
 
-  const bytes = await file.arrayBuffer()
-  const buffer = Buffer.from(bytes)
+  const uploadDir = path.join(process.cwd(), 'public', 'uploads', `${targetDIR}`);
 
-  // With the file data in the buffer, you can do whatever you want with it.
-  // For this, we'll just write it to the filesystem in a new location
-  const path = `${path_name}/${file.name}`  // Ensure path_name ends with a slash
-  await writeFile(path, buffer)
-  console.log(`open ${path} to see the uploaded file`)
+  // Ensure the upload directory exists
+  try {
+    await mkdir(uploadDir, { recursive: true });
+  } catch (error) {
+    console.error('Error creating upload directory:', error);
+    return NextResponse.json({ success: false, error: 'Error creating upload directory' });
+  }
 
-  return NextResponse.json({ success: true })
+  const fileSavePromises = files.map(async (file) => {
+    const bytes = await file.arrayBuffer();
+    const buffer = Buffer.from(bytes);
+    const filePath = path.join(uploadDir, file.name);
+    
+    await writeFile(filePath, buffer);
+    console.log(`open ${filePath} to see the uploaded file`);
+  });
+
+  try {
+    await Promise.all(fileSavePromises);
+  } catch (error) {
+    console.error('Error saving files:', error);
+    return NextResponse.json({ success: false, error: 'Error saving files' });
+  }
+
+  return NextResponse.json({ success: true });
 }

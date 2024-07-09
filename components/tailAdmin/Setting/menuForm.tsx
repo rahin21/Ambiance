@@ -10,7 +10,8 @@ import {
 } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { ParamsType } from "@/types/paramTypes";
+import { ParamsType } from "@/types/types";
+import { revalidateMenu } from "@/lib/revalidate.ts/route";
 
 const itemSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -54,6 +55,19 @@ function MenuForm({
     reset({ key, items });
   }, [items, reset, key]);
 
+
+  async function deleteHandler(){
+
+      axios.delete(`http://localhost:3000/api/menu/${key}`)
+      .then(response => {
+        console.log(`${response}`);
+        router.push("/admin/menus/")
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    }  
+
   const onSubmit: SubmitHandler<FormSchema> = async (data) => {
     if (isUpdate) {
       try {
@@ -61,8 +75,8 @@ function MenuForm({
           key: data.key,
           items: data.items,
         });
+        revalidateMenu()
         router.push("/admin/menus");
-        console.log("Response:", res.data);
         // Handle successful response (e.g., redirect or show success message)
       } catch (error) {
         console.log("Error:", error);
@@ -74,7 +88,7 @@ function MenuForm({
           key: data.key,
           items: data.items,
         });
-        router.push("/admin/menus");
+        revalidateMenu()
         console.log("Response:", res.data);
         // Handle successful response (e.g., redirect or show success message)
       } catch (error) {
@@ -85,13 +99,12 @@ function MenuForm({
     console.log(data);
   };
 
+  
   return (
     <div className="rounded-sm border border-stroke shadow-default bg-black/20">
-      <div className="border-b border-stroke px-6.5 py-4">
-        <h3 className="font-medium text-black capitalize">Edit {key} Items</h3>
-        
-      </div>
+
       <form onSubmit={handleSubmit(onSubmit)} className="py-4 px-6.5">
+
         <div className="mb-4">
           <label className="mb-3 block text-sm font-medium text-black">
             Key
@@ -174,7 +187,16 @@ function MenuForm({
             </div>
           </div>
         ))}
-        <div className="flex justify-end pt-4 gap-4">
+        <div className="flex justify-between pt-4">
+          <div>
+            {isUpdate && 
+            <button onClick={deleteHandler} className="capitalize flex rounded-md bg-rose-500 px-6 py-2 text-center font-medium text-white hover:bg-opacity-90">
+              Delete {key}
+            </button>
+            }
+          </div>
+          <div className="flex gap-4">
+
           <button
             type="button"
             onClick={() => append({ name: "", link: "" })}
@@ -189,6 +211,7 @@ function MenuForm({
           >
             Submit
           </button>
+          </div>
         </div>
       </form>
     </div>

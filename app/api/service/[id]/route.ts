@@ -1,6 +1,6 @@
 import { connectToDatabase } from "@/app/api/helpers/server-helpers"
 import prisma from "@/prisma"
-import { ParamsType } from "@/types/paramTypes";
+import { ParamsType } from "@/types/types";
 import { NextResponse } from "next/server"
 
 export const GET = async (req:Request,{params}:{params:ParamsType}) => {

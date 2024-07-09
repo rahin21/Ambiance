@@ -1,5 +1,5 @@
-import MenuForm from '@/components/tailAdmin/Menus/menuForm';
-import { ParamsType } from '@/types/paramTypes';
+import MenuForm from '@/components/tailAdmin/Setting/menuForm';
+import { ParamsType } from '@/types/types';
 import axios from 'axios';
 import React from 'react'
 

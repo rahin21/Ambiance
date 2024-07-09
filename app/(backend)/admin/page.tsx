@@ -9,9 +9,7 @@ export const metadata: Metadata = {
 
 async function page() {
   return (
-
       <UploadForm/>
-
   );
 }
 

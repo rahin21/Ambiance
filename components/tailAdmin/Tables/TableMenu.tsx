@@ -1,4 +1,4 @@
-import { menuType } from "@/types/paramTypes";
+import { menuType } from "@/types/types";
 
 
 const TableMenu = (data:menuType) => {
