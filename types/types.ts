@@ -15,3 +15,10 @@ export interface menuType{
     name:string;
     description:string;
   }
+  export type aboutType = {
+    id:string
+    avatar: string[];
+    title: string;
+    subTitle: string;
+    description: string;
+  }

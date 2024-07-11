@@ -1,9 +1,10 @@
-import { writeFile, mkdir } from 'fs/promises';
+import { writeFile, mkdir, unlink } from 'fs/promises';
 import { NextRequest, NextResponse } from 'next/server';
 import path from 'path';
 
 const files: File[] = [];
 let targetDIR:FormDataEntryValue;
+
 export async function POST(request: NextRequest) {
   const data = await request.formData();
   data.forEach((value, key) => {
@@ -29,7 +30,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: false, error: 'Error creating upload directory' });
   }
 
-  const fileSavePromises = files.map(async (file) => {
+    const fileSavePromises = files.map(async (file) => {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
     const filePath = path.join(uploadDir, file.name);
@@ -46,4 +47,28 @@ export async function POST(request: NextRequest) {
   }
 
   return NextResponse.json({ success: true });
+}
+
+export async function DELETE(req: NextRequest) {
+  try {
+    const { location } = await req.json();
+
+    if (!location) {
+      return NextResponse.json({ message: 'Invalid Data' }, { status: 422 });
+    }
+
+    const deleteDir = path.join(process.cwd(), 'public', `${location}`);
+
+    try {
+      await unlink(deleteDir);
+      console.log('Delete Successful.');
+      return NextResponse.json({ message: 'Delete Successful' }, { status: 200 });
+    } catch (error) {
+      console.error('Error deleting directory:', error);
+      return NextResponse.json({ message: 'Error deleting directory' }, { status: 500 });
+    }
+  } catch (error) {
+    console.error('Server Error:', error);
+    return NextResponse.json({ message: 'Server Error' }, { status: 500 });
+  }
 }

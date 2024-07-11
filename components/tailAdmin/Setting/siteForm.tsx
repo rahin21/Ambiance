@@ -1,5 +1,5 @@
 "use client";
-import { revalidateSetting } from "@/lib/revalidate.ts/route";
+import { revalidateSetting } from "@/app/api/revalidate.ts/route";
 import { ParamsType } from "@/types/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
@@ -54,7 +54,7 @@ function SiteForm({
         });
         revalidateSetting();
         router.push("/admin/site");
-        // console.log("Response:", res.data);
+
         // Handle successful response (e.g., redirect or show success message)
       } catch (error) {
         console.log("Error:", error);

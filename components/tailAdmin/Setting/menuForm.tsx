@@ -11,7 +11,7 @@ import {
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { ParamsType } from "@/types/types";
-import { revalidateMenu } from "@/lib/revalidate.ts/route";
+import { revalidateMenu } from "@/app/api/revalidate.ts/route";
 
 const itemSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -57,7 +57,7 @@ function MenuForm({
 
 
   async function deleteHandler(){
-
+    
       axios.delete(`http://localhost:3000/api/menu/${key}`)
       .then(response => {
         console.log(`${response}`);

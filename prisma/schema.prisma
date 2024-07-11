@@ -55,9 +55,10 @@ model Slider {
 
 model About {
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  avatar String
+  avatar String[]
   title String
   subTitle String
+  description String
 }
 
 model Post{

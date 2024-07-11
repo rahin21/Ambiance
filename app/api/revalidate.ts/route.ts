@@ -6,10 +6,18 @@ import { redirect } from "next/navigation"
 export async function revalidateMenu()
 {
     revalidateTag("menu");
-    redirect("/admin/menu");
+
 }
 export async function revalidateSetting()
 {
     revalidateTag("setting");
-    redirect("/admin/setting");
+
+}
+export async function revalidateSlider()
+{
+    revalidateTag("slider");
+}
+export async function revalidateAbout()
+{
+    revalidateTag("about");
 }

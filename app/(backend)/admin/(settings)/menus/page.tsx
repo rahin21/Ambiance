@@ -20,7 +20,6 @@ async function getData() {
 
 async function Menus() {
   const data = await getData();
-  // console.log(data);
   return (
     <div>
       <div className="">

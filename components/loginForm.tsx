@@ -33,9 +33,7 @@ function LoginForm() {
 
   // 2. Define a submit handler.
   const onSubmit: SubmitHandler<formSchema> = async (values: formSchema) => {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    // console.log(values);
+
     setWrongCreds(false);
     console.log("Submit button clicked");
     const loginData = await signIn("credentials", {

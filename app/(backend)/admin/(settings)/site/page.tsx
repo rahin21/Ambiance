@@ -21,7 +21,7 @@ async function getData() {
 }
 async function Site() {
   let data = await getData();
-  // console.log(data);
+
   return (
     <div>
       <h4 className="text-2xl font-semibold text-black mb-4">

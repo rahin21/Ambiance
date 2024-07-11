@@ -12,7 +12,7 @@ export const GET = async () => {
     try {
         await connectToDatabase();
         const slider = await prisma.slider.findMany();
-        return NextResponse.json(slider, {status:200})
+        return NextResponse.json(slider, {status:200});
     } catch (error) {
         return NextResponse.json({error: "Server Error"}, {status: 500})
     } finally {

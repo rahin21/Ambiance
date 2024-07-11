@@ -3,18 +3,16 @@ import prisma from "@/prisma";
 import { ParamsType } from "@/types/types";
 import { NextResponse } from "next/server";
 
-export const GET = async (req:Request) => {
+export const GET = async (req:Request,{ params }:{params:{id:string}}) => {
   // GET a about by id
-  const { searchParams } = new URL(req.url);
-  const url = searchParams.get("id");
-
+  const url = params.id
   try {
     const getUniqueAbout = await prisma.about.findUnique({
       where: {
         id: url || "",
       },
     });
-    return NextResponse.json({ getUniqueAbout }, { status: 200 });
+    return NextResponse.json( getUniqueAbout , { status: 200 });
   } catch (error) {
     return NextResponse.json({ error: "Server Error" }, { status: 500 });
   } finally {
@@ -22,13 +20,13 @@ export const GET = async (req:Request) => {
   }
 };
 
-export const PUT = async (req: Request) => {
+export const PUT = async (req: Request,{ params }:{params:{id:string}}) => {
   // UPDATE a about by id
   await connectToDatabase();
-  const { searchParams } = new URL(req.url);
-  const url = searchParams.get("id");
-  let { avatar, title, subTitle } = await req.json();
-  if (!avatar || !title || !subTitle)
+  
+  const url = params.id
+  let { avatar, title, subTitle, description } = await req.json();
+  if (!avatar || !title || !subTitle || description)
     return NextResponse.json({ message: "Invalid Data" }, { status: 422 });
   try {
     const updateAbout = await prisma.about.update({
@@ -36,10 +34,10 @@ export const PUT = async (req: Request) => {
         id: url || "",
       },
       data: {
-        avatar, title, subTitle 
+        avatar, title, subTitle, description
       },
     });
-    return NextResponse.json({ updateAbout }, { status: 201 });
+    return NextResponse.json( updateAbout , { status: 201 });
   } catch (error) {
     return NextResponse.json({ error: "Server Error" }, { status: 500 });
   } finally {
@@ -47,17 +45,17 @@ export const PUT = async (req: Request) => {
   }
 };
 
-export const DELETE = async (req:Request) => {
+export const DELETE = async (req:Request,{ params }:{params:{id:string}}) => {
   // DELETE a about by id
-  const { searchParams } = new URL(req.url);
-  const url = searchParams.get("id");
+  
+  const url = params.id
   try {
     const deleteAbout = await prisma.about.delete({
       where: {
         id: url || "",
       },
     });
-    return NextResponse.json({ deleteAbout }, { status: 201 });
+    return NextResponse.json( deleteAbout , { status: 201 });
   } catch (error) {
     return NextResponse.json({ error: "Server Error" }, { status: 500 });
   } finally {
