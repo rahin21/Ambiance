@@ -22,3 +22,10 @@ export interface menuType{
     subTitle: string;
     description: string;
   }
+  export type postType = {
+    id:string
+    key: string;
+    title: string;
+    thumbnail: string;
+    gallery: string[];
+  }

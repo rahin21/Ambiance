@@ -21,3 +21,7 @@ export async function revalidateAbout()
 {
     revalidateTag("about");
 }
+export async function revalidatePost()
+{
+    revalidateTag("post");
+}

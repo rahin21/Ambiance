@@ -7,7 +7,7 @@ export const GET = async () => {
     try {
         await connectToDatabase();
         const post = await prisma.post.findMany();
-        return NextResponse.json({post}, {status:200})
+        return NextResponse.json(post, {status:200})
     } catch (error) {
         return NextResponse.json({error: "Server Error"}, {status: 500})
     } finally {
@@ -18,11 +18,11 @@ export const GET = async () => {
 export const POST = async (req: Request) => {
     try {
       await connectToDatabase();
-      let { key, img, gallery } = await req.json();
-      if (!key || !img || !gallery)
+      let { key, title,thumbnail, gallery } = await req.json();
+      if (!key || !title || !thumbnail || !gallery)
         return NextResponse.json({ message: "Invalid Data" }, { status: 422 });
       const post = await prisma.post.create({
-        data: { key, img, gallery },
+        data: { key, title,thumbnail, gallery },
       });
       
       return NextResponse.json({ post }, {status: 201});

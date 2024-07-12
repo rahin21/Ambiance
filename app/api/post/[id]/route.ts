@@ -6,7 +6,7 @@ interface ParamsType {
   id:string
 }
 
-export const GET = async (req:Request) => {
+export const GET = async (req:Request,{params}:{params:ParamsType}) => {
 
   await connectToDatabase();
   const { searchParams } = new URL(req.url);
@@ -29,10 +29,9 @@ export const GET = async (req:Request) => {
 export const PUT = async (req: Request,{params}:{params:ParamsType}) => {
   // UPDATE a post by id
   await connectToDatabase();
-  let { key, img, gallery } = await req.json();
-  const { searchParams } = new URL(req.url);
-  const url = searchParams.get("id");;
-  if (!key || !img || !gallery)
+  const url = params.id;
+  let { key, title, thumbnail, gallery } = await req.json();
+  if (!key || !title || !thumbnail || !gallery)
     return NextResponse.json({ message: "Invalid Data" }, { status: 422 });
   try {
     const updatePost = await prisma.post.update({
@@ -41,7 +40,8 @@ export const PUT = async (req: Request,{params}:{params:ParamsType}) => {
       },
       data: {
         key,
-        img,
+        title,
+        thumbnail,
         gallery:{
           push:gallery
         }
@@ -55,10 +55,9 @@ export const PUT = async (req: Request,{params}:{params:ParamsType}) => {
   }
 };
 
-export const DELETE = async (req:Request) => {
+export const DELETE = async (req:Request,{params}:{params:ParamsType}) => {
   // DELETE a post by id
-  const { searchParams } = new URL(req.url);
-  const url = searchParams.get("id");;
+  const url = params.id;
   try {
     const deletePost = await prisma.post.delete({
       where: {
