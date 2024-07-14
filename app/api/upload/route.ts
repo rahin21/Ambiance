@@ -51,21 +51,29 @@ export async function POST(request: NextRequest) {
 
 export async function DELETE(req: NextRequest) {
   try {
-    const { location } = await req.json();
+    const { locations } = await req.json();
 
-    if (!location) {
+    if (!Array.isArray(locations) || locations.length === 0) {
       return NextResponse.json({ message: 'Invalid Data' }, { status: 422 });
     }
 
-    const deleteDir = path.join(process.cwd(), 'public', `${location}`);
+    const deletePromises = locations.map(async (location) => {
+      const deleteDir = path.join(process.cwd(), 'public', `${location}`);
+      try {
+        await unlink(deleteDir);
+        console.log(`Delete Successful for ${location}.`);
+      } catch (error) {
+        console.error(`Error deleting directory ${location}:`, error);
+        throw new Error(`Error deleting directory ${location}`);
+      }
+    });
 
     try {
-      await unlink(deleteDir);
-      console.log('Delete Successful.');
-      return NextResponse.json({ message: 'Delete Successful' }, { status: 200 });
+      await Promise.all(deletePromises);
+      return NextResponse.json({ message: 'All deletions successful' }, { status: 200 });
     } catch (error) {
-      console.error('Error deleting directory:', error);
-      return NextResponse.json({ message: 'Error deleting directory' }, { status: 500 });
+      console.error('One or more deletions failed:', error);
+      return NextResponse.json({ message: 'One or more deletions failed' }, { status: 500 });
     }
   } catch (error) {
     console.error('Server Error:', error);

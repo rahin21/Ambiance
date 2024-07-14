@@ -207,7 +207,6 @@ function MenuForm({
           <button
             type="submit"
             className="flex rounded-md bg-black px-6 py-2 text-center font-medium text-white hover:bg-opacity-90"
-            disabled={isSubmitting || !isDirty}
           >
             Submit
           </button>

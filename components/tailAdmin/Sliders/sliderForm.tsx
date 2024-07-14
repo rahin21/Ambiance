@@ -59,15 +59,15 @@ function SliderForm({
       if (isUpdate) {
         files.forEach((file, index) => {
           formData.append(`file_${index}`, file);
-          imgs.push(`/uploads/${data.key}/${file.name}`);
+          imgs.push(`/uploads/slider/${data.key}/${file.name}`);
         });
-        
+  
         await axios.put(`http://localhost:3000/api/slider/${key}`, {
           key: data.key,
           img: imgs,
         });
         revalidateSlider();
-        formData.append("targetDIR", data.key);
+        formData.append("targetDIR", `slider/${data.key}`);
 
         const res = await fetch("http://localhost:3000/api/upload", {
           method: "POST",
@@ -90,7 +90,7 @@ function SliderForm({
 
         files.forEach((file, index) => {
           formData.append(`file_${index}`, file);
-          imgs.push(`/uploads/${data.key}/${file.name}`);
+          imgs.push(`/uploads/slider/${data.key}/${file.name}`);
         });
 
         await axios.post("http://localhost:3000/api/slider/", {
@@ -98,7 +98,7 @@ function SliderForm({
           img: imgs,
         });
         revalidateSlider();
-        formData.append("targetDIR", data.key);
+        formData.append("targetDIR",`slider/${data.key}`);
 
         const res = await fetch("http://localhost:3000/api/upload", {
           method: "POST",
@@ -135,7 +135,7 @@ function SliderForm({
         img: imgs,
       });
       await axios.delete(`/api/upload`, {
-        data: { location: location },
+        data: { locations: [location]},
       });
       console.log("Response:", res.data);
       revalidateSlider();
@@ -158,7 +158,7 @@ function SliderForm({
         });
 
         axios.delete(`http://localhost:3000/api/delete-dir`,{
-          data:{dir:`/uploads/${key}`}
+          data:{dir:`/uploads/slider/${key}`}
         }).catch((error) => {
           console.error(error);
         });

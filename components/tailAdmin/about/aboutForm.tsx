@@ -92,7 +92,7 @@ function AboutForm({
         });
 
         setSelectedImages([]);
-        router.push("/admin/sliders");
+        router.push("/admin/about");
         if (fileInputRef.current) {
           fileInputRef.current.value = "";
         }

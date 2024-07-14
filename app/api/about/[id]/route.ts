@@ -25,8 +25,9 @@ export const PUT = async (req: Request,{ params }:{params:{id:string}}) => {
   await connectToDatabase();
   
   const url = params.id
+  console.log(url);
   let { avatar, title, subTitle, description } = await req.json();
-  if (!avatar || !title || !subTitle || description)
+  if (!avatar || !title || !subTitle || !description)
     return NextResponse.json({ message: "Invalid Data" }, { status: 422 });
   try {
     const updateAbout = await prisma.about.update({

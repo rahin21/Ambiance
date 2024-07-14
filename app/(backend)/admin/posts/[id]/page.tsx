@@ -1,9 +1,20 @@
-import React from 'react'
+import PostForm from "@/components/tailAdmin/posts/postForm";
+import PostUpdateForm from "@/components/tailAdmin/posts/postUpdateForm";
+import axios from "axios";
+import React from "react";
 
-function PostId() {
-  return (
-    <div>PostId</div>
-  )
+async function PostId({ params }: { params: { id: string } }) {
+  const id = params.id;
+  let data = [];
+  try {
+    const res = await axios.get(`http://localhost:3000/api/post/${id}`);
+    data = res.data;
+  } catch (error) {
+    console.log(error);
+  }
+  
+
+  return <PostUpdateForm post={data} isUpdate/>;
 }
 
-export default PostId
+export default PostId;

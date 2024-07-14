@@ -9,8 +9,8 @@ interface ParamsType {
 export const GET = async (req:Request,{params}:{params:ParamsType}) => {
 
   await connectToDatabase();
-  const { searchParams } = new URL(req.url);
-  const url = searchParams.get("id");
+
+  const url = params.id;
 
   try {
     const getUniquePost = await prisma.post.findUnique({
@@ -18,7 +18,7 @@ export const GET = async (req:Request,{params}:{params:ParamsType}) => {
         id: url || "",
       },
     });
-    return NextResponse.json({ getUniquePost }, { status: 200 });
+    return NextResponse.json( getUniquePost , { status: 200 });
   } catch (error) {
     return NextResponse.json({ error: "Server Error" }, { status: 500 });
   } finally {
@@ -42,9 +42,8 @@ export const PUT = async (req: Request,{params}:{params:ParamsType}) => {
         key,
         title,
         thumbnail,
-        gallery:{
-          push:gallery
-        }
+        gallery
+        
       },
     });
     return NextResponse.json({ updatePost }, { status: 201 });
