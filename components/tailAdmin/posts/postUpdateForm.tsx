@@ -69,29 +69,29 @@ function PostUpdateForm({
 
   const onSubmit = async (data: PostUpdateFormData) => {
     const filesThumbnail = data.thumbnail;
-    const filesGallery = Array.from(data.gallery);
+    const filesGallery = data.gallery ? Array.from(data.gallery) : [];
 
     try {
       const formData = new FormData();
-      const gallery: string[] = post?.gallery|| [];
+      const gallery: string[] = post?.gallery || [];
       let thumbnail = post?.thumbnail;
+      console.log(filesThumbnail);
       // update
-      if (isUpdate) {
+      console.log(data.gallery);
         if (filesThumbnail) {
           thumbnail = `/uploads/post/${filesThumbnail.name}`;
           formData.append(`file_0`, filesThumbnail || "");
+          await axios.delete(`/api/upload`, {
+            data: { locations: [post?.thumbnail] },
+          });
         }
-        
         filesGallery.map((file, index) => {
           if (file) {
             formData.append(`file_${index}`, file);
             gallery.push(`/uploads/post/${file.name}`);
           }
         });
-        console.log(gallery);
-        await axios.delete(`/api/upload`, {
-          data: { locations: [post?.thumbnail] },
-        });
+
         const res1 = await axios.put(
           `http://localhost:3000/api/post/${post?.id}`,
           {
@@ -123,7 +123,7 @@ function PostUpdateForm({
         if (fileInputRef.current) {
           fileInputRef.current.value = "";
         }
-      }
+
     } catch (e: any) {
       console.error(e);
     }
@@ -148,7 +148,7 @@ function PostUpdateForm({
   }
 
   async function deleteImages(location: string) {
-    if (!post || !post.gallery ) {
+    if (!post || !post.gallery) {
       console.error("Post or gallery is undefined");
       return;
     }
@@ -157,24 +157,25 @@ function PostUpdateForm({
     if (index > -1) {
       selectedImagesGallery.splice(index, 1);
     }
-    
-    console.log(post.gallery.includes(location));
-    
-      try {
-        const res = await axios.put(`/api/post/${post.id}`, {
-          title: post.title,
-          key: post.key,
-          thumbnail: post.thumbnail,
-          gallery: selectedImagesGallery,
-        });
-        await axios.delete(`/api/upload`, {
-          data: { locations: [location] },
-        });
-        // console.log("Response:", res.data);
-      } catch (error) {
-        console.log(error);
+    console.log(selectedImagesGallery);
+    if (fileInputRef.current) {
+        fileInputRef.current.value = "";
       }
-    
+    try {
+      const res = await axios.put(`/api/post/${post.id}`, {
+        title: post.title,
+        key: post.key,
+        thumbnail: post.thumbnail,
+        gallery: selectedImagesGallery,
+      });
+      await axios.delete(`/api/upload`, {
+        data: { locations: [location] },
+      });
+      // console.log("Response:", res.data);
+    } catch (error) {
+      console.log(error);
+    }
+
     revalidatePost();
   }
 
