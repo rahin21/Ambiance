@@ -1,5 +1,6 @@
 export interface ParamsType {
-    key:string
+    key?:string
+    id?:string
   }
 export interface menuType{
     id: string
