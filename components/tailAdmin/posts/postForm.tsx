@@ -71,7 +71,7 @@ function PostForm({ post }: { post?: postType }) {
           formData.append(`file_${index + 1}`, file);
           gallery.push(`/uploads/post/${file.name}`);
         });
-        console.log(thumbnail);
+
         const res1 = await axios.post("http://localhost:3000/api/post/", {
           title: data.title,
           key: data.key,

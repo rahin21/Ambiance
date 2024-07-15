@@ -103,13 +103,15 @@ function PostUpdateForm({
         );
         revalidatePost();
         formData.append("targetDIR", "post");
+        if (filesThumbnail) {
 
-        const res = await fetch("http://localhost:3000/api/upload", {
-          method: "POST",
-          body: formData,
-        });
-        console.log(res1);
-        if (!res.ok) throw new Error(await res.text());
+          const res = await fetch("http://localhost:3000/api/upload", {
+            method: "POST",
+            body: formData,
+          });
+          console.log(res1);
+          if (!res.ok) throw new Error(await res.text());
+        }
         reset({
           key: "",
           title: "",
@@ -131,16 +133,15 @@ function PostUpdateForm({
 
   async function deletePost() {
     try {
-      axios
+      await axios
         .delete(`http://localhost:3000/api/post/${post?.id}`)
         .catch((error) => {
           console.error(error);
         });
-      console.log(post?.gallery);
-      revalidatePost();
-      await axios.delete(`/api/upload`, {
-        data: { locations: [post?.thumbnail, ...(post?.gallery || [])] },
-      });
+        await axios.delete(`/api/upload`, {
+          data: { locations: [post?.thumbnail, ...(post?.gallery || [])] },
+        });
+        revalidatePost();
     } catch (error) {
       console.log(error);
     }

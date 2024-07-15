@@ -30,3 +30,16 @@ export interface menuType{
     thumbnail: string;
     gallery: string[];
   }
+  export type serviceType = {
+    id: string,
+    thumbnail: string,
+    title: string,
+    subTitle: string,
+    description: string,
+    linkId: string,
+    link: {
+      id: string,
+      text: string,
+      plainUrl: string
+    }
+  }
