@@ -1,6 +1,5 @@
 "use client";
 import { revalidateSetting } from "@/app/api/revalidate.ts/route";
-import { ParamsType } from "@/types/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -22,18 +21,18 @@ const formSchema = z.object({
 type FormSchema = z.infer<typeof formSchema>;
 
 function SiteForm({
-  name,
-  description,
-  params,
+  site,
   isUpdate = false,
 }: {
-  name: string;
-  description: string;
-  params: ParamsType;
+  site?: {
+    id:string;
+    name: string;
+    description: string;
+    key: string;
+  };
   isUpdate?: boolean;
 }) {
   const router = useRouter();
-  const key = params.key;
   const {
     handleSubmit,
     control,
@@ -41,13 +40,12 @@ function SiteForm({
     reset,
   } = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
-    defaultValues: { key, description, name },
   });
 
   const onSubmit: SubmitHandler<FormSchema> = async (data) => {
     if (isUpdate) {
       try {
-        const res = await axios.put(`/api/setting/${key}`, {
+        const res = await axios.put(`/api/setting/${site?.id}`, {
           key: data.key,
           name: data.name,
           description: data.description,
@@ -60,6 +58,7 @@ function SiteForm({
         console.log("Error:", error);
         // Handle error (e.g., show error message)
       }
+
     } else {
       try {
         const res = await axios.post(`/api/setting/`, {
@@ -74,21 +73,25 @@ function SiteForm({
         console.log("Error:", error);
         // Handle error (e.g., show error message)
       }
+      reset({
+        key:'',
+        name:'',
+        description:''
+      })
     }
-
   };
-  async function deleteHandler(){
-
-    axios.delete(`http://localhost:3000/api/setting/${key}`)
-    .then(response => {
-      console.log(`${response}`);
-      revalidateSetting()
-      router.push("/admin/site/")
-    })
-    .catch(error => {
-      console.error(error);
-    });
-  }  
+  async function deleteHandler() {
+    axios
+      .delete(`http://localhost:3000/api/setting/${site?.id}`)
+      .then((response) => {
+        console.log(`${response}`);
+        revalidateSetting();
+        router.push("/admin/site/");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 
   return (
     <div className="rounded-sm border border-stroke shadow-default bg-black/20">
@@ -100,7 +103,7 @@ function SiteForm({
           <Controller
             name="key"
             control={control}
-            defaultValue={key}
+            defaultValue={site?.key}
             render={({ field }) => (
               <input
                 type="text"
@@ -125,7 +128,7 @@ function SiteForm({
             <Controller
               name={`name`}
               control={control}
-              defaultValue={name}
+              defaultValue={site?.name}
               render={({ field }) => (
                 <input
                   type="text"
@@ -148,7 +151,7 @@ function SiteForm({
             <Controller
               name={`description`}
               control={control}
-              defaultValue={description}
+              defaultValue={site?.description}
               render={({ field }) => (
                 <input
                   type="text"

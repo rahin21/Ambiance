@@ -7,11 +7,11 @@ export const GET = async (req: Request,{params}:{params:ParamsType}) => {
   // GET a setting by id
   await connectToDatabase();
 
-  const key = params.key;
+  const id = params.id;
   try {
     const getUniqueSetting = await prisma.setting.findUnique({
       where: {
-        key: key || "",
+        id: id || "",
       },
     });
     return NextResponse.json( getUniqueSetting , { status: 200 });
@@ -25,7 +25,7 @@ export const GET = async (req: Request,{params}:{params:ParamsType}) => {
 export const PUT = async (req: Request,{params}:{params:ParamsType}) => {
   // UPDATE a setting by id
   await connectToDatabase();
-  const key_param = params.key;
+  const id = params.id;
   let {  key,name, description } = await req.json();
 
   if (!key || !name || !description )
@@ -33,7 +33,7 @@ export const PUT = async (req: Request,{params}:{params:ParamsType}) => {
   try {
     const updateSetting = await prisma.setting.update({
       where: {
-        key: key_param || "",
+        id: id || "",
       },
       data: {
         name,
@@ -51,11 +51,11 @@ export const PUT = async (req: Request,{params}:{params:ParamsType}) => {
 
 export const DELETE = async (req: Request,{params}:{params:ParamsType}) => {
   // DELETE a setting by id
-  const key = params.key
+  const id = params.id
   try {
     const deleteSetting = await prisma.setting.delete({
       where: {
-        key: key || "",
+        id: id || "",
       },
     });
     return NextResponse.json( deleteSetting , { status: 201 });

@@ -22,6 +22,11 @@ model Menu {
   key   String @unique
   items Json[]
 }
+model Faq {
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  question  String 
+  answer String
+}
 
 model Setting {
   id    String @id @default(auto()) @map("_id") @db.ObjectId

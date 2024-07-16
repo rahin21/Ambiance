@@ -1,8 +1,28 @@
+import FaqForm from '@/components/tailAdmin/faq/faqForm'
+import FAQTable from '@/components/tailAdmin/faq/faqTable';
 import React from 'react'
 
-function FAQs() {
+async function getData() {
+  const res = await fetch("http://localhost:3000/api/faq", 
+    {
+    next: { tags: ["faq"] },
+  }
+);
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+}
+
+async function FAQs() {
+  const faqs = await getData();
+  // console.log(faqs);
   return (
-    <div>page</div>
+    <div>
+      <FaqForm />
+      <FAQTable faq={faqs}/>
+    </div>
   )
 }
 

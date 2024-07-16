@@ -1,16 +1,30 @@
-import React from 'react'
-import PostTable from '@/components/tailAdmin/posts/postTable';
-import axios from 'axios';
+import React from "react";
+import PostTable from "@/components/tailAdmin/posts/postTable";
+import axios from "axios";
 
 async function Portfolio() {
-  const res = await axios.get(`http://localhost:3000/api/post-key?key=portfolio`);
-  const posts = res.data;
-  console.log(posts);
+  let posts;
+  try {
+    
+    const res = await axios.get(
+      `http://localhost:3000/api/post-key?key=portfolio`
+    );
+    posts = res.data;
+  } catch (error) {
+    console.log(error);
+  }
+
   return (
     <div>
-      <PostTable post={posts}/>
+      {posts.length > 0 ? (
+        <PostTable post={posts} />
+      ) : (
+        <h1 className="text-2xl font-semibold text-black capitalize mb-3">
+          No Posts Available!
+        </h1>
+      )}
     </div>
-  )
+  );
 }
 
-export default Portfolio
+export default Portfolio;

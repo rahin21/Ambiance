@@ -1,8 +1,20 @@
+import SliderInfo from '@/components/tailAdmin/Sliders/sliderInfo';
+import axios from 'axios';
 import React from 'react'
 
-function Contact() {
+async function Contact() {
+  let slider;
+  let services;
+  try {
+    const res = await axios.get(`http://localhost:3000/api/slider/contact`);
+    slider = res.data;
+  } catch (error) {
+    console.log(error);
+  }
   return (
-    <div>page</div>
+    <div>
+      <SliderInfo slider={slider}/>
+    </div>
   )
 }
 

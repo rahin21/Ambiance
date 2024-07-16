@@ -27,7 +27,7 @@ async function Site() {
       <h4 className="text-2xl font-semibold text-black mb-4">
         Add a new setting
       </h4>
-      <SiteForm  params={{key:""}} name={""} description={""} />
+      <SiteForm />
 
       
   <div className="relative overflow-x-auto mt-5">
@@ -61,7 +61,7 @@ async function Site() {
                     {setting.description}
                 </td>
                 <td className="px-6 py-4">
-                    <Link href={`/admin/site/${setting.key}`} className="inline-flex items-center justify-center bg-black px-4 py-1 text-center font-medium text-white hover:bg-opacity-90 ">
+                    <Link href={`/admin/site/${setting.id}`} className="inline-flex items-center justify-center bg-black px-4 py-1 text-center font-medium text-white hover:bg-opacity-90 ">
                       Edit
                     </Link>
                 </td>

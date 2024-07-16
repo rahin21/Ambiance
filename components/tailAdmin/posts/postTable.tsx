@@ -7,7 +7,7 @@ function PostTable({ post }: { post: postType[] }) {
   return (
     <div className="rounded-sm border border-stroke shadow-default overflow-x-auto  bg-black/20 p-5 mt-5">
       <h1 className="text-2xl font-semibold text-black capitalize mb-3">
-          Portfolio Posts
+          {post[0].key} Posts
         </h1>
       <table className="w-full text-xl text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-base text-gray-700 uppercase bg-black/20">

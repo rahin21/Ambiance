@@ -8,6 +8,11 @@ export async function revalidateMenu()
     revalidateTag("menu");
 
 }
+export async function revalidateFAQ()
+{
+    revalidateTag("faq");
+
+}
 export async function revalidateSetting()
 {
     revalidateTag("setting");

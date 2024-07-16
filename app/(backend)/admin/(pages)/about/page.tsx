@@ -21,7 +21,7 @@ async function getData() {
 
 async function About() {
   let data = await getData();
-
+  
   return (
     <div>
       <AboutForm />

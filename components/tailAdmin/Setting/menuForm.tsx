@@ -96,7 +96,7 @@ function MenuForm({
         // Handle error (e.g., show error message)
       }
     }
-    console.log(data);
+    
   };
 
   
