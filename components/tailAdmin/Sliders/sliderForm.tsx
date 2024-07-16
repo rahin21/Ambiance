@@ -8,6 +8,7 @@ import Image from "next/image";
 import { revalidateSlider } from "@/app/api/revalidate.ts/route";
 import { ParamsType } from "@/types/types";
 import { useRouter } from "next/navigation";
+import { FaImage, FaImages } from "react-icons/fa";
 
 const sliderSchema = z.object({
   key: z.string().min(2, "Key must be at least 2 characters long"),
@@ -61,7 +62,7 @@ function SliderForm({
           formData.append(`file_${index}`, file);
           imgs.push(`/uploads/slider/${data.key}/${file.name}`);
         });
-  
+
         await axios.put(`http://localhost:3000/api/slider/${key}`, {
           key: data.key,
           img: imgs,
@@ -80,11 +81,10 @@ function SliderForm({
         });
 
         setSelectedImages([]);
-        router.push("/admin/sliders")
+        router.push("/admin/sliders");
         if (fileInputRef.current) {
           fileInputRef.current.value = "";
         }
-
       } else {
         const imgs: string[] = [];
 
@@ -98,7 +98,7 @@ function SliderForm({
           img: imgs,
         });
         revalidateSlider();
-        formData.append("targetDIR",`slider/${data.key}`);
+        formData.append("targetDIR", `slider/${data.key}`);
 
         const res = await fetch("http://localhost:3000/api/upload", {
           method: "POST",
@@ -135,7 +135,7 @@ function SliderForm({
         img: imgs,
       });
       await axios.delete(`/api/upload`, {
-        data: { locations: [location]},
+        data: { locations: [location] },
       });
       console.log("Response:", res.data);
       revalidateSlider();
@@ -146,20 +146,21 @@ function SliderForm({
 
   async function deleteSlider() {
     try {
-      
-      axios.delete(`http://localhost:3000/api/slider/${key}`)
+      axios
+        .delete(`http://localhost:3000/api/slider/${key}`)
         .then((response) => {
           console.log(`${response}`);
           revalidateSlider();
-          
         })
         .catch((error) => {
           console.error(error);
         });
 
-        axios.delete(`http://localhost:3000/api/delete-dir`,{
-          data:{dir:`/uploads/slider/${key}`}
-        }).catch((error) => {
+      axios
+        .delete(`http://localhost:3000/api/delete-dir`, {
+          data: { dir: `/uploads/slider/${key}` },
+        })
+        .catch((error) => {
           console.error(error);
         });
     } catch (error) {
@@ -203,31 +204,45 @@ function SliderForm({
       </h4>
       <div className="rounded-sm border border-stroke shadow-default bg-black/20 p-5">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex gap-5 mb-5">
-            <input
-              {...register("key")}
-              defaultValue={key}
-              type="text"
-              placeholder="Key"
-              className="w-full rounded-lg bg-white border-[1.5px] border-stroke bg-transparent px-5 py-2 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter"
-            />
-            {errors.key && <p>{errors.key.message}</p>}
+          <div className="md:flex items-end gap-5 mb-5">
+            <div className="w-full">
+              <label htmlFor="key">Key</label>
+              <input
+                {...register("key")}
+                id="key"
+                defaultValue={key}
+                type="text"
+                placeholder="Key"
+                className="w-full rounded-lg bg-white border-[1.5px] border-stroke bg-transparent px-5 py-2 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter"
+              />
+              {errors.key && <p>{errors.key.message}</p>}
+            </div>
 
-            <div>
+            <div className="w-full md:max-w-fit">
               <Controller
                 name="files"
                 control={control}
                 render={({ field }) => (
-                  <input
-                    type="file"
-                    multiple
-                    ref={fileInputRef}
-                    onChange={(e) => {
-                      field.onChange(e.target.files);
-                      e.target.files && handleFileChange(e.target.files);
-                    }}
-                    className=" rounded-lg bg-white border-[1.5px] border-stroke bg-transparent px-5 py-2 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter"
-                  />
+                  <div>
+                    <label htmlFor="sliders">Slider</label>
+                    <input
+                      type="file"
+                      id="sliders"
+                      multiple
+                      ref={fileInputRef}
+                      onChange={(e) => {
+                        field.onChange(e.target.files);
+                        e.target.files && handleFileChange(e.target.files);
+                      }}
+                      className="hidden"
+                    />
+                    <label
+                      htmlFor="sliders"
+                      className="capitalize flex justify-center items-center gap-2 rounded-md bg-rose-500 px-6 py-2 font-medium text-white hover:bg-opacity-90 cursor-pointer text-sm md:text-base"
+                    >
+                      <FaImages /> Select images for Sliders
+                    </label>
+                  </div>
                 )}
               />
               {errors.files && <p>{errors.files.message}</p>}

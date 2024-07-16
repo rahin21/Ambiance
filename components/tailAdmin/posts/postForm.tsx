@@ -1,11 +1,11 @@
 "use client";
-import React, {  useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import Image from "next/image";
-import {  postType } from "@/types/types";
+import { postType } from "@/types/types";
 import { useRouter } from "next/navigation";
 import { revalidatePost } from "@/app/api/revalidate.ts/route";
 import { FaImage, FaImages } from "react-icons/fa6";
@@ -54,54 +54,54 @@ function PostForm({ post }: { post?: postType }) {
     const imageUrls = Array.from(files).map((file) =>
       URL.createObjectURL(file)
     );
-    setSelectedImagesGallery([...selectedImagesGallery,...imageUrls]);
+    
+    setSelectedImagesGallery(imageUrls);
   };
-   
+
   const onSubmit = async (data: PostFormData) => {
     const filesThumbnail = data.thumbnail;
     const filesGallery = Array.from(data.gallery);
 
     try {
       const formData = new FormData();
-        const gallery: string[] = [];
+      const gallery: string[] = [];
 
-        formData.append(`file_0`, filesThumbnail);
-        const thumbnail = `/uploads/post/${filesThumbnail.name}`;
-        filesGallery.forEach((file, index) => {
-          formData.append(`file_${index + 1}`, file);
-          gallery.push(`/uploads/post/${file.name}`);
-        });
+      formData.append(`file_0`, filesThumbnail);
+      const thumbnail = `/uploads/post/${filesThumbnail.name}`;
+      filesGallery.forEach((file, index) => {
+        formData.append(`file_${index + 1}`, file);
+        gallery.push(`/uploads/post/${file.name}`);
+      });
 
-        const res1 = await axios.post("http://localhost:3000/api/post/", {
-          title: data.title,
-          key: data.key,
-          thumbnail: thumbnail,
-          gallery: gallery,
-        });
-        revalidatePost();
-        formData.append("targetDIR", "post");
+      const res1 = await axios.post("http://localhost:3000/api/post/", {
+        title: data.title,
+        key: data.key,
+        thumbnail: thumbnail,
+        gallery: gallery,
+      });
+      revalidatePost();
+      formData.append("targetDIR", "post");
 
-        const res2 = await fetch("http://localhost:3000/api/upload", {
-          method: "POST",
-          body: formData,
-        });
-        console.log(res1);
-        if (!res2.ok) throw new Error(await res2.text());
+      const res2 = await fetch("http://localhost:3000/api/upload", {
+        method: "POST",
+        body: formData,
+      });
+      console.log(res1);
+      if (!res2.ok) throw new Error(await res2.text());
 
-        reset({
-          key: "",
-          title: "",
-          thumbnail: undefined,
-          gallery: undefined,
-        });
+      reset({
+        key: "",
+        title: "",
+        thumbnail: undefined,
+        gallery: undefined,
+      });
 
-        setSelectedImagesGallery([]);
-        setSelectedImagesThumbnail("");
+      setSelectedImagesGallery([]);
+      setSelectedImagesThumbnail("");
 
-        if (fileInputRef.current) {
-          fileInputRef.current.value = "";
-        }
-      
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
     } catch (e: any) {
       console.error(e);
     }
@@ -114,27 +114,35 @@ function PostForm({ post }: { post?: postType }) {
       </h4>
       <div className="rounded-sm border border-stroke shadow-default bg-black/20 p-5 gap-5">
         <form onSubmit={handleSubmit(onSubmit)} className="w-full">
-          <div className="flex gap-5 mb-5">
-            <input
-              {...register("key")}
-              defaultValue={post?.key}
-              type="text"
-              placeholder="Key"
-              className="w-full rounded-lg bg-white border-[1.5px] border-stroke bg-transparent px-5 py-2 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter"
-            />
-            {errors.key && <p>{errors.key.message}</p>}
+          <div className="md:flex gap-5 mb-5">
+            <div className="w-full">
+              <label htmlFor="key">Key</label>
+              <input
+                {...register("key")}
+                id="key"
+                defaultValue={post?.key}
+                type="text"
+                placeholder="Key"
+                className="w-full rounded-lg bg-white border-[1.5px] border-stroke bg-transparent px-5 py-2 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter"
+              />
+              {errors.key && <p>{errors.key.message}</p>}
+            </div>
+            <div className="w-full">
+              <label htmlFor="title">Title</label>
             <input
               {...register("title")}
+              id="title"
               defaultValue={post?.title}
               type="text"
               placeholder="Title"
               className="w-full rounded-lg bg-white border-[1.5px] border-stroke bg-transparent px-5 py-2 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter"
             />
             {errors.title && <p>{errors.title.message}</p>}
+            </div>
           </div>
-          <div className="flex gap-5">
+          <div className="md:flex gap-5">
             <>
-              <div className="border-2 flex flex-col items-center p-3 max-h-[15.3rem] border-black/40 w-full">
+              <div className="border-2 flex flex-col items-center p-3 min-h-[15.3rem] md:mb-0 mb-5 border-black/40 w-full">
                 <Controller
                   name="thumbnail"
                   control={control}
@@ -187,7 +195,6 @@ function PostForm({ post }: { post?: postType }) {
                   render={({ field }) => (
                     <div>
                       <input
-
                         type="file"
                         id="gallery"
                         multiple

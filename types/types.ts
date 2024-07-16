@@ -10,6 +10,14 @@ export interface menuType{
       link:string
     }[]
   }
+  
+export  interface sliderType{
+    id:string;
+    key:string;
+    img:string[]
+}
+
+
   export interface settingType{
     id:string;
     key:string;

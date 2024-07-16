@@ -2,7 +2,7 @@ import ServiceForm from '@/components/tailAdmin/Services/serviceForm'
 import ServiceTable from '@/components/tailAdmin/Services/serviceTable'
 import React from 'react'
 
-async function getData() {
+export async function getServiceData() {
   const res = await fetch('http://localhost:3000/api/service', 
     { next:{tags:["service"]}}
   )
@@ -19,7 +19,7 @@ async function getData() {
  
 
 async function Services() {
-  const services = await getData();
+  const services = await getServiceData();
   console.log(services); 
   return (
     <div>

@@ -11,6 +11,7 @@ export const GET = async (req:Request,{params}:{params:ParamsType}) => {
   await connectToDatabase();
 
   const url = params.id;
+  console.log(url);
 
   try {
     const getUniquePost = await prisma.post.findUnique({

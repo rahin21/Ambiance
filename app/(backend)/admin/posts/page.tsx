@@ -2,7 +2,7 @@ import PostForm from '@/components/tailAdmin/posts/postForm'
 import PostTable from '@/components/tailAdmin/posts/postTable'
 import React from 'react'
 
-async function getData() {
+export async function getPostData() {
   const res = await fetch("http://localhost:3000/api/post", {
     next: { tags: ["post"] },
   });
@@ -15,7 +15,7 @@ async function getData() {
 }
 
 async function Posts() {
-  const post = await getData();
+  const post = await getPostData();
   return (
     <div>
       <PostForm/>

@@ -207,7 +207,7 @@ function PostUpdateForm({
           </div>
           <div className="flex gap-5">
             <>
-              <div className="border-2 flex flex-col items-center p-3 max-h-[15.3rem] border-black/40 w-full">
+              <div className="border-2 flex flex-col items-center p-3 min-h-[15.3rem] border-black/40 w-full">
                 <Controller
                   name="thumbnail"
                   control={control}
