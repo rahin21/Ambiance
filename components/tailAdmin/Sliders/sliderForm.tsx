@@ -171,8 +171,11 @@ function SliderForm({
 
   return (
     <div>
+      <h4 className="text-2xl font-semibold text-black">
+        {isUpdate? `Update`: `Add `} Slider
+      </h4>
       {isUpdate && (
-        <div className="border border-stroke bg-black/20 px-7.5 py-6 shadow-default mt-8">
+        <div className="border border-stroke bg-black/20 px-7.5 py-6 shadow-default mt-5">
           <div className="flex justify-between mb-5">
             <h1 className="text-2xl font-semibold text-black capitalize">
               {key} slider
@@ -199,22 +202,22 @@ function SliderForm({
           </div>
         </div>
       )}
-      <h4 className="text-2xl font-semibold text-black mb-4">
-        Add a new slide
-      </h4>
-      <div className="rounded-sm border border-stroke shadow-default bg-black/20 p-5">
+      
+      <div className="rounded-sm border border-stroke shadow-default bg-black/20 p-5 mt-5">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="md:flex items-end gap-5 mb-5">
             <div className="w-full">
-              <label htmlFor="key">Key</label>
-              <input
+              <label htmlFor="key" className="mb-3 block text-base font-medium text-black">Slider </label>
+              <select
                 {...register("key")}
                 id="key"
-                defaultValue={key}
-                type="text"
-                placeholder="Key"
-                className="w-full rounded-lg bg-white border-[1.5px] border-stroke bg-transparent px-5 py-2 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter"
-              />
+                defaultValue={key || "home"}
+                className="w-full rounded-lg bg-white border-[1.5px] text-lg border-stroke bg-transparent px-5 py-2 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter"
+              >
+                <option value="home">Home</option>
+                <option value="news">News</option>
+                <option value="contact">Contact</option>
+              </select>
               {errors.key && <p>{errors.key.message}</p>}
             </div>
 
@@ -224,7 +227,7 @@ function SliderForm({
                 control={control}
                 render={({ field }) => (
                   <div>
-                    <label htmlFor="sliders">Slider</label>
+                    <label htmlFor="sliders" className="mb-3 block text-base font-medium text-black">Slider Image</label>
                     <input
                       type="file"
                       id="sliders"

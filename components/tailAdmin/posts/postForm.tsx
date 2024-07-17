@@ -116,19 +116,20 @@ function PostForm({ post }: { post?: postType }) {
         <form onSubmit={handleSubmit(onSubmit)} className="w-full">
           <div className="md:flex gap-5 mb-5">
             <div className="w-full">
-              <label htmlFor="key">Key</label>
-              <input
+              <label htmlFor="key" className="mb-3 block text-base font-medium text-black">Post</label>
+              <select
                 {...register("key")}
                 id="key"
-                defaultValue={post?.key}
-                type="text"
-                placeholder="Key"
-                className="w-full rounded-lg bg-white border-[1.5px] border-stroke bg-transparent px-5 py-2 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter"
-              />
+                defaultValue={post?.key|| "portfolio"}
+                className="w-full rounded-lg bg-white border-[1.5px] border-stroke bg-transparent px-5 py-2 text-black text-lg outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter"
+              >
+                <option value="portfolio">Portfolio</option>
+                <option value="news">News</option>
+              </select>
               {errors.key && <p>{errors.key.message}</p>}
             </div>
             <div className="w-full">
-              <label htmlFor="title">Title</label>
+              <label htmlFor="title" className="mb-3 block text-base font-medium text-black">Title</label>
             <input
               {...register("title")}
               id="title"

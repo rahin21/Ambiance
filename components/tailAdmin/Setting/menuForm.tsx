@@ -107,18 +107,20 @@ function MenuForm({
 
         <div className="mb-4">
           <label className="mb-3 block text-sm font-medium text-black">
-            Key
+            Menu For
           </label>
           <Controller
             name="key"
             control={control}
             render={({ field }) => (
-              <input
-                type="text"
-                placeholder="Key"
+              <select
+
                 className="w-full rounded-lg bg-white border-[1.5px] border-stroke bg-transparent px-5 py-2 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter"
                 {...field}
-              />
+              > 
+              <option value="nav">Nav</option>
+              <option value="social">Social</option>
+              </select>
             )}
           />
           {errors.key && (

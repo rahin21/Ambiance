@@ -3,11 +3,10 @@ import { revalidateSetting } from "@/app/api/revalidate.ts/route";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
+import React from "react";
 import {
   Controller,
   SubmitHandler,
-  useFieldArray,
   useForm,
 } from "react-hook-form";
 import { z } from "zod";
@@ -60,6 +59,7 @@ function SiteForm({
       }
 
     } else {
+      console.log(data);
       try {
         const res = await axios.post(`/api/setting/`, {
           key: data.key,
@@ -97,20 +97,21 @@ function SiteForm({
     <div className="rounded-sm border border-stroke shadow-default bg-black/20">
       <form onSubmit={handleSubmit(onSubmit)} className="py-4 px-6.5">
         <div className="mb-4">
-          <label className="mb-3 block text-sm font-medium text-black">
-            Key
+          <label className="mb-3 block text-base font-medium text-black">
+            Setting
           </label>
           <Controller
             name="key"
             control={control}
-            defaultValue={site?.key}
+            defaultValue={site?.key||"contact"}
             render={({ field }) => (
-              <input
-                type="text"
-                placeholder="Key"
-                className="w-full rounded-lg bg-white border-[1.5px] border-stroke bg-transparent px-5 py-2 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter"
+              <select
+                className="w-full rounded-lg bg-white border-[1.5px] border-stroke bg-transparent pe-28 px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter"
                 {...field}
-              />
+              >
+                <option value="contact">Contact</option>
+                <option value="other">Other</option>
+              </select>
             )}
           />
           {errors.key && (
@@ -122,7 +123,7 @@ function SiteForm({
 
         <div className="flex gap-3 w-full mb-4">
           <div className="w-full">
-            <label className="mb-3 block text-sm font-medium text-black">
+            <label className="mb-3 block text-base font-medium text-black">
               Name
             </label>
             <Controller
@@ -133,7 +134,7 @@ function SiteForm({
                 <input
                   type="text"
                   placeholder="Name"
-                  className="w-full rounded-lg bg-white border-[1.5px] border-stroke bg-transparent px-5 py-2 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter"
+                  className="w-full rounded-lg bg-white border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter"
                   {...field}
                 />
               )}
@@ -145,7 +146,7 @@ function SiteForm({
             )}
           </div>
           <div className="w-full">
-            <label className="mb-3 block text-sm font-medium text-black">
+            <label className="mb-3 block text-base font-medium text-black">
               Description
             </label>
             <Controller
@@ -156,7 +157,7 @@ function SiteForm({
                 <input
                   type="text"
                   placeholder="description"
-                  className="w-full rounded-lg bg-white border-[1.5px] border-stroke bg-transparent px-5 py-2 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter"
+                  className="w-full rounded-lg bg-white border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter"
                   {...field}
                 />
               )}

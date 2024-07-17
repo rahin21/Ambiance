@@ -10,14 +10,14 @@ export const GET = async (req:Request,{params}:{params:ParamsType}) => {
     await connectToDatabase();
     const { searchParams } = new URL(req.url);
     const key = searchParams.get("key");
-
+  
     try {
-      const getPosts = await prisma.post.findMany({
+      const getSetting = await prisma.setting.findMany({
         where: {
           key: key || "",
         },
       });
-      return NextResponse.json( getPosts , { status: 200 });
+      return NextResponse.json( getSetting , { status: 200 });
     } catch (error) {
       return NextResponse.json({ error: "Server Error" }, { status: 500 });
     } finally {

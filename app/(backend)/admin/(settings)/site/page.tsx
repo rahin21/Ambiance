@@ -1,4 +1,5 @@
 import SiteForm from "@/components/tailAdmin/Setting/siteForm";
+import SiteTable from "@/components/tailAdmin/Setting/siteTables";
 import { settingType } from "@/types/types";
 import axios from "axios";
 import Link from "next/link";
@@ -30,46 +31,7 @@ async function Site() {
       <SiteForm />
 
       
-  <div className="relative overflow-x-auto mt-5">
-    <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead className="text-xs text-gray-700 uppercase bg-black/20">
-            <tr>
-                <th scope="col" className="px-6 py-3">
-                    Key
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Name
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Description
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-        {data.map((setting: settingType) => (
-            <tr key={setting.id} className="bg-white border-b border-black/20">
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                    {setting.key}
-                </th>
-                <td className="px-6 py-4">
-                    {setting.name}
-                </td>
-                <td className="px-6 py-4">
-                    {setting.description}
-                </td>
-                <td className="px-6 py-4">
-                    <Link href={`/admin/site/${setting.id}`} className="inline-flex items-center justify-center bg-black px-4 py-1 text-center font-medium text-white hover:bg-opacity-90 ">
-                      Edit
-                    </Link>
-                </td>
-            </tr>
-          ))}
-        </tbody>
-    </table>
-</div>
+  <SiteTable settings={data}/>
     </div>
   );
 }

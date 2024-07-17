@@ -190,7 +190,7 @@ function ServiceForm({
         <form onSubmit={handleSubmit(onSubmit)} className="w-full">
           <div className="flex gap-5 mb-5">
             <div className="w-full">
-              <label htmlFor="title">Service Title</label>
+              <label htmlFor="title" className="mb-3 block text-base font-medium text-black">Service Title</label>
               <input
                 {...register("title")}
                 id="title"
@@ -202,7 +202,7 @@ function ServiceForm({
               {errors.title && <p>{errors.title.message}</p>}
             </div>
             <div className="w-full">
-              <label htmlFor="subTitle">Service Sub Title</label>
+              <label htmlFor="subTitle" className="mb-3 block text-base font-medium text-black">Service Sub Title</label>
               <input
                 {...register("subTitle")}
                 id="subTitle"
@@ -215,7 +215,7 @@ function ServiceForm({
             </div>
           </div>
           <div className="w-full">
-            <label htmlFor="desc">Service Descirption</label>
+            <label htmlFor="desc" className="mb-3 block text-base font-medium text-black">Service Descirption</label>
             <textarea
               {...register("description")}
               id="desc"
@@ -277,7 +277,7 @@ function ServiceForm({
 
           <div className="flex gap-5 my-5">
             <div className="w-full">
-              <label htmlFor="link-title">Link Title</label>
+              <label htmlFor="link-title" className="mb-3 block text-base font-medium text-black">Link Title</label>
               <input
                 {...register("linkTitle")}
                 id="link-title"
@@ -289,7 +289,7 @@ function ServiceForm({
               {errors.title && <p>{errors.title.message}</p>}
             </div>
             <div className="w-full">
-              <label htmlFor="link">Link</label>
+              <label htmlFor="link" className="mb-3 block text-base font-medium text-black">Link</label>
               <input
                 {...register("link")}
                 id="link"

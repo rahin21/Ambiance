@@ -1,19 +1,52 @@
+import SiteTable from '@/components/tailAdmin/Setting/siteTables';
 import SliderInfo from '@/components/tailAdmin/Sliders/sliderInfo';
 import axios from 'axios';
 import React from 'react'
 
-async function Contact() {
-  let slider;
-  let services;
-  try {
-    const res = await axios.get(`http://localhost:3000/api/slider/contact`);
-    slider = res.data;
-  } catch (error) {
-    console.log(error);
+async function getSetting() {
+  const res = await fetch("http://localhost:3000/api/setting-key?key=contact", 
+    {
+    next: { tags: ["setting"] },
   }
+);
+  // The return value is *not* serialized
+  // You can return Date, Map, Set, etc.
+
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error("Failed to fetch setting data");
+  }
+
+  return res.json();
+}
+
+
+async function getSliders() {
+  const res = await fetch("http://localhost:3000/api/slider/contact", 
+    {
+    next: { tags: ["slider"] },
+  }
+);
+  // The return value is *not* serialized
+  // You can return Date, Map, Set, etc.
+
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error("Failed to fetch slider data");
+  }
+
+  return res.json();
+}
+
+
+async function Contact() {
+  let slider = await getSliders();
+  let settings = await getSetting();
+  
   return (
     <div>
       <SliderInfo slider={slider}/>
+      <SiteTable settings={settings}/>
     </div>
   )
 }
