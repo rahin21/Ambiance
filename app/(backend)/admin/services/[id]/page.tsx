@@ -7,7 +7,7 @@ async function ServiceId({ params }: { params: ParamsType }) {
   const id = params.id;
   let data = [];
   try {
-    const res = await axios.get(`http://localhost:3000/api/service/${id}`);
+    const res = await axios.get(`${process.env.NEXTAUTH_URL}/api/service/${id}`);
     data = res.data;
   } catch (error) {
     console.log(error);

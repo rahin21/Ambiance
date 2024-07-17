@@ -3,7 +3,7 @@ import AboutInfo from '@/components/tailAdmin/about/aboutInfo'
 import React from 'react'
 
 async function getData() {
-  const res = await fetch("http://localhost:3000/api/about", 
+  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/about`, 
     {
     next: { tags: ["about"] },
   }

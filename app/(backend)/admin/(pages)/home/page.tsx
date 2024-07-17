@@ -11,7 +11,7 @@ async function Home() {
   let slider;
   let services;
   try {
-    const res = await axios.get(`http://localhost:3000/api/slider/home`);
+    const res = await axios.get(`${process.env.NEXTAUTH_URL}/api/slider/home`);
     slider = res.data;
     services = await getServiceData();
   } catch (error) {

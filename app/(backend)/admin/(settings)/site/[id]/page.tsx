@@ -8,7 +8,7 @@ async function SiteKey({ params }: { params: ParamsType }) {
   let data;
 
   try {
-    const res = await axios.get(`http://localhost:3000/api/setting/${id}`);
+    const res = await axios.get(`${process.env.NEXTAUTH_URL}/api/setting/${id}`);
     data = res.data;
   } catch (error) {
     console.log(error);

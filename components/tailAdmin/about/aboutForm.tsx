@@ -67,7 +67,7 @@ function AboutForm({
         });
 
         const res1 = await axios.put(
-          `http://localhost:3000/api/about/${about?.id}`,
+          `${process.env.NEXTAUTH_URL}/api/about/${about?.id}`,
           {
             avatar: avatar,
             title: data.title,
@@ -78,7 +78,7 @@ function AboutForm({
         revalidateAbout()
         formData.append("targetDIR", "about");
 
-        const res = await fetch("http://localhost:3000/api/upload", {
+        const res = await fetch(`${process.env.NEXTAUTH_URL}/api/upload`, {
           method: "POST",
           body: formData,
         });
@@ -104,7 +104,7 @@ function AboutForm({
           avatar.push(`/uploads/about/${file.name}`);
         });
 
-        const res1 = await axios.post("http://localhost:3000/api/about/", {
+        const res1 = await axios.post(`${process.env.NEXTAUTH_URL}/api/about/`, {
           avatar: avatar,
           title: data.title,
           subTitle: data.subTitle,
@@ -113,7 +113,7 @@ function AboutForm({
         revalidateAbout();
         formData.append("targetDIR", "about");
 
-        const res2 = await fetch("http://localhost:3000/api/upload", {
+        const res2 = await fetch(`${process.env.NEXTAUTH_URL}/api/upload`, {
           method: "POST",
           body: formData,
         });
@@ -142,7 +142,7 @@ function AboutForm({
   async function deleteAbout() {
     try {
       axios
-        .delete(`http://localhost:3000/api/about/${about?.id}`)
+        .delete(`${process.env.NEXTAUTH_URL}/api/about/${about?.id}`)
         .catch((error) => {
           console.error(error);
         });

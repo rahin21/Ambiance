@@ -10,7 +10,7 @@ async function SliderKey({ params }: { params: ParamsType }) {
   let data = [];
   let imgs = [];
   try {
-    const res = await axios.get(`http://localhost:3000/api/slider/${key}`);
+    const res = await axios.get(`${process.env.NEXTAUTH_URL}/api/slider/${key}`);
     data = res.data;
     imgs = res.data.img;
   } catch (error) {

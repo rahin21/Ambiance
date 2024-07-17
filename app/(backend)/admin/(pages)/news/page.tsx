@@ -7,10 +7,10 @@ async function News() {
   let slider;
   let posts;
   try {
-    const res = await axios.get(`http://localhost:3000/api/slider/news`);
+    const res = await axios.get(`${process.env.NEXTAUTH_URL}/api/slider/news`);
     slider = res.data;
     const resNews = await axios.get(
-      `http://localhost:3000/api/post-key?key=news`
+      `${process.env.NEXTAUTH_URL}/api/post-key?key=news`
     );
     posts = resNews.data;
   } catch (error) {

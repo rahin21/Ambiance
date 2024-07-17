@@ -7,7 +7,7 @@ async function PostId({ params }: { params: { id: string } }) {
   const id = params.id;
   let data = [];
   try {
-    const res = await axios.get(`http://localhost:3000/api/post/${id}`);
+    const res = await axios.get(`${process.env.NEXTAUTH_URL}/api/post/${id}`);
     data = res.data;
   } catch (error) {
     console.log(error);

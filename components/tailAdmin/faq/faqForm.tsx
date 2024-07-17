@@ -34,7 +34,7 @@ function FaqForm({ faq, isUpdate }: { faq?: FaqType; isUpdate?: boolean }) {
 
   async function deleteHandler(){
     
-    axios.delete(`http://localhost:3000/api/faq/${faq?.id}`)
+    axios.delete(`${process.env.NEXTAUTH_URL}/api/faq/${faq?.id}`)
     .then(response => {
       console.log(`${response}`);
       router.push("/admin/faqs/")
@@ -59,7 +59,7 @@ function FaqForm({ faq, isUpdate }: { faq?: FaqType; isUpdate?: boolean }) {
       }
     } else {
       try {
-        const res = await axios.post(`http://localhost:3000/api/faq/`, data);
+        const res = await axios.post(`${process.env.NEXTAUTH_URL}/api/faq/`, data);
         revalidateFAQ();
         console.log("Response:", res.data);
         // Handle successful response (e.g., redirect or show success message)

@@ -3,7 +3,7 @@ import FAQTable from '@/components/tailAdmin/faq/faqTable';
 import React from 'react'
 
 async function getData() {
-  const res = await fetch("http://localhost:3000/api/faq", 
+  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/faq`, 
     {
     next: { tags: ["faq"] },
   }

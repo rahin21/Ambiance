@@ -8,7 +8,7 @@ async function Key({ params }: { params: ParamsType }) {
   let data = [];
   let items = [];
   try {
-    const res = await axios.get(`http://localhost:3000/api/menu/${key}`);
+    const res = await axios.get(`${process.env.NEXTAUTH_URL}/api/menu/${key}`);
     data = res.data;
     items = res.data.items;
   } catch (error) {

@@ -63,14 +63,14 @@ function SliderForm({
           imgs.push(`/uploads/slider/${data.key}/${file.name}`);
         });
 
-        await axios.put(`http://localhost:3000/api/slider/${key}`, {
+        await axios.put(`${process.env.NEXTAUTH_URL}/api/slider/${key}`, {
           key: data.key,
           img: imgs,
         });
         revalidateSlider();
         formData.append("targetDIR", `slider/${data.key}`);
 
-        const res = await fetch("http://localhost:3000/api/upload", {
+        const res = await fetch(`${process.env.NEXTAUTH_URL}/api/upload`, {
           method: "POST",
           body: formData,
         });
@@ -93,14 +93,14 @@ function SliderForm({
           imgs.push(`/uploads/slider/${data.key}/${file.name}`);
         });
 
-        await axios.post("http://localhost:3000/api/slider/", {
+        await axios.post(`${process.env.NEXTAUTH_URL}/api/slider/`, {
           key: data.key,
           img: imgs,
         });
         revalidateSlider();
         formData.append("targetDIR", `slider/${data.key}`);
 
-        const res = await fetch("http://localhost:3000/api/upload", {
+        const res = await fetch(`${process.env.NEXTAUTH_URL}/api/upload`, {
           method: "POST",
           body: formData,
         });
@@ -147,7 +147,7 @@ function SliderForm({
   async function deleteSlider() {
     try {
       axios
-        .delete(`http://localhost:3000/api/slider/${key}`)
+        .delete(`${process.env.NEXTAUTH_URL}/api/slider/${key}`)
         .then((response) => {
           console.log(`${response}`);
           revalidateSlider();
@@ -157,7 +157,7 @@ function SliderForm({
         });
 
       axios
-        .delete(`http://localhost:3000/api/delete-dir`, {
+        .delete(`${process.env.NEXTAUTH_URL}/api/delete-dir`, {
           data: { dir: `/uploads/slider/${key}` },
         })
         .catch((error) => {

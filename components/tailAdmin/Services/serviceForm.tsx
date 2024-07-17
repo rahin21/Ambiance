@@ -90,7 +90,7 @@ function ServiceForm({
         console.log(thumbnail);
         formData.append(`file_0`, fileThumbnail || "");
         formData.append("targetDIR", "service");
-        const res1 = await axios.post("http://localhost:3000/api/service/", {
+        const res1 = await axios.post(`${process.env.NEXTAUTH_URL}/api/service/`, {
           thumbnail: thumbnail,
           title: data.title,
           subTitle: data.subTitle,
@@ -99,7 +99,7 @@ function ServiceForm({
           plainUrl: data.linkTitle,
         });
 
-        const res2 = await fetch("http://localhost:3000/api/upload", {
+        const res2 = await fetch(`${process.env.NEXTAUTH_URL}/api/upload`, {
           method: "POST",
           body: formData,
         });
@@ -128,7 +128,7 @@ function ServiceForm({
           await axios.delete(`/api/upload`, {
             data: { locations: [service?.thumbnail] },
           });
-          const res = await fetch("http://localhost:3000/api/upload", {
+          const res = await fetch(`${process.env.NEXTAUTH_URL}/api/upload`, {
             method: "POST",
             body: formData,
           });
@@ -136,7 +136,7 @@ function ServiceForm({
         }
         if (service?.thumbnail) {
           const res2 = await axios.put(
-            `http://localhost:3000/api/service/${service?.id}`,
+            `${process.env.NEXTAUTH_URL}/api/service/${service?.id}`,
             {
               thumbnail: thumbnail,
               title: data.title,
@@ -171,7 +171,7 @@ function ServiceForm({
 
   async function deleteService() {
     try {
-      axios.delete(`http://localhost:3000/api/service/${service?.id}`);
+      axios.delete(`${process.env.NEXTAUTH_URL}/api/service/${service?.id}`);
       console.log(`delete successful`);
       await axios.delete(`/api/upload`, {
         data: { locations: [service?.thumbnail] },

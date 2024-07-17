@@ -5,7 +5,7 @@ import axios from "axios";
 import Link from "next/link";
 
 async function getData() {
-  const res = await fetch('http://localhost:3000/api/menu', { next:{tags:["menu"]}})
+  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/menu`, { next:{tags:["menu"]}})
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
  

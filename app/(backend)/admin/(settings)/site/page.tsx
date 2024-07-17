@@ -5,7 +5,7 @@ import axios from "axios";
 import Link from "next/link";
 import React from "react";
 async function getData() {
-  const res = await fetch("http://localhost:3000/api/setting", 
+  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/setting`, 
     {
     next: { tags: ["setting"] },
   }

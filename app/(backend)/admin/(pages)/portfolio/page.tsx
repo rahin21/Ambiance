@@ -7,7 +7,7 @@ async function Portfolio() {
   try {
     
     const res = await axios.get(
-      `http://localhost:3000/api/post-key?key=portfolio`
+      `${process.env.NEXTAUTH_URL}/api/post-key?key=portfolio`
     );
     posts = res.data;
   } catch (error) {

@@ -6,7 +6,7 @@ import Link from "next/link";
 import React from "react";
 
 async function getData() {
-  const res = await fetch("http://localhost:3000/api/slider", {
+  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/slider`, {
     next: { tags: ["slider"] },
   });
 

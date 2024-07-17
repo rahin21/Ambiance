@@ -4,7 +4,7 @@ import axios from 'axios';
 import React from 'react'
 
 async function getSetting() {
-  const res = await fetch("http://localhost:3000/api/setting-key?key=contact", 
+  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/setting-key?key=contact`, 
     {
     next: { tags: ["setting"] },
   }
@@ -22,7 +22,7 @@ async function getSetting() {
 
 
 async function getSliders() {
-  const res = await fetch("http://localhost:3000/api/slider/contact", 
+  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/slider/contact`, 
     {
     next: { tags: ["slider"] },
   }

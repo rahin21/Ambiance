@@ -6,7 +6,7 @@ import React from 'react'
 async function FAQid({params}:{params:ParamsType}) {
     let faq
     try {
-        const res = await axios.get(`http://localhost:3000/api/faq/${params.id}`)
+        const res = await axios.get(`${process.env.NEXTAUTH_URL}/api/faq/${params.id}`)
         faq = res.data;
     } catch (error) {
         console.log(error);
