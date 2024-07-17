@@ -1,5 +1,5 @@
 export async function getServiceData() {
-    const res = await fetch('http://localhost:3000/api/service', 
+    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/service`, 
       { next:{tags:["service"]}}
     )
     // The return value is *not* serialized
