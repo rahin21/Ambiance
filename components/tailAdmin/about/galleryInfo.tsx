@@ -22,8 +22,8 @@ function GalleryInfo({gallery}:{gallery:GalleryType}) {
       </div>
       <div className="flex flex-wrap justify-center lg:justify-start gap-5">
         {gallery.imgs.map((image) => (
-          <div key={image}>
-            <Image src={image} alt="img-home" width={150} height={150} />
+          <div key={image} className="aspect-square w-[150px] inline-block overflow-hidden">
+            <Image src={image} alt="img-home" width={150} height={150} className="w-full h-full object-cover" />
           </div>
         ))}
       </div>

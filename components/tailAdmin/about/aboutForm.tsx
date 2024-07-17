@@ -67,7 +67,7 @@ function AboutForm({
         });
 
         const res1 = await axios.put(
-          `${process.env.NEXTAUTH_URL}/api/about/${about?.id}`,
+          `/api/about/${about?.id}`,
           {
             avatar: avatar,
             title: data.title,
@@ -78,7 +78,7 @@ function AboutForm({
         revalidateAbout();
         formData.append("targetDIR", "about");
 
-        const res = await fetch(`${process.env.NEXTAUTH_URL}/api/upload`, {
+        const res = await fetch(`/api/upload`, {
           method: "POST",
           body: formData,
         });

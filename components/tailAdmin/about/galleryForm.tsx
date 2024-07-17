@@ -80,7 +80,6 @@ function GalleryForm({
           fileInputRef.current.value = "";
         }
       } else {
-
         const imgs: string[] = [];
 
         files.forEach((file, index) => {
@@ -141,7 +140,7 @@ function GalleryForm({
     try {
       axios
         .delete(`/api/upload`, {
-          data: { locations:gallery?.imgs },
+          data: { locations: gallery?.imgs },
         })
         .catch((error) => {
           console.error(error);
@@ -155,7 +154,6 @@ function GalleryForm({
         .catch((error) => {
           console.error(error);
         });
-
     } catch (error) {
       console.log(error);
     }
@@ -226,25 +224,27 @@ function GalleryForm({
                 )}
               />
               {errors.files && <p>{errors.files.message}</p>}
-            {/* Display the selected images */}
-          {selectedImages.length > 0 ? (
-            <div className="flex gap-5 mt-5">
-              {selectedImages.map((img, index) => (
-                <Image
-                  key={index}
-                  src={img}
-                  width={150}
-                  height={300}
-                  alt={`Selected ${index}`}
-                />
-              ))}
-            </div>
-          ) : (
-            <div className="text-center flex justify-center items-center gap-3 mt-5">
-              <FaImage />
-              <p>No Image Selected</p>
-            </div>
-          )}
+              {/* Display the selected images */}
+              {selectedImages.length > 0 ? (
+                <div className="flex flex-wrap gap-5 mt-5">
+                  {selectedImages.map((img, index) => (
+                    <div key={index} className="aspect-square w-auto inline-block overflow-hidden">    
+                      <Image
+                        src={img}
+                        width={150}
+                        height={300}
+                        className="w-full h-full object-cover"
+                        alt={`Selected ${index}`}
+                      />
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center flex justify-center items-center gap-3 mt-5">
+                  <FaImage />
+                  <p>No Image Selected</p>
+                </div>
+              )}
             </div>
           </div>
 

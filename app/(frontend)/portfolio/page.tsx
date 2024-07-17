@@ -4,16 +4,23 @@ import { portfolio } from "@/constants/portfolioData";
 import LinkOverLogo from "@/components/linkOverLogo";
 import PaginationControls from "@/components/paginationControl";
 import PortfolioGallery from "@/components/portfolio/portfolioGallery";
+import axios from "axios";
 
 export const metadata: Metadata = {
   title: "Portfolio",
 };
 
-function page({
+async function page({
   searchParams,
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
+  const res = await axios.get(
+    `${process.env.NEXTAUTH_URL}/api/post-key?key=portfolio`
+  );
+  let portfolio = res.data;
+
+  
   const page = searchParams["page"] ?? "1";
   const per_page = searchParams["per_page"] ?? "6";
   // mocked, skipped and limited in the real app

@@ -16,7 +16,7 @@ import { FaPlus } from "react-icons/fa6";
 function AccordionComponent({
   questions,
 }: {
-  questions: { ques: string; ans: string }[];
+  questions: { question: string; answer: string }[];
 }) {
   
   return (
@@ -29,10 +29,10 @@ function AccordionComponent({
               
             >
               <FaPlus className="text-xl me-4" />
-              {item.ques}
+              {item.question}
             </AccordionItemButton>
           </AccordionItemHeading>
-          <AccordionItemPanel>{item.ans}</AccordionItemPanel>
+          <AccordionItemPanel>{item.answer}</AccordionItemPanel>
         </AccordionItem>
       ))}
     </Accordion>

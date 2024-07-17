@@ -1,23 +1,41 @@
 "use client";
-import { news } from "@/constants/newsData";
+
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PaginationControls from "../paginationControl";
 import { motion } from "framer-motion";
+import { postType } from "@/types/types";
+import axios from "axios";
 
 function Gallery({
   searchParams,
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
+
+  const [news, setNews] = useState<postType[] | null >(null)
+  
+  useEffect(()=>{
+    const getData = async () => {
+      try {
+        const res = await axios.get(`/api/post-key?key=news`);
+        setNews(res.data);
+        
+      } catch (err) {
+        console.log('Error fetching slider data');
+      }
+    }
+    getData()
+  },[])
+  
   const page = searchParams["page"] ?? "1";
   const per_page = searchParams["per_page"] ?? "6";
   // mocked, skipped and limited in the real app
   const start = (Number(page) - 1) * Number(per_page); // 0, 7, 14 ...
   const end = start + Number(per_page); // 7, 14, 21 ...
 
-  const entries = news.slice(start, end);
+  const entries = news?.slice(start, end);
   return (
     <motion.div
     initial={{opacity:0}}
@@ -27,31 +45,31 @@ function Gallery({
         id="gallery"
         className=" grid md:grid-cols-2 gap-0 md:gap-4  grid-cols-1  px-5"
       >
-        {entries.map((data, i) => (
+        {entries?.map((data:postType) => (
           <div
-            key={i}
+            key={data?.id}
             className="flex flex-col justify-center items-center lg:px-8 px-0"
           >
-            <Link href={data.link} className="pb-5 pt-10">
-              <Image src={data.img} width="580" height="0" alt="award" />
+            <Link href={`/news/${data?.id}`} className="pb-5 pt-10">
+              <Image src={data?.thumbnail} width="580" height="0" alt="award" />
             </Link>
             <Link
-              href={data.link}
-              className="font-palatino text-lg tracking-[5px] opacity-70 hover:opacity-90 transition-all ease-in-out duration-200"
+              href={`/news/${data?.id}`}
+              className="font-palatino text-lg tracking-[5px] opacity-70 hover:opacity-90 transition-all ease-in-out duration-200 uppercase"
             >
-              {data.name}
+              {data.title}
             </Link>
           </div>
         ))}
       </div>
-      {news.length <= 6 ? (
+      {news && news?.length <= 6 ? (
         <></>
       ) : (
       <div className="flex justify-center pt-10">
         <PaginationControls
-          hasNextPage={end < news.length}
+          hasNextPage={end < (news?.length || 0)}
           hasPrevPage={start > 0}
-          totalData={news.length}
+          totalData={news?.length || 0}
           route={"news"}
         />
       </div>

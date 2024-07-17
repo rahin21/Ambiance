@@ -5,9 +5,9 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import useDisclosure from "@/hooks/useDisclosure";
 import Social from "./footer/social";
 
-type navItemType = { label: string; href: string }[];
+type navItemType = { name: string; link: string }[];
 
-function Header({ navItems }: { navItems: navItemType }) {
+function Header({ navItems }: { navItems: navItemType | undefined  }) {
   const { Show, showMenu } = useDisclosure();
   return (
     <div className="">
@@ -48,15 +48,15 @@ function Header({ navItems }: { navItems: navItemType }) {
         </div>
         <div className={`pb-5 ${
                 Show ? "visible" : "hidden"
-              } flex flex-col items-center `} >
-          {navItems.map((navItem, i) => (
+              } flex flex-col items-center uppercase`} >
+          {navItems?.map((navItem, i) => (
             <Link
               key={i}
-              href={navItem.href}
+              href={navItem.link}
               onClick={showMenu}
               className="font-openSans tracking-[2px] p-2 text-center"
             >
-              {navItem.label}
+              {navItem.name}
             </Link>
           ))}
           <Social />

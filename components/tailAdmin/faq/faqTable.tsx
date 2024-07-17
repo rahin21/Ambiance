@@ -13,10 +13,10 @@ function FAQTable({ faq }: { faq: FaqType[] }) {
         <thead className="text-base text-gray-700 uppercase bg-black/20">
           <tr>
             <th scope="col" className="px-6 py-3">
-              Key
+              Question
             </th>
             <th scope="col" className="px-6 py-3">
-              Title
+              Answer
             </th>
             <th scope="col" className="px-6 py-3">
               Update
@@ -26,8 +26,8 @@ function FAQTable({ faq }: { faq: FaqType[] }) {
         <tbody>
           {faq.map((item) => (
             <tr key={item.id} className="bg-white border-b border-black/20">
-              <td className="px-6 py-4">{item.question.length>40?`${item.question.slice(0,40)}...`:item.question}</td>
-              <td className="px-6 py-4">{item.answer.length>80?`${item.answer.slice(0,80)}...`:item.answer}</td>
+              <td className="px-6 py-4">{item.question.length>35?`${item.question.slice(0,40)}...`:item.question}</td>
+              <td className="px-6 py-4">{item.answer.length>75?`${item.answer.slice(0,80)}...`:item.answer}</td>
 
               <td className="px-6 py-4 w-36">
                 <Link

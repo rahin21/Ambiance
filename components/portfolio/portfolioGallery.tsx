@@ -7,7 +7,7 @@ import Image from "next/image";
 function PortfolioGallery({
   entries,
 }: {
-  entries: { name: string; img: string; link: string }[];
+  entries: {id:string; key: string; title: string; thumbnail: string; galleyr:string[] }[];
 }) {
   return (
       <motion.div
@@ -19,14 +19,14 @@ function PortfolioGallery({
       {entries.map((data, i) => (
 
             <div  key={i} className="flex flex-col justify-center items-center">
-              <Link href={data.link} className="pb-5">
-                <Image src={data.img} width="580" height="0" alt="award" />
+              <Link href={`/portfolio/${data.id}`} className="pb-5 aspect-4/3 w-[580px] inline-block overflow-hidden">
+                <Image src={data.thumbnail} width="580" height="580" alt="award" className="w-full h-full object-cover" />
               </Link>
               <Link
-                href={data.link}
-                className="font-palatino text-lg tracking-[5px] opacity-70 hover:opacity-90 transition-all ease-in-out duration-200 pb-10"
+                href={`/portfolio/${data.id}`}
+                className="font-palatino text-lg tracking-[5px] opacity-70 hover:opacity-90 transition-all ease-in-out duration-200 pb-10 uppercase"
               >
-                {data.name}
+                {data.title}
               </Link>
             </div>
           ))}
