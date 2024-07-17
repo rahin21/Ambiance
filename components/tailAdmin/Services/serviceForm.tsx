@@ -171,7 +171,7 @@ function ServiceForm({
 
   async function deleteService() {
     try {
-      axios.delete(`${process.env.NEXTAUTH_URL}/api/service/${service?.id}`);
+      axios.delete(`/api/service/${service?.id}`);
       console.log(`delete successful`);
       await axios.delete(`/api/upload`, {
         data: { locations: [service?.thumbnail] },

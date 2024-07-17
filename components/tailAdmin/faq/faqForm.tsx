@@ -34,7 +34,7 @@ function FaqForm({ faq, isUpdate }: { faq?: FaqType; isUpdate?: boolean }) {
 
   async function deleteHandler(){
     
-    axios.delete(`${process.env.NEXTAUTH_URL}/api/faq/${faq?.id}`)
+    axios.delete(`/api/faq/${faq?.id}`)
     .then(response => {
       console.log(`${response}`);
       router.push("/admin/faqs/")

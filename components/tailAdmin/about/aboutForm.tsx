@@ -142,7 +142,7 @@ function AboutForm({
   async function deleteAbout() {
     try {
       axios
-        .delete(`${process.env.NEXTAUTH_URL}/api/about/${about?.id}`)
+        .delete(`/api/about/${about?.id}`)
         .catch((error) => {
           console.error(error);
         });
