@@ -50,7 +50,7 @@ function ServiceForm({
       linkTitle: z
         .string()
         .min(2, "Link title must be at least 2 characters long"),
-      link: z.string().min(2, "Link must be at least 2 characters long"),
+      link: z.string().min(1, "Link must be at least 1 characters long"),
       thumbnail: z.instanceof(File).refine((file) => file instanceof File, {
         message: "Exactly one file must be uploaded",
       }),
@@ -95,8 +95,8 @@ function ServiceForm({
           title: data.title,
           subTitle: data.subTitle,
           description: data.description,
-          text: data.link,
-          plainUrl: data.linkTitle,
+          plainUrl: data.link,
+          textplainUrl: data.linkTitle,
         });
 
         const res2 = await fetch(`/api/upload`, {
@@ -128,7 +128,7 @@ function ServiceForm({
           await axios.delete(`/api/upload`, {
             data: { locations: [service?.thumbnail] },
           });
-          const res = await fetch(`${process.env.NEXTAUTH_URL}/api/upload`, {
+          const res = await fetch(`/api/upload`, {
             method: "POST",
             body: formData,
           });
@@ -136,14 +136,14 @@ function ServiceForm({
         }
         if (service?.thumbnail) {
           const res2 = await axios.put(
-            `${process.env.NEXTAUTH_URL}/api/service/${service?.id}`,
+            `/api/service/${service?.id}`,
             {
               thumbnail: thumbnail,
               title: data.title,
               subTitle: data.subTitle,
               description: data.description,
-              text: data.link,
-              plainUrl: data.linkTitle,
+              text: data.linkTitle,
+              plainUrl: data.link,
             }
           );
           console.log(res2);
@@ -286,7 +286,7 @@ function ServiceForm({
                 placeholder="Link Title"
                 className="w-full rounded-lg bg-white border-[1.5px] border-stroke bg-transparent px-5 py-2 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter"
               />
-              {errors.title && <p>{errors.title.message}</p>}
+              {errors.linkTitle && <p>{errors.linkTitle.message}</p>}
             </div>
             <div className="w-full">
               <label htmlFor="link" className="mb-3 block text-base font-medium text-black">Link</label>
@@ -298,7 +298,7 @@ function ServiceForm({
                 placeholder="Link"
                 className="w-full rounded-lg bg-white border-[1.5px] border-stroke bg-transparent px-5 py-2 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter"
               />
-              {errors.subTitle && <p>{errors.subTitle.message}</p>}
+              {errors.link && <p>{errors.link.message}</p>}
             </div>
           </div>
 

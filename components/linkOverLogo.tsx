@@ -20,7 +20,7 @@ function LinkOverLogo({
       />
       <Link
         href={link}
-        className="relative text-lightText text-[15px] tracking-[3px] opacity-60 py-5 group-hover:opacity-90 transition-all ease-in-out duration-300 font-semibold"
+        className="relative text-lightText text-[15px] tracking-[3px] opacity-60 py-5 group-hover:opacity-90 transition-all ease-in-out duration-300 font-semibold uppercase"
       >
         {linkHeader}
       </Link>

@@ -93,7 +93,7 @@ function PostUpdateForm({
         });
 
         const res1 = await axios.put(
-          `${process.env.NEXTAUTH_URL}/api/post/${post?.id}`,
+          `/api/post/${post?.id}`,
           {
             gallery: gallery,
             title: data.title,
@@ -105,7 +105,7 @@ function PostUpdateForm({
         formData.append("targetDIR", "post");
         if (filesThumbnail) {
 
-          const res = await fetch(`${process.env.NEXTAUTH_URL}/api/upload`, {
+          const res = await fetch(`/api/upload`, {
             method: "POST",
             body: formData,
           });
@@ -134,7 +134,7 @@ function PostUpdateForm({
   async function deletePost() {
     try {
       await axios
-        .delete(`${process.env.NEXTAUTH_URL}/api/post/${post?.id}`)
+        .delete(`/api/post/${post?.id}`)
         .catch((error) => {
           console.error(error);
         });

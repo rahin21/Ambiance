@@ -7,14 +7,19 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 
 import "swiper/css";
+import { sliderType } from "@/types/types";
 
 
-function Slider({ sliderImages }: { sliderImages: string[] }) {
+function Slider({ slider }: { slider: sliderType | null}) {
   return (
     <motion.div
-      initial={{ scale: 0.5 }}
-      animate={{ scale: 1 }}
-      className="container w-screen md:px-0 px-5 lg:px-20 mb-[-30px]"
+
+    initial={{ opacity: 0, y:100}}
+    animate={{ opacity: 1,  y:0}}
+    transition={{ duration: 0.8,
+      delay: 0.5,
+      ease: [0, 0.71, 0.2, 1.01] }}
+    className="container pb-14 px-0 mb-[-30px]"
     >
 
       <Swiper
@@ -23,17 +28,17 @@ function Slider({ sliderImages }: { sliderImages: string[] }) {
         loop={true}
         autoplay={{ delay: 3000, disableOnInteraction: false }}
         modules={[Autoplay]}
-        className="mySwiper "
+        className="mySwiper"
       >
-        {sliderImages.map((img, i) => (
-          <SwiperSlide key={i}>
+        {slider?.img.map((img, i) => (
+          <SwiperSlide key={i} className=" aspect-video inline-block overflow-hidden">
             <Image
-              className=" select-none"
+              className="select-none w-full h-full"
               draggable={false}
               src={img}
               alt="slider-1"
-              width="1400"
-              height="100"
+              width="2000"
+              height="2000"
             />
           </SwiperSlide>
         ))}

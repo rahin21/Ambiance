@@ -38,7 +38,7 @@ async function getGalleryData() {
 async function About() {
   let data = await getData();
   let gallerys = await getGalleryData();
-  // console.log(gallerys);
+
   return (
     <div>
       <AboutForm />

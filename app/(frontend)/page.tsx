@@ -1,36 +1,46 @@
-"use client";
-
+'use client'
 import Hero from "@/components/home/hero";
 import Slider from "@/components/home/slider";
+import { getSliderData } from "@/constants/admin/slidersData";
 import datas from "@/constants/homeData";
 import { homeSliderImages } from '@/constants/homeSliderImages';
-import { motion } from "framer-motion";
+import { serviceType, sliderType } from "@/types/types";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 
 
 export default function Home() {
+  const [slider, setSlider] = useState<sliderType | null >(null)
+  const [services, setServices] = useState<serviceType[] | null >(null)
+  useEffect(()=>{
+    const getData = async () => {
+      try {
+        const res = await axios.get(`/api/slider/home`);
+        const res2 = await axios.get(`/api/service`);
+        setSlider(res.data);
+        setServices(res2.data);
+      } catch (err) {
+        console.log('Error fetching slider data');
+      }
+    }
+    getData()
+  },[])
+  
+
   return (
     <main className="container flex flex-col items-center justify-center mt-5 " >
-      <motion.div
-      className="pb-14"
-      initial={{ opacity: 0, y:100}}
-      animate={{ opacity: 1,  y:0}}
-      transition={{ duration: 0.8,
-        delay: 0.5,
-        ease: [0, 0.71, 0.2, 1.01] }}
-    >
-      <Slider sliderImages={homeSliderImages} />
-    </motion.div>
-      {datas.map((data, i) => (
+
+      <Slider slider={slider} />
+      {services?.map((data, i) => (
         <Hero
           key={i}
-          heading={data.heading}
-          heading2={data.heading2}
-          subHeading={data.subHeading}
-          p1={data.p1}
-          p2={data?.p2}
-          link={data.link}
-          linkHeader={data.linkHeader}
+          heading={data.title}
+          subHeading={data.subTitle}
+          description={data.description}
+          img={data.thumbnail}
+          link={data.link.plainUrl}
+          linkHeader={data.link.text}
           index={i+1}
         />
       ))}
