@@ -8,7 +8,7 @@ import Image from "next/image";
 import { aboutType } from "@/types/types";
 import { useRouter } from "next/navigation";
 import { revalidateAbout } from "@/constants/revalidate/route";
-
+import { FaImage } from "react-icons/fa";
 
 const sliderSchema = z.object({
   title: z.string().min(2, "title must be at least 2 characters long"),
@@ -75,7 +75,7 @@ function AboutForm({
             description: data.description,
           }
         );
-        revalidateAbout()
+        revalidateAbout();
         formData.append("targetDIR", "about");
 
         const res = await fetch(`${process.env.NEXTAUTH_URL}/api/upload`, {
@@ -138,20 +138,16 @@ function AboutForm({
     }
   };
 
-
   async function deleteAbout() {
     try {
-      axios
-        .delete(`/api/about/${about?.id}`)
-        .catch((error) => {
-          console.error(error);
-        });
-        
-        revalidateAbout();
-        await axios.delete(`/api/upload`, {
-          data: { location: about?.avatar },
-        });
-        
+      axios.delete(`/api/about/${about?.id}`).catch((error) => {
+        console.error(error);
+      });
+
+      revalidateAbout();
+      await axios.delete(`/api/upload`, {
+        data: { location: about?.avatar },
+      });
     } catch (error) {
       console.log(error);
     }
@@ -165,26 +161,109 @@ function AboutForm({
       </h4>
       <div className="rounded-sm border border-stroke shadow-default bg-black/20 p-5 gap-5">
         <form onSubmit={handleSubmit(onSubmit)} className="w-full">
-          {isUpdate && 
-          <div className="flex flex-col items-center gap-5 m-5">
-            {selectedImages.length>0? selectedImages.map((img, index) => (
-              <Image
-                key={index}
-                src={img}
-                width={250}
-                height={300}
-                alt={`Selected ${index}`}
+          {isUpdate && (
+            <div className="flex flex-col items-center gap-5 m-5">
+              {selectedImages.length > 0 ? (
+                selectedImages.map((img, index) => (
+                  <Image
+                    key={index}
+                    src={img}
+                    width={250}
+                    height={300}
+                    alt={`Selected ${index}`}
+                  />
+                ))
+              ) : (
+                <Image
+                  src={about?.avatar[0] || ""}
+                  alt="img-home"
+                  width={250}
+                  height={300}
+                />
+              )}
+              <div>
+                <Controller
+                  name="avatar"
+                  control={control}
+                  render={({ field }) => (
+                    <div>
+                      <input
+                        type="file"
+                        id="file-upload"
+                        ref={fileInputRef}
+                        onChange={(e) => {
+                          field.onChange(e.target.files);
+                          e.target.files && handleFileChange(e.target.files);
+                        }}
+                        className="hidden "
+                      />
+                      <label
+                        htmlFor="file-upload"
+                        className="capitalize flex rounded-md bg-rose-500 px-6 py-2 text-center font-medium text-white hover:bg-opacity-90 cursor-pointer"
+                      >
+                        Change Avatar
+                      </label>
+                    </div>
+                  )}
+                />
+                {errors.avatar && <p>{errors.avatar.message}</p>}
+              </div>
+            </div>
+          )}
+          <div className="flex gap-5 mb-5">
+            <div className="w-full">
+              <label
+                htmlFor="title"
+                className="mb-3 block text-base font-medium text-black"
+              >
+                Title
+              </label>
+              <input
+                {...register("title")}
+                defaultValue={about?.title}
+                id="title"
+                type="text"
+                placeholder="Title"
+                className="w-full rounded-lg bg-white border-[1.5px] border-stroke bg-transparent px-5 py-2 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter"
               />
-            )): 
-            
-            <Image
-              src={about?.avatar[0] || ""}
-              alt="img-home"
-              width={250}
-              height={300}
+              {errors.title && <p>{errors.title.message}</p>}
+            </div>
+            <div className="w-full">
+              <label
+                htmlFor="subTitle"
+                className="mb-3 block text-base font-medium text-black"
+              >
+                Sub Title
+              </label>
+              <input
+                {...register("subTitle")}
+                defaultValue={about?.subTitle}
+                id="subTitle"
+                type="text"
+                placeholder="Sub Title"
+                className="w-full rounded-lg bg-white border-[1.5px] border-stroke bg-transparent px-5 py-2 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter"
+              />
+              {errors.subTitle && <p>{errors.subTitle.message}</p>}
+            </div>
+          </div>
+          <div className="w-full">
+            <label
+              htmlFor="desc"
+              className="mb-3 block text-base font-medium text-black"
+            >
+              Description
+            </label>
+            <textarea
+              {...register("description")}
+              id="desc"
+              defaultValue={about?.description}
+              placeholder="Description"
+              className="w-full rounded-lg bg-white border-[1.5px] border-stroke bg-transparent px-5 py-2 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter mb-4"
             />
-            }
-            <div>
+            {errors.description && <p>{errors.description.message}</p>}
+          </div>
+          {!isUpdate && (
+            <>
               <Controller
                 name="avatar"
                 control={control}
@@ -198,62 +277,15 @@ function AboutForm({
                         field.onChange(e.target.files);
                         e.target.files && handleFileChange(e.target.files);
                       }}
-                      className="hidden "
+                      className="hidden"
                     />
                     <label
                       htmlFor="file-upload"
-                      className="capitalize flex rounded-md bg-rose-500 px-6 py-2 text-center font-medium text-white hover:bg-opacity-90 cursor-pointer"
+                      className="capitalize rounded-md  flex justify-center items-center gap-2 bg-rose-500 px-6 py-2 text-center font-medium text-white hover:bg-opacity-90 cursor-pointer w-fit"
                     >
-                      Change Avatar
+                      <FaImage/> Upload Avatar
                     </label>
                   </div>
-                )}
-              />
-              {errors.avatar && <p>{errors.avatar.message}</p>}
-            </div>
-          </div>
-          }
-          <div className="flex gap-5 mb-5">
-            <input
-              {...register("title")}
-              defaultValue={about?.title}
-              type="text"
-              placeholder="Title"
-              className="w-full rounded-lg bg-white border-[1.5px] border-stroke bg-transparent px-5 py-2 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter"
-            />
-            {errors.title && <p>{errors.title.message}</p>}
-            <input
-              {...register("subTitle")}
-              defaultValue={about?.subTitle}
-              type="text"
-              placeholder="Sub Title"
-              className="w-full rounded-lg bg-white border-[1.5px] border-stroke bg-transparent px-5 py-2 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter"
-            />
-            {errors.subTitle && <p>{errors.subTitle.message}</p>}
-          </div>
-          <textarea
-            {...register("description")}
-            defaultValue={about?.description}
-            placeholder="Description"
-            className="w-full rounded-lg bg-white border-[1.5px] border-stroke bg-transparent px-5 py-2 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter mb-4"
-          />
-          {errors.description && <p>{errors.description.message}</p>}
-
-          {!isUpdate && (
-            <>
-              <Controller
-                name="avatar"
-                control={control}
-                render={({ field }) => (
-                  <input
-                    type="file"
-                    ref={fileInputRef}
-                    onChange={(e) => {
-                      field.onChange(e.target.files);
-                      e.target.files && handleFileChange(e.target.files);
-                    }}
-                    className=" rounded-lg bg-white border-[1.5px] border-stroke bg-transparent px-5 py-2 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter"
-                  />
                 )}
               />
               {errors.avatar && <p>{errors.avatar.message}</p>}

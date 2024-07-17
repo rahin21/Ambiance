@@ -66,6 +66,11 @@ model About {
   description String
 }
 
+model Gallery{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  imgs String[]
+}
+
 model Post{
   id String @id @default(auto()) @map("_id") @db.ObjectId
   key String @unique

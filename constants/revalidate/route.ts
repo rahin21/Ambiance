@@ -29,7 +29,10 @@ export async function revalidateAbout()
 export async function revalidatePost()
 {
     revalidateTag("posts");
-    redirect(`/admin/posts`)
+}
+export async function revalidateGallery()
+{
+    revalidateTag("gallery");
 }
 export async function revalidateService()
 {

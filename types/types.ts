@@ -29,6 +29,11 @@ export interface settingType {
   name: string;
   description: string;
 }
+export interface GalleryType {
+  id: string;
+  imgs: string[];
+}
+
 export type aboutType = {
   id: string;
   avatar: string[];
