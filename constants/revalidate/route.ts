@@ -28,7 +28,8 @@ export async function revalidateAbout()
 }
 export async function revalidatePost()
 {
-    revalidateTag("post");
+    revalidateTag("posts");
+    redirect(`/admin/posts`)
 }
 export async function revalidateService()
 {

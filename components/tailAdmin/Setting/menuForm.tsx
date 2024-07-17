@@ -11,7 +11,7 @@ import {
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { ParamsType } from "@/types/types";
-import { revalidateMenu } from "@/app/api/revalidate.ts/route";
+import { revalidateMenu } from "@/constants/revalidate/route";
 
 const itemSchema = z.object({
   name: z.string().min(1, "Name is required"),

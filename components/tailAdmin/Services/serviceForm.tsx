@@ -1,5 +1,5 @@
 "use client";
-import { revalidateService } from "@/app/api/revalidate.ts/route";
+import { revalidateService } from "@/constants/revalidate/route";
 import { serviceType } from "@/types/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";

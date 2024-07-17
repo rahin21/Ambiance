@@ -5,7 +5,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import Image from "next/image";
-import { revalidateSlider } from "@/app/api/revalidate.ts/route";
+import { revalidateSlider } from "@/constants/revalidate/route";
 import { ParamsType } from "@/types/types";
 import { useRouter } from "next/navigation";
 import { FaImage, FaImages } from "react-icons/fa";

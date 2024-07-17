@@ -1,5 +1,5 @@
 "use client";
-import { revalidateSetting } from "@/app/api/revalidate.ts/route";
+import { revalidateSetting } from "@/constants/revalidate/route";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { useRouter } from "next/navigation";

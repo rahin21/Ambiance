@@ -11,7 +11,7 @@ import {
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { FaqType, ParamsType } from "@/types/types";
-import { revalidateFAQ } from "@/app/api/revalidate.ts/route";
+import { revalidateFAQ } from "@/constants/revalidate/route";
 
 const faqSchema = z.object({
   question: z.string().min(1, "Name is required"),

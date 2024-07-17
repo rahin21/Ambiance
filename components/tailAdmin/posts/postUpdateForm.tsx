@@ -7,7 +7,7 @@ import axios from "axios";
 import Image from "next/image";
 import { aboutType, postType } from "@/types/types";
 import { useRouter } from "next/navigation";
-import { revalidatePost } from "@/app/api/revalidate.ts/route";
+import { revalidatePost } from "@/constants/revalidate/route";
 import { FaImage, FaImages } from "react-icons/fa6";
 
 const sliderSchema = z.object({

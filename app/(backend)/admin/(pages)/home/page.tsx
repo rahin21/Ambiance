@@ -3,8 +3,9 @@ import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { getServiceData } from "@/app/(backend)/admin/services/page";
+
 import ServiceTable from "@/components/tailAdmin/Services/serviceTable";
+import { getServiceData } from "@/constants/admin/serviceData";
 
 async function Home() {
   let slider;

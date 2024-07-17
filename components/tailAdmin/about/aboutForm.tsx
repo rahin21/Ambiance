@@ -7,7 +7,7 @@ import axios from "axios";
 import Image from "next/image";
 import { aboutType } from "@/types/types";
 import { useRouter } from "next/navigation";
-import { revalidateAbout } from "@/app/api/revalidate.ts/route";
+import { revalidateAbout } from "@/constants/revalidate/route";
 
 
 const sliderSchema = z.object({
