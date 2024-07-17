@@ -93,14 +93,14 @@ function SliderForm({
           imgs.push(`/uploads/slider/${data.key}/${file.name}`);
         });
 
-        await axios.post(`${process.env.NEXTAUTH_URL}/api/slider/`, {
+        await axios.post(`/api/slider/`, {
           key: data.key,
           img: imgs,
         });
         revalidateSlider();
         formData.append("targetDIR", `slider/${data.key}`);
 
-        const res = await fetch(`${process.env.NEXTAUTH_URL}/api/upload`, {
+        const res = await fetch(`/api/upload`, {
           method: "POST",
           body: formData,
         });

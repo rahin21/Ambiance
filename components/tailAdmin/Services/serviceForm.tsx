@@ -90,7 +90,7 @@ function ServiceForm({
         console.log(thumbnail);
         formData.append(`file_0`, fileThumbnail || "");
         formData.append("targetDIR", "service");
-        const res1 = await axios.post(`${process.env.NEXTAUTH_URL}/api/service/`, {
+        const res1 = await axios.post(`/api/service/`, {
           thumbnail: thumbnail,
           title: data.title,
           subTitle: data.subTitle,
@@ -99,7 +99,7 @@ function ServiceForm({
           plainUrl: data.linkTitle,
         });
 
-        const res2 = await fetch(`${process.env.NEXTAUTH_URL}/api/upload`, {
+        const res2 = await fetch(`/api/upload`, {
           method: "POST",
           body: formData,
         });

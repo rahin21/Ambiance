@@ -104,7 +104,7 @@ function AboutForm({
           avatar.push(`/uploads/about/${file.name}`);
         });
 
-        const res1 = await axios.post(`${process.env.NEXTAUTH_URL}/api/about/`, {
+        const res1 = await axios.post(`/api/about/`, {
           avatar: avatar,
           title: data.title,
           subTitle: data.subTitle,
@@ -113,7 +113,7 @@ function AboutForm({
         revalidateAbout();
         formData.append("targetDIR", "about");
 
-        const res2 = await fetch(`${process.env.NEXTAUTH_URL}/api/upload`, {
+        const res2 = await fetch(`/api/upload`, {
           method: "POST",
           body: formData,
         });

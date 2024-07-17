@@ -58,7 +58,7 @@ function MenuForm({
 
   async function deleteHandler(){
     
-      axios.delete(`${process.env.NEXTAUTH_URL}/api/menu/${key}`)
+      axios.delete(`/api/menu/${key}`)
       .then(response => {
         console.log(`${response}`);
         router.push("/admin/menus/")
@@ -84,7 +84,7 @@ function MenuForm({
       }
     } else {
       try {
-        const res = await axios.post(`${process.env.NEXTAUTH_URL}/api/menu/`, {
+        const res = await axios.post(`/api/menu/`, {
           key: data.key,
           items: data.items,
         });

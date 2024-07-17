@@ -73,7 +73,7 @@ function PostForm({ post }: { post?: postType }) {
         gallery.push(`/uploads/post/${file.name}`);
       });
 
-      const res1 = await axios.post(`${process.env.NEXTAUTH_URL}/api/post/`, {
+      const res1 = await axios.post(`/api/post/`, {
         title: data.title,
         key: data.key,
         thumbnail: thumbnail,
@@ -82,7 +82,7 @@ function PostForm({ post }: { post?: postType }) {
       revalidatePost();
       formData.append("targetDIR", "post");
 
-      const res2 = await fetch(`${process.env.NEXTAUTH_URL}/api/upload`, {
+      const res2 = await fetch(`/api/upload`, {
         method: "POST",
         body: formData,
       });

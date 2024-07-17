@@ -82,7 +82,7 @@ function SiteForm({
   };
   async function deleteHandler() {
     axios
-      .delete(`${process.env.NEXTAUTH_URL}/api/setting/${site?.id}`)
+      .delete(`/api/setting/${site?.id}`)
       .then((response) => {
         console.log(`${response}`);
         revalidateSetting();

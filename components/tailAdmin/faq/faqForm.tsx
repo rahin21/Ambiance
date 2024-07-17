@@ -59,7 +59,7 @@ function FaqForm({ faq, isUpdate }: { faq?: FaqType; isUpdate?: boolean }) {
       }
     } else {
       try {
-        const res = await axios.post(`${process.env.NEXTAUTH_URL}/api/faq/`, data);
+        const res = await axios.post(`/api/faq/`, data);
         revalidateFAQ();
         console.log("Response:", res.data);
         // Handle successful response (e.g., redirect or show success message)
