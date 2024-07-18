@@ -10,6 +10,7 @@ import { SiGooglemybusiness } from "react-icons/si";
 import Social from "./footer/social";
 
 function Footer() {
+  
   return (
     <div className="text-center mt-10">
       <CopyRight />

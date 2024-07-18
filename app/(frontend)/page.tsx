@@ -1,9 +1,6 @@
 'use client'
 import Hero from "@/components/home/hero";
 import Slider from "@/components/home/slider";
-import { getSliderData } from "@/constants/admin/slidersData";
-import datas from "@/constants/homeData";
-import { homeSliderImages } from '@/constants/homeSliderImages';
 import { serviceType, sliderType } from "@/types/types";
 import axios from "axios";
 import { useEffect, useState } from "react";

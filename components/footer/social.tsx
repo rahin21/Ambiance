@@ -1,44 +1,44 @@
-import React from 'react'
+"use client"
+import React, { useEffect, useState } from 'react'
 import Link from "next/link";
-import { FaFacebookF } from "react-icons/fa6";
-import { ImInstagram } from "react-icons/im";
-import { FaPinterest } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
-import { SiGooglemybusiness } from "react-icons/si";
+import { socialIcons } from '../contact/contactBox';
+import axios from 'axios';
+import { menuType } from '@/types/types';
 
 function Social({className}:{className?:string}) {
+  const [social, setSocial] = useState<menuType | null>(null);
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const res2 = await axios.get(`/api/menu/social`);
+        setSocial(res2.data);
+      } catch (err) {
+        console.log("Error fetching slider data");
+      }
+    };
+    getData();
+  }, []);
+  
   return (
     <div className={`flex justify-center items-center gap-5 p-5 ${className}`}>
-          <Link
-            className="icon-link"
-            href="https://www.facebook.com/LauraLeeClarkID/"
-          >
-            <FaFacebookF className=" text-2xl" />
+          {social?.items?.map((item:{name:string;link:string}) => (
+          <Link key={item.name} className="icon-link" href={`${item.link}`}>
+            {item.name === "facebook" ? (
+              socialIcons.facebook
+            ) : item.name === "pinterest" ? (
+              socialIcons.pinterest
+            ) : item.name == "instagram" ? (
+              socialIcons.instagram
+            ) : item.name === "twitter" ? (
+              socialIcons.twitter
+            ) : item.name === "google business" ? (
+              socialIcons.googleBusiness
+            ) : (
+              <span></span>
+            )}
           </Link>
-          <Link
-            className="icon-link"
-            href="https://www.pinterest.com/lauraleeclarkid/?eq=laura%20lee%20car&etslf=8558"
-          >
-            <FaPinterest className=" text-2xl" />
-          </Link>
-          <Link
-            className="icon-link ms-1"
-            href="https://www.instagram.com/lauraleeclarkinteriordesign/"
-          >
-            <ImInstagram className=" text-2xl" />
-          </Link>
-          <Link
-            className="icon-link ms-1"
-            href="https://www.instagram.com/lauraleeclarkinteriordesign/"
-          >
-            <FaXTwitter className=" text-2xl" />
-          </Link>
-          <Link
-            className="icon-link ms-1"
-            href="https://www.instagram.com/lauraleeclarkinteriordesign/"
-          >
-            <SiGooglemybusiness className=" text-2xl" />
-          </Link>
+        ))}
+          
         </div>
   )
 }
