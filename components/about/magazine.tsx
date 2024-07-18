@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import LinkOverLogo from "../linkOverLogo";
-import { arr, aboutImages } from "@/constants/aboutData";
 import axios from "axios";
 import { GalleryType } from "@/types/types";
 

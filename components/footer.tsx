@@ -8,6 +8,7 @@ import { FaPinterest } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { SiGooglemybusiness } from "react-icons/si";
 import Social from "./footer/social";
+import ContactInfo from "./contact/contactInfo";
 
 function Footer() {
   
@@ -15,26 +16,7 @@ function Footer() {
     <div className="text-center mt-10">
       <CopyRight />
       <div className="bg-primary font-openSans text-lg tracking-[2px] font-semibold text-[#a7a1a4] mt-16 py-4">
-        <h2 className="text-xl font-palatino py-1 text-lightText">
-          CONTACT US
-        </h2>
-
-        <div>
-          <span>Phone: </span>
-          <Link className="py-1" href="tel:18179252478">
-            1.817.925.2478
-          </Link>
-        </div>
-
-        <div className="p-1">
-          <span>Email: </span>
-          <Link
-            className="email-link footer-link-text"
-            href="mailto:info@ambiancedesigns.biz"
-          >
-            info@ambiancedesigns.biz
-          </Link>
-        </div>
+        <ContactInfo footer/>
 
         <Social className="pt-2"/>
         <div className="flex  justify-center items-center p-2">

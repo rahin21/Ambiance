@@ -1,6 +1,5 @@
 import LinkOverLogo from "@/components/linkOverLogo";
 import ImagePreviewer from "@/components/portfolio/imagePreviewer";
-import { kipsBayDallas } from "@/constants/portfolio-kips/kips-bay-Images";
 import { ParamsType } from "@/types/types";
 import axios from "axios";
 import Image from "next/image";

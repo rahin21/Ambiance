@@ -20,7 +20,7 @@ function Social({className}:{className?:string}) {
   }, []);
   
   return (
-    <div className={`flex justify-center items-center gap-5 p-5 ${className}`}>
+    <div className={`flex justify-center items-center gap-5 pt-3 px-5 ${className}`}>
           {social?.items?.map((item:{name:string;link:string}) => (
           <Link key={item.name} className="icon-link" href={`${item.link}`}>
             {item.name === "facebook" ? (

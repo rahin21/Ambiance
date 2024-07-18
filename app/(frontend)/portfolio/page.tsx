@@ -1,6 +1,5 @@
 import React from "react";
 import type { Metadata } from "next";
-import { portfolio } from "@/constants/portfolioData";
 import LinkOverLogo from "@/components/linkOverLogo";
 import PaginationControls from "@/components/paginationControl";
 import PortfolioGallery from "@/components/portfolio/portfolioGallery";
