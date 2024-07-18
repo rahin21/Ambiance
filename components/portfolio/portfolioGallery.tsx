@@ -19,7 +19,7 @@ function PortfolioGallery({
       {entries.map((data, i) => (
 
             <div  key={i} className="flex flex-col justify-center items-center">
-              <Link href={`/portfolio/${data.id}`} className="pb-5 aspect-4/3 w-[580px] inline-block overflow-hidden">
+              <Link href={`/portfolio/${data.id}`} className="pb-5 aspect-4/3 w-auto inline-block overflow-hidden">
                 <Image src={data.thumbnail} width="580" height="580" alt="award" className="w-full h-full object-cover" />
               </Link>
               <Link

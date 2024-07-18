@@ -18,7 +18,7 @@ function ClientInfo({ about }: { about: aboutType[] }) {
           key={item.id}
           className="flex lg:flex-row justify-between lg:items-start items-center flex-col pt-5 gap-8 lg:px-0 px-5 "
         >
-          <div className=" aspect-auto w-[350rem] inline-block overflow-hidden ">
+          <div className="aspect-auto lg:w-[40%] w-full inline-block overflow-hidden ">
             <Image
               src={item.avatar[0]}
               width="440"
@@ -27,7 +27,7 @@ function ClientInfo({ about }: { about: aboutType[] }) {
               className="w-full h-full object-cover"
             />
           </div>
-          <div className="flex flex-col justify-content-center text-justify [text-align-last:center] font-semibold tracking-[2px] leading-7 lg:mt-0 mt-5 text-[13px] text-lightText">
+          <div className="flex flex-col justify-content-center lg:w-[60%] text-justify [text-align-last:center] font-semibold tracking-[2px] leading-7 lg:mt-0 mt-5 text-[13px] text-lightText">
             <h1 className="header font-palatino text-[17px] lg:text-[20px] lg:tracking-[5px] tracking-[3px] uppercase">
               {item.title}
             </h1>

@@ -26,7 +26,7 @@ async function Magazine() {
         {imgs?.map((img:string) => (
           <div
             key={img}
-            className="aspect-square w-[325px] overflow-hidden"
+            className="aspect-square lg:w-[325px] w-auto overflow-hidden"
           >
           <Image
             src={img}

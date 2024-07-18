@@ -39,7 +39,7 @@ function ContactInfo({ footer }: { footer?: boolean }) {
   }, [settings]);
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center text-center">
       {!footer && (
           <Image
             src={"/images/logo-sm.png"}
@@ -59,16 +59,16 @@ function ContactInfo({ footer }: { footer?: boolean }) {
       >
         {address || "address"}
       </Link>
-      <div className="pb-5">
+      <div className="flex lg:flex-row flex-col justify-center items-center gap-1 lg:pb-5">
         <Link
-          className="footer-link-text footer-description py-1"
+          className="footer-link-text footer-description"
           href={`tel:${phone}`}
         >
-          {phone || "phone"}
+          {phone || "phone"} 
         </Link>
-        <span>.</span>
+        <span className="hidden lg:block"> . </span>
         <Link className="email-link footer-link-text" href={`mailto:${email}`}>
-          {email || "email"}
+          {email || "email"} 
         </Link>
       </div>
     </div>
