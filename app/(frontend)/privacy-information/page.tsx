@@ -6,14 +6,13 @@ export const metadata: Metadata = {
   title: "Privacy Information",
 };
 
-
-
-
 async function page() {
-  const privacy = await getPrivacyData()
+  const privacy = await getPrivacyData();
   return (
-    <article className="container prose max-w-none prose-headings:text-lightText prose-headings:font-normal prose-headings:uppercase mx-auto lg:px-48 text-justify text-[16px] [text-align-last:center] font-openSans leading-8 tracking-[2px] font-semibold text-lightText opacity-80 px-10" dangerouslySetInnerHTML={{__html: privacy.description}}>
-    </article>
+    <article
+      className="container prose max-w-none prose-headings:text-lightText prose-headings:font-normal prose-headings:uppercase mx-auto lg:px-48 text-justify text-[16px] [text-align-last:center] font-openSans leading-8 tracking-[2px] font-semibold text-lightText opacity-80 px-10"
+      dangerouslySetInnerHTML={{ __html: privacy.description }}
+    ></article>
   );
 }
 

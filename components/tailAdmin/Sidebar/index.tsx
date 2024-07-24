@@ -16,6 +16,7 @@ import { TfiLayoutSliderAlt } from "react-icons/tfi";
 import { MdHomeRepairService } from "react-icons/md";
 import { MdOutlinePages } from "react-icons/md";
 import { BsFillPostcardFill } from "react-icons/bs";
+import { BiSolidDashboard } from "react-icons/bi";
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -24,8 +25,14 @@ interface SidebarProps {
 
 const menuGroups = [
   {
+    
     name: "MENU",
     menuItems: [
+      {
+        icon: <BiSolidDashboard className="text-xl" />,
+        label: "Dashboard",
+        route: "/admin/",
+      },
       {
         icon: <MdOutlinePages className="text-xl" />,
         label: "Pages",

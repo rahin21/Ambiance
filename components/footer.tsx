@@ -2,11 +2,6 @@
 import Link from "next/link";
 import React from "react";
 import CopyRight from "./copyRight";
-import { FaFacebookF } from "react-icons/fa6";
-import { ImInstagram } from "react-icons/im";
-import { FaPinterest } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
-import { SiGooglemybusiness } from "react-icons/si";
 import Social from "./footer/social";
 import ContactInfo from "./contact/contactInfo";
 
@@ -17,7 +12,6 @@ function Footer() {
       <CopyRight />
       <div className="bg-primary font-openSans text-lg tracking-[2px] font-semibold text-[#a7a1a4] mt-16 py-4">
         <ContactInfo footer/>
-
         <Social className="pt-2"/>
         <div className="flex  justify-center items-center p-2">
           <div className=" py-1 bg-gray-500 w-20"></div>

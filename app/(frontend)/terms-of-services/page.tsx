@@ -10,9 +10,7 @@ async function page() {
   return (
     <div className="container mx-auto text-justify text-[16px] [text-align-last:center] font-openSans leading-8 tracking-[2px] font-semibold text-lightText opacity-80">
       {/* TERMS AND CONDITIONS  */}
-      <article className="prose max-w-none prose-headings:text-lightText prose-headings:font-normal prose-headings:uppercase" dangerouslySetInnerHTML={{__html:terms.description}}>
-        
-      </article>
+      <article className="prose max-w-none prose-headings:text-lightText prose-headings:font-normal prose-headings:uppercase" dangerouslySetInnerHTML={{__html:terms.description}}></article>
     </div>
   );
 }

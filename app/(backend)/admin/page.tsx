@@ -1,6 +1,6 @@
 import React from "react";
 import { Metadata } from "next";
-import { UploadForm } from "@/components/tailAdmin/uploadForm";
+
 
 
 export const metadata: Metadata = {
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 async function page() {
   return (
-      <UploadForm/>
+    <div></div>
   );
 }
 
