@@ -10,7 +10,32 @@ import { useRouter } from "next/navigation";
 import { revalidateAbout } from "@/constants/revalidate/route";
 import { FaImage } from "react-icons/fa";
 
-const sliderSchema = z.object({
+let sliderSchema;
+function AboutForm({
+  about,
+  isUpdate,
+}: {
+  about?: aboutType;
+  isUpdate?: boolean;
+}) {
+
+if(!isUpdate){
+  sliderSchema = z.object({
+    title: z.string().min(2, "title must be at least 2 characters long"),
+    subTitle: z.string().min(2, "sub title must be at least 2 characters long"),
+    description: z
+      .string()
+      .min(2, "description title must be at least 2 characters long"),
+  
+    avatar: z
+      .custom<FileList>((files) => files instanceof FileList)
+      .refine((files) => files.length > 0, {
+        message: "At least one file must be uploaded",
+      }),
+  });
+}  else {
+  
+sliderSchema = z.object({
   title: z.string().min(2, "title must be at least 2 characters long"),
   subTitle: z.string().min(2, "sub title must be at least 2 characters long"),
   description: z
@@ -21,18 +46,14 @@ const sliderSchema = z.object({
     .custom<FileList>((files) => files instanceof FileList)
     .refine((files) => files.length > 0, {
       message: "At least one file must be uploaded",
-    }),
+    }).optional(),
 });
+
+
+}
 
 type SliderFormData = z.infer<typeof sliderSchema>;
 
-function AboutForm({
-  about,
-  isUpdate,
-}: {
-  about?: aboutType;
-  isUpdate?: boolean;
-}) {
   const {
     register,
     handleSubmit,
@@ -55,17 +76,34 @@ function AboutForm({
   };
 
   const onSubmit = async (data: SliderFormData) => {
-    const files = Array.from(data.avatar);
+    const files = data.avatar? Array.from(data.avatar): [];
 
     try {
       const formData = new FormData();
-      const avatar: string[] = [];
+      let avatar: string[] = [];
       if (isUpdate) {
-        files.forEach((file, index) => {
-          formData.append(`file_${index}`, file);
-          avatar.push(`/uploads/about/${file.name}`);
-        });
+        console.log(about?.avatar);
+        // console.log(data);
+        if(data.avatar){
+          files.forEach((file, index) => {
+            formData.append(`file_${index}`, file);
+            avatar.push(`/uploads/about/${file.name}`);
+          });
 
+          formData.append("targetDIR", "about");
+  
+          const res = await fetch(`/api/upload`, {
+            method: "POST",
+            body: formData,
+          });
+          
+          await axios.delete(`/api/upload`,{
+            data: { locations: [about?.avatar] },
+          })
+          if (!res.ok) throw new Error(await res.text());
+        }else{
+          avatar = about?.avatar||[]
+        }
         const res1 = await axios.put(
           `/api/about/${about?.id}`,
           {
@@ -75,27 +113,20 @@ function AboutForm({
             description: data.description,
           }
         );
-        revalidateAbout();
-        formData.append("targetDIR", "about");
-
-        const res = await fetch(`/api/upload`, {
-          method: "POST",
-          body: formData,
-        });
-        console.log(res1);
-        if (!res.ok) throw new Error(await res.text());
-        reset({
-          avatar: undefined,
-          title: "",
-          subTitle: "",
-          description: "",
-        });
-
         setSelectedImages([]);
-        router.push("/admin/about");
+        
+          reset({
+            avatar: undefined,
+            title: "",
+            subTitle: "",
+            description: "",
+          });
+        console.log(res1);
+        revalidateAbout();
         if (fileInputRef.current) {
           fileInputRef.current.value = "";
         }
+        router.push("/admin/about");
       } else {
         const avatar: string[] = [];
 

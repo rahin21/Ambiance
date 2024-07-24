@@ -9,12 +9,12 @@ datasource db {
 
 model User {
   id       String @id @default(auto()) @map("_id") @db.ObjectId
-  name String
+  name     String
   email    String @unique
   password String
   phone    String
   role     String
-  avatar String
+  avatar   String
 }
 
 model Menu {
@@ -22,59 +22,66 @@ model Menu {
   key   String @unique
   items Json[]
 }
+
 model Faq {
-  id    String @id @default(auto()) @map("_id") @db.ObjectId
-  question  String 
-  answer String
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  question String
+  answer   String
 }
 
 model Setting {
-  id    String @id @default(auto()) @map("_id") @db.ObjectId
-  key  String @unique
-  name  String 
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  key         String @unique
+  name        String
   description String
 }
 
 model Link {
-  id      String    @id @default(auto()) @map("_id") @db.ObjectId
-  text    String
-  plainUrl     String
-  Service Service[]
+  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  text     String
+  plainUrl String
+  Service  Service[]
 }
 
 model Service {
-  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
   thumbnail   String
   title       String
   subTitle    String
   description String
   link        Link   @relation(fields: [linkId], references: [id])
-  linkId      String @db.ObjectId 
+  linkId      String @db.ObjectId
 }
 
 model Slider {
-  id    String @id @default(auto()) @map("_id") @db.ObjectId
-  key   String @unique
+  id  String   @id @default(auto()) @map("_id") @db.ObjectId
+  key String   @unique
   img String[]
 }
 
 model About {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  avatar String[]
-  title String
-  subTitle String
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  avatar      String[]
+  title       String
+  subTitle    String
   description String
 }
 
-model Gallery{
-  id String @id @default(auto()) @map("_id") @db.ObjectId
+model Gallery {
+  id   String   @id @default(auto()) @map("_id") @db.ObjectId
   imgs String[]
 }
 
-model Post{
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  key String @unique
-  title String
+model Post {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  key       String   @unique
+  title     String
   thumbnail String
-  gallery String[]
+  gallery   String[]
+}
+
+model PrivacyTerms {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  key         String @unique
+  description String
 }

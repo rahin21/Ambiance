@@ -42,7 +42,7 @@ const Hero = ({
       </div>
       <div className="flex flex-col justify-center min-h-full text-center [text-align-last:center] font-semibold tracking-[3px] leading-7 lg:w-[50%] lg:px-10 text-lightText pt-5">
  
-          <h1 className="header font-palatino tracking-[5px] xl:text-xl uppercase">
+          <h1 className="header font-palatino tracking-[5px] xl:text-xl lg:text-lg uppercase">
             {heading}
           </h1>
           <p className="semi-header pt-2 font-dipotic font-medium text-xl">
@@ -51,7 +51,7 @@ const Hero = ({
           <div className="flex justify-center p-8">
             <Image width="80" height="10" src="/divider.png" alt="divder" />
           </div>
-          <p className="[word-spacing:2px] pb-3 xl:text-lg">{description}</p>
+          <p className="[word-spacing:2px] pb-3 xl:text-lg lg:text-sm">{description}</p>
         <LinkOverLogo link={link} linkHeader={linkHeader} />
         </div>
 

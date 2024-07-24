@@ -11,16 +11,18 @@ function LinkOverLogo({
 }) {
   return (
     <div className="group flex justify-center items-center mt-7 mb-5">
-      <Image
-        className="absolute opacity-30"
-        height="10"
-        width="100"
-        src="/icons/main-logo.png"
-        alt="logo"
-      />
+ 
+        <Image
+          className="absolute opacity-30 lg:w-[80px] w-[70px]"
+          height="10"
+          width="100"
+          src="/icons/main-logo.png"
+          alt="logo"
+        />
+      
       <Link
         href={link}
-        className="relative text-lightText text-[15px] tracking-[3px] opacity-60 py-5 group-hover:opacity-90 transition-all ease-in-out duration-300 font-semibold uppercase"
+        className="relative text-lightText lg:text-[15px] text-sm tracking-[3px] opacity-60 py-5 group-hover:opacity-90 transition-all ease-in-out duration-300 font-semibold uppercase"
       >
         {linkHeader}
       </Link>
