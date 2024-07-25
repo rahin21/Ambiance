@@ -20,6 +20,9 @@ async function Home() {
   
   return (
     <div>
+      <h1 className="text-2xl font-semibold text-black capitalize">
+        Sliders
+      </h1>
       <SliderInfo slider={slider}/>
       <h1 className="text-2xl font-semibold text-black capitalize mb-3 mt-5">
         Servies

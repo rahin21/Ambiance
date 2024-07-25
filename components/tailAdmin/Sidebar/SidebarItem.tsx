@@ -1,9 +1,7 @@
 import React from "react";
 import Link from "next/link";
-
 import { usePathname } from "next/navigation";
 import SidebarDropdown from "./SidebarDropdown";
-import useDisclosure from "@/hooks/useDisclosure";
 
 const SidebarItem = ({ item, pageName, setPageName,sidebarOpen, setSidebarOpen }: any) => {
   

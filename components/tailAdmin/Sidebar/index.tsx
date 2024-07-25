@@ -25,7 +25,7 @@ const menuGroups = [
       {
         icon: <BiSolidDashboard className="text-xl" />,
         label: "Dashboard",
-        route: "/admin/",
+        route: "/admin",
       },
       {
         icon: <MdOutlinePages className="text-xl" />,
