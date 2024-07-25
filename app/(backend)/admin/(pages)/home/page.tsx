@@ -21,6 +21,9 @@ async function Home() {
   return (
     <div>
       <SliderInfo slider={slider}/>
+      <h1 className="text-2xl font-semibold text-black capitalize mb-3 mt-5">
+        Servies
+      </h1>
       <ServiceTable service={services}/>
     </div>
   );

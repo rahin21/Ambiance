@@ -15,19 +15,21 @@ async function page() {
   const services = await getServiceData();
 
   return (
-    <div>
+    <div >
       <h1 className="text-xl font-semibold text-black capitalize">sliders</h1>
-      <div className="grid grid-cols-3 gap-7">
+      <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-7">
         {sliders.map((slider: sliderType) => (
           <div key={slider.id} className="">
             <SliderInfo
               slider={slider}
-              className="h-[16rem] overflow-scroll no-scrollbar"
+              className="h-fit max-h-[16rem] lg:h-[16rem] overflow-scroll no-scrollbar"
             />
           </div>
         ))}
       </div>
-
+      <h1 className="text-xl font-semibold text-black capitalize mb-3 mt-5">
+        Servies
+      </h1>
       <ServiceTable service={services} />
     </div>
   );

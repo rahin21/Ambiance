@@ -2,6 +2,7 @@
 import React, { useState, ReactNode } from "react";
 import Sidebar from "../Sidebar";
 import Header from "../Header";
+import useDisclosure from "@/hooks/useDisclosure";
 
 
 export default function DefaultLayout({
@@ -9,7 +10,7 @@ export default function DefaultLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const {sidebarOpen, setSidebarOpen} = useDisclosure();
   return (
     
     <>

@@ -3,11 +3,15 @@ import Link from "next/link";
 
 import { usePathname } from "next/navigation";
 import SidebarDropdown from "./SidebarDropdown";
+import useDisclosure from "@/hooks/useDisclosure";
 
-const SidebarItem = ({ item, pageName, setPageName }: any) => {
+const SidebarItem = ({ item, pageName, setPageName,sidebarOpen, setSidebarOpen }: any) => {
+  
   const handleClick = () => {
-    const updatedPageName =
-      pageName !== item.label.toLowerCase() ? item.label.toLowerCase() : "";
+    const updatedPageName = pageName !== item.label.toLowerCase() ? item.label.toLowerCase() : "";
+    if(item.route!=='#'){
+      setSidebarOpen(!sidebarOpen)
+    }
     return setPageName(updatedPageName);
   };
 
@@ -29,7 +33,9 @@ const SidebarItem = ({ item, pageName, setPageName }: any) => {
         <Link
           href={item.route}
           onClick={handleClick}
-          className={`${isItemActive ? "bg-black/25" : ""} group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out hover:bg-black/25`}
+          className={`${
+            isItemActive ? "bg-black/25" : ""
+          } group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-black duration-300 ease-in-out hover:bg-black/25`}
         >
           {item.icon}
           {item.label}
@@ -60,7 +66,7 @@ const SidebarItem = ({ item, pageName, setPageName }: any) => {
               pageName !== item.label.toLowerCase() && "hidden"
             }`}
           >
-            <SidebarDropdown item={item.children} />
+            <SidebarDropdown item={item.children} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}/>
           </div>
         )}
       </li>

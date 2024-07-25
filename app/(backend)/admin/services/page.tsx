@@ -11,6 +11,9 @@ async function Services() {
   return (
     <div>
       <ServiceForm/>
+      <h1 className="text-2xl font-semibold text-black capitalize mt-5 mb-3">
+        Servies
+      </h1>
       <ServiceTable service={services}/>
     </div>
   )

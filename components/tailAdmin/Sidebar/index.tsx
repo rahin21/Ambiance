@@ -5,13 +5,7 @@ import { usePathname } from "next/navigation";
 import useLocalStorage from "@/hooks/useLocalStorage";
 import ClickOutside from "../ClickOutside";
 import SidebarItem from "./SidebarItem";
-import { FiHome } from "react-icons/fi";
-import { IoMdInformationCircleOutline } from "react-icons/io";
-import { RiContactsBook3Line } from "react-icons/ri";
-import { LuBriefcase } from "react-icons/lu";
-import { FaRegQuestionCircle } from "react-icons/fa";
 import { TbSettings } from "react-icons/tb";
-import { IoPersonOutline } from "react-icons/io5";
 import { TfiLayoutSliderAlt } from "react-icons/tfi";
 import { MdHomeRepairService } from "react-icons/md";
 import { MdOutlinePages } from "react-icons/md";
@@ -89,7 +83,6 @@ const menuGroups = [
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   const pathname = usePathname();
   const [pageName, setPageName] = useLocalStorage("selectedMenu", "dashboard");
-
   return (
     <ClickOutside onClick={() => setSidebarOpen(false)}>
       <aside
@@ -147,6 +140,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                       item={menuItem}
                       pageName={pageName}
                       setPageName={setPageName}
+                      sidebarOpen={sidebarOpen} 
+                      setSidebarOpen={setSidebarOpen}
                     />
                   ))}
                 </ul>
