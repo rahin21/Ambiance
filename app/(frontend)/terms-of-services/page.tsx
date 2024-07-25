@@ -1,10 +1,33 @@
 import React from "react";
 import type { Metadata } from "next";
-import { getTermData } from "@/constants/admin/privacyData";
 
 export const metadata: Metadata = {
   title: "Terms of Services",
 };
+
+async function getTermData() {
+  try {
+    const res = await fetch(
+      `${process.env.NEXTAUTH_URL}/api/privacy-term/terms`,
+      {
+        next: { tags: ["privacyTerms"] },
+      }
+    );
+    // The return value is *not* serialized
+    // You can return Date, Map, Set, etc.
+
+    if (!res.ok) {
+      // This will activate the closest `error.js` Error Boundary
+      throw new Error("Failed to fetch data");
+    }
+
+    return res.json();
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return null;
+  }
+}
+
 async function page() {
   const terms = await getTermData();
   return (
