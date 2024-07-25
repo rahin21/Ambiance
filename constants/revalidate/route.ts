@@ -34,6 +34,10 @@ export async function revalidateGallery()
 {
     revalidateTag("gallery");
 }
+export async function revalidateUser()
+{
+    revalidateTag("user");
+}
 export async function revalidatePrivacyTerm()
 {
     revalidateTag("privacyTerms");

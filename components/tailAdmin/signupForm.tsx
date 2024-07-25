@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import Image from "next/image";
 import { FaImage } from "react-icons/fa";
+import { revalidateUser } from "@/constants/revalidate/route";
 
 const formSchema = z.object({
   email: z.string().email("Invalid Email").min(5, "Email is too short"),
@@ -19,9 +20,10 @@ const formSchema = z.object({
 });
 type formSchema = z.infer<typeof formSchema>;
 function SignUpForm() {
+
   const [selectedImages, setSelectedImages] = useState<string>("");
   const router = useRouter();
-  const [wrongCreds, setWrongCreds] = useState(false);
+
   const {
     handleSubmit,
     register,
@@ -60,6 +62,7 @@ function SignUpForm() {
         avatar: avatar,
       });
       console.log(resData);
+      revalidateUser();
       router.push(`/signin`);
     } catch (error) {
       console.log(error);

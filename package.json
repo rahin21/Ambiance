@@ -24,6 +24,7 @@
     "fs.promises": "^0.1.2",
     "next": "14.2.3",
     "next-auth": "^4.24.7",
+    "nodemailer": "^6.9.14",
     "prisma": "^5.15.0",
     "react": "^18",
     "react-accessible-accordion": "^5.0.0",

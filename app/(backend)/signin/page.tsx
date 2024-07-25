@@ -5,16 +5,17 @@ import { redirect } from "next/navigation";
 
 import { authOptions } from "@/lib/auth";
 import LoginForm from "@/components/loginForm";
-import axios from "axios";
+import { getUserData } from "@/constants/admin/userData";
 
 export const metadata: Metadata = {
   title: "Login",
 };
 
-async function page() {
-  const res = await axios.get(`${process.env.NEXTAUTH_URL}/api/auth/user`);
-  const user = res.data;
 
+
+async function page() {
+  const user = await getUserData();
+  
   const session = await getServerSession(authOptions);
   if(user<1){
     redirect("/signup")

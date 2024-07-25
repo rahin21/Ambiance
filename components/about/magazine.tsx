@@ -5,11 +5,18 @@ import LinkOverLogo from "../linkOverLogo";
 import axios from "axios";
 import { GalleryType } from "@/types/types";
 
+async function getData() {
+  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/gallery`);
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+}
 async function Magazine() {
-  let gallery;
+  const gallery=  await getData();
   let imgs:string[]=[];
-  const res = await axios.get(`${process.env.NEXTAUTH_URL}/api/gallery`);
-  gallery = res.data;
+
   gallery.map((item:GalleryType)=>{
     imgs.push(...item.imgs)
   })

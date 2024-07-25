@@ -33,6 +33,32 @@ function Form() {
 
   const onSubmit: SubmitHandler<FormSchema> = async (data) => {
     console.log(data);
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        console.log('Email sent successfully:', result);
+      } else {
+        console.error('Error sending email:', result);
+      }
+      reset({
+        name:"",
+        email:"",
+        phone:"",
+        location:"",
+        details:"",
+        iam:""
+      })
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   return (

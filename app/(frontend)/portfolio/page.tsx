@@ -3,21 +3,32 @@ import type { Metadata } from "next";
 import LinkOverLogo from "@/components/linkOverLogo";
 import PaginationControls from "@/components/paginationControl";
 import PortfolioGallery from "@/components/portfolio/portfolioGallery";
-import axios from "axios";
+
 
 export const metadata: Metadata = {
   title: "Portfolio",
 };
+
+async function getData() {
+  try { 
+    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/post-key?key=portfolio`);
+    if (!res.ok) {
+      throw new Error("Failed to fetch data");
+    }
+    return res.json();
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return null; 
+  }
+}
 
 async function page({
   searchParams,
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  const res = await axios.get(
-    `${process.env.NEXTAUTH_URL}/api/post-key?key=portfolio`
-  );
-  let portfolio = res.data;
+  
+  let portfolio = await getData();
 
   
   const page = searchParams["page"] ?? "1";

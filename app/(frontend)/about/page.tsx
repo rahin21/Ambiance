@@ -9,12 +9,18 @@ export const metadata: Metadata = {
   title: "About",
 };
 
+async function getData() {
+  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/about`);
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+}
+
 async function page() {
 
-  let about;
-  const res = await axios.get(`${process.env.NEXTAUTH_URL}/api/about`);
-  about = res.data
-  
+  const about = await getData();
 
   return (
     <div className="container">

@@ -1,22 +1,22 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
-import axios from "axios";
 import SignUpForm from "@/components/tailAdmin/signupForm";
+import { getUserData } from "@/constants/admin/userData";
+import { revalidateUser } from "@/constants/revalidate/route";
 
 export const metadata: Metadata = {
-  title: "Login",
+  title: "Sign Up",
 };
 
 async function page() {
-  const res = await axios.get(`${process.env.NEXTAUTH_URL}/api/auth/user`);
-  const user = res.data;
+  const user = await getUserData();
 
-  if (user.length > 0) {
+  if (user && user.length > 0) {
     redirect("/signin");
   } else {
     return (
       <div>
-        <SignUpForm/>
+        <SignUpForm />
       </div>
     );
   }

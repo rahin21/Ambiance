@@ -1,16 +1,21 @@
 import React from "react";
 import type { Metadata } from "next";
 import AccordionComponent from "@/components/getStarted/accordion";
-import axios from "axios";
 
 export const metadata: Metadata = {
   title: "Get Started",
 };
+async function getData() {
+  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/faq`);
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+}
 
 async function page() {
-  const res = await axios.get(`${process.env.NEXTAUTH_URL}/api/faq`);
-  const questions = res.data;
-  console.log(questions);
+  const questions = await getData();
   return (
     <div className="container">
       <h1 className="header font-palatino text-lightText text-[24px] tracking-[5px] text-center py-5">
