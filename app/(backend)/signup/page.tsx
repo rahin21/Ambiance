@@ -10,7 +10,6 @@ export const metadata: Metadata = {
 async function page() {
   const res = await axios.get(`${process.env.NEXTAUTH_URL}/api/auth/user`);
   const user = res.data;
-  console.log(user);
 
   if (user.length > 0) {
     redirect("/signin");

@@ -48,6 +48,15 @@ export type postType = {
   thumbnail: string;
   gallery: string[];
 };
+export type userType = {
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+  role: string;
+  avatar: string;
+  phone: string;
+};
 export type serviceType = {
   id: string;
   thumbnail: string;

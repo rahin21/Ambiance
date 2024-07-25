@@ -4,4 +4,5 @@ export async function getPostData() {
     });
     return res.json();
   }
+
   

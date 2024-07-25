@@ -5,44 +5,68 @@ import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import Image from "next/image";
+import { FaImage } from "react-icons/fa";
 
 const formSchema = z.object({
   email: z.string().email("Invalid Email").min(5, "Email is too short"),
   password: z.string().min(6, "Password is too short"),
   phone: z.string().min(8, "Phone number must be at least 8 characters"),
+  avatar: z.instanceof(File).refine((file) => file instanceof File, {
+    message: "Exactly one file must be uploaded",
+  }),
   name: z.string().min(5, "Email is too short"),
 });
 type formSchema = z.infer<typeof formSchema>;
 function SignUpForm() {
+  const [selectedImages, setSelectedImages] = useState<string>("");
   const router = useRouter();
   const [wrongCreds, setWrongCreds] = useState(false);
   const {
     handleSubmit,
     register,
+    control,
     formState: { errors, isSubmitting },
   } = useForm<formSchema>({
     resolver: zodResolver(formSchema),
   });
-  const onSubmit: SubmitHandler<formSchema> = async (data: formSchema) => {
-    console.log(data);
-    try {
-      const res =  axios.post(`/api/auth/user/`,{
-        name:data.name,
-        email:data.email,
-        password:data.password,
-        phone:data.phone,
-        role:"admin",
-        avatar:data.name
-      })
-      console.log(res);
-      router.push(`/signin`)
-    } catch (error) {
-      
-    }
 
+  const handleFileChange = (file: File) => {
+    const imageUrl = URL.createObjectURL(file);
+    setSelectedImages(imageUrl);
+  };
+
+  const onSubmit: SubmitHandler<formSchema> = async (data: formSchema) => {
+    let avatar = "";
+    const fileAvatar = data.avatar;
+    const formData = new FormData();
+
+    try {
+      formData.append(`file_0`, fileAvatar || "");
+      formData.append("targetDIR", "user");
+
+      avatar = `/uploads/user/${fileAvatar.name}`;
+
+      const resImage = await fetch(`/api/upload`, {
+        method: "POST",
+        body: formData,
+      });
+      const resData = axios.post(`/api/auth/user/`, {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        phone: data.phone,
+        role: "admin",
+        avatar: avatar,
+      });
+      console.log(resData);
+      router.push(`/signin`);
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
-    <div className="container">
+    <div className="container my-24">
       <div className="flex justify-center items-center h-screen">
         <div className="md:w-[60%] w-full rounded-lg border border-stroke bg-black/25 shadow-default">
           <div className="w-full p-4 sm:p-12.5 xl:p-17.5">
@@ -50,6 +74,55 @@ function SignUpForm() {
               Sign Up
             </h2>
             <form onSubmit={handleSubmit(onSubmit)}>
+              <>
+                <div className="border-2 flex flex-col items-center my-3 p-3 min-h-[15.3rem] border-black/40 w-full">
+                  <Controller
+                    name="avatar"
+                    control={control}
+                    render={({ field }) => (
+                      <div className="flex">
+                        <input
+                          type="file"
+                          id="avatar"
+                          onChange={(e) => {
+                            const file = e.target.files
+                              ? e.target.files[0]
+                              : null;
+                            field.onChange(file);
+                            file && handleFileChange(file);
+                          }}
+                          className="hidden"
+                        />
+                        <label
+                          htmlFor="avatar"
+                          className="capitalize flex justify-center items-center gap-2 rounded-md bg-rose-500 px-6 py-2 font-medium text-white hover:bg-opacity-90 cursor-pointer w-fit"
+                        >
+                          <FaImage /> Select Profile Image
+                        </label>
+                      </div>
+                    )}
+                  />
+                  {selectedImages.length > 0 ? (
+                    <div
+                      key={selectedImages}
+                      className="flex flex-col items-center gap-3 py-3"
+                    >
+                      <Image
+                        src={`${selectedImages}`}
+                        width={150}
+                        height={300}
+                        alt={`Selected ${selectedImages}`}
+                      />
+                    </div>
+                  ) : (
+                    <div className="text-center flex justify-center items-center gap-3 py-3">
+                      <FaImage />
+                      <p>No Image Selected</p>
+                    </div>
+                  )}
+                  {errors.avatar && <p>{errors.avatar.message}</p>}
+                </div>
+              </>
               <div className="mb-4">
                 <label className="mb-2.5 block font-medium text-black ">
                   Name
