@@ -3,7 +3,7 @@ import PrivacyTable from '@/components/tailAdmin/privacy/privacyTable'
 // import { getTermData } from '@/constants/admin/privacyData'
 import React from 'react'
 
-export async function getTermData() {
+async function getTermData() {
   try {
     const res = await fetch(
       `${process.env.NEXTAUTH_URL}/api/privacy-term/terms`,
