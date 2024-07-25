@@ -2,8 +2,6 @@ import SliderForm from "@/components/tailAdmin/Sliders/sliderForm";
 import SliderInfo from "@/components/tailAdmin/Sliders/sliderInfo";
 import { getSliderData } from "@/constants/admin/slidersData";
 import { sliderType } from "@/types/types";
-import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 
 

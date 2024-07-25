@@ -18,7 +18,7 @@ const DropdownUser = () => {
         href="#"
       >
         <span className="hidden text-right lg:block">
-          <span className="block text-sm font-medium text-black dark:text-white">
+          <span className="block text-sm font-medium text-black ">
             Deborah Diershaw
           </span>
           <span className="block text-xs">Ambiance Design</span>
@@ -37,15 +37,19 @@ const DropdownUser = () => {
           />
         </span>
 
-        <FaChevronDown />
+          {/* <button
+            className="flex items-center gap-3.5 px-[22px] py-4 font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
+            onClick={() => signOut()}
+          >
+            <BiLogOut className="text-3xl" />
+          </button> */}
+          <FaChevronDown />
       </Link>
-
-      {/* <!-- Dropdown Start --> */}
       {dropdownOpen && (
         <div
-          className={`absolute right-0 mt-4 flex w-62.5 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark`}
+          className={`absolute right-0 mt-4 flex w-62.5 flex-col rounded-sm border border-stroke bg-[#C7CBD1] shadow-default `}
         >
-          <ul className="flex flex-col gap-5 border-b border-stroke px-6 py-7.5 dark:border-strokedark">
+          <ul className="flex flex-col gap-5 border-b border-stroke px-6 py-4 dark:border-strokedark">
             <li>
               <Link
                 href="/admin/profile"
@@ -65,7 +69,10 @@ const DropdownUser = () => {
           </button>
         </div>
       )}
-      {/* <!-- Dropdown End --> */}
+
+     
+        
+   
     </ClickOutside>
   );
 };

@@ -1,18 +1,12 @@
-//@ts-nocheck
+
 "use client";
 import React, { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { z } from "zod";
-
-import { Input } from "@chakra-ui/react";
-
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
-import Image from "next/image";
-import Breadcrumb from "./tailAdmin/Breadcrumb";
-import DefaultLayout from "./tailAdmin/Layouts/DefautlLayout";
+
 
 const formSchema = z.object({
   email: z.string().email("Invalid Email").min(5, "Email is too short"),
@@ -30,7 +24,6 @@ function LoginForm() {
   } = useForm<formSchema>({
     resolver: zodResolver(formSchema),
   });
-
   // 2. Define a submit handler.
   const onSubmit: SubmitHandler<formSchema> = async (values: formSchema) => {
 
@@ -54,22 +47,26 @@ function LoginForm() {
     <>
       <div className="container">
         <div className="flex justify-center items-center h-screen">
-          <div className="md:w-[60%] w-full rounded-lg border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+          <div className="md:w-[60%] w-full rounded-lg border border-stroke bg-black/25 shadow-default">
             <div className="w-full p-4 sm:p-12.5 xl:p-17.5">
-              <h2 className="mb-9 text-2xl font-bold text-black dark:text-white sm:text-title-xl2">
+              <h2 className="mb-9 text-2xl font-bold text-black  sm:text-title-xl2">
                 Sign In
               </h2>
-
+              {wrongCreds && (
+                    <div className=" text-red mb-3 rounded-lg mt-2 max-w-fit">
+                      Maybe the email or password is incorrect!
+                    </div>
+                  )}
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="mb-4">
-                  <label className="mb-2.5 block font-medium text-black dark:text-white">
+                  <label className="mb-2.5 block font-medium text-black ">
                     Email
                   </label>
                   <div className="relative">
                     <input
                       type="email"
                       placeholder="Enter your email"
-                      className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                      className="w-full rounded-lg border border-stroke py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none "
                       {...register("email")}
                     />
                   </div>
@@ -80,14 +77,14 @@ function LoginForm() {
                   )}
                 </div>
                 <div className="mb-6">
-                  <label className="mb-2.5 block font-medium text-black dark:text-white">
+                  <label className="mb-2.5 block font-medium text-black ">
                     Password
                   </label>
                   <div className="relative">
                     <input
                       type="password"
                       placeholder="6+ Characters"
-                      className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                      className="w-full rounded-lg border border-stroke py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none "
                       {...register("password")}
                     />
                     <span className="absolute right-4 top-4">
@@ -122,7 +119,7 @@ function LoginForm() {
                 <div className="mb-5">
                   <button
                     type="submit"
-                    className="w-full cursor-pointer rounded-lg border border-primary bg-black text-white dark:bg-primary p-4 dark:text-black transition hover:bg-opacity-90"
+                    className="w-full cursor-pointer rounded-lg border border-primary bg-black text-white p-4 transition hover:bg-opacity-90"
                   >
                     Sign In
                   </button>

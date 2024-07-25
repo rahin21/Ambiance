@@ -31,6 +31,6 @@ export default async function BackendLayout({
     </html>
   );}
   else{
-    redirect('/login')
+    redirect('/signin')
   }
 }

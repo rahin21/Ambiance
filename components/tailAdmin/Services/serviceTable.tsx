@@ -5,7 +5,7 @@ import { serviceType } from "@/types/types";
 
 function ServiceTable({ service }: { service: serviceType[] }) {
   return (
-    <div className="rounded-sm border border-stroke shadow-default bg-black/20 p-5 mt-5">
+    <div className="rounded-sm border border-stroke shadow-default bg-black/20 p-5 mt-5 overflow-x-scroll">
       <h1 className="text-2xl font-semibold text-black capitalize mb-3">
           Servies
         </h1>
@@ -35,7 +35,7 @@ function ServiceTable({ service }: { service: serviceType[] }) {
             </th>
           </tr>
         </thead>
-        <tbody>
+        <tbody >
           {service.map((item) => (
             <tr key={item.id} className="bg-white border-b border-black/20">
               <td
