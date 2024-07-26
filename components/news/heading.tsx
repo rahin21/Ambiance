@@ -54,11 +54,11 @@ const bestHomeData = [
 
 function Heading() {
   return (
-    <div className="flex flex-col justify-center text-justify items-center font-semibold tracking-[2px] pt-20 pb-10 leading-7 text-lightText">
-      <h1 className="header font-palatino text-[20px] tracking-[5px]">
+    <div className="flex flex-col justify-center text-center items-center font-semibold tracking-[2px] lg:pt-20 pt-7 lg:pb-10 pb-5 leading-7 text-lightText">
+      <h1 className="header font-palatino text-xl lg:tracking-[5px] tracking-widest">
         OUR EXCLUSIVE LINES
       </h1>
-      <p className="semi-header pt-2 font-dipotic text-[20px] font-medium">
+      <p className="semi-header pt-2 font-dipotic text-xl font-medium">
         available from our floor or to order
       </p>
       <div className="flex justify-center p-8 ">

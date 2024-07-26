@@ -29,7 +29,7 @@ function AccordionComponent({
               
             >
               <FaPlus className="text-xl me-4" />
-              {item.question}
+              <div className="w-[90%]">{item.question}</div>
             </AccordionItemButton>
           </AccordionItemHeading>
           <AccordionItemPanel>{item.answer}</AccordionItemPanel>
