@@ -4,6 +4,7 @@ import Slider from "@/components/home/slider";
 import { serviceType, sliderType } from "@/types/types";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Loading from "./loading";
 
 
 
@@ -25,22 +26,26 @@ export default function Home() {
   },[])
   
 
-  return (
-    <main className="container flex flex-col items-center justify-center mt-5 " >
+  if(!slider|| !services){
+    return (<Loading/>)
+  }
 
-      <Slider slider={slider} />
-      {services?.map((data, i) => (
-        <Hero
-          key={i}
-          heading={data.title}
-          subHeading={data.subTitle}
-          description={data.description}
-          img={data.thumbnail}
-          link={data.link.plainUrl}
-          linkHeader={data.link.text}
-          index={i+1}
-        />
-      ))}
-    </main>
-  );
+    return (
+      <main className="container flex flex-col items-center justify-center mt-5 " >
+        <Slider slider={slider} />
+        {services?.map((data, i) => (
+          <Hero
+            key={i}
+            heading={data.title}
+            subHeading={data.subTitle}
+            description={data.description}
+            img={data.thumbnail}
+            link={data.link.plainUrl}
+            linkHeader={data.link.text}
+            index={i+1}
+          />
+        ))}
+      </main>
+    );
+  
 }

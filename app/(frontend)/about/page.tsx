@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import ClientInfo from "@/components/about/clientInfo";
 import Magazine from "@/components/about/magazine";
-import axios from "axios";
+import Loading from "../loading";
 
 export const metadata: Metadata = {
   title: "About",
@@ -22,6 +22,10 @@ async function page() {
 
   const about = await getData();
 
+  if(!about){
+    return(<Loading/>)
+  }
+  
   return (
     <div className="container">
       <ClientInfo about={about}/>
