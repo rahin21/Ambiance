@@ -172,7 +172,7 @@ function SliderForm({
   return (
     <div>
       <h4 className="text-2xl font-semibold text-black">
-        {isUpdate? `Update`: `Add `} Slider
+        {isUpdate ? `Update` : `Add `} Slider
       </h4>
       {isUpdate && (
         <div className="border border-stroke bg-black/20 px-7.5 py-6 shadow-default mt-5">
@@ -181,13 +181,21 @@ function SliderForm({
               {key} slider
             </h1>
           </div>
-          <div className="flex gap-5">
+          <div className="flex gap-5 overflow-auto">
             {imgs.map((image: string) => (
               <div
                 key={image}
-                className="flex flex-col gap-3 justify-center items-center"
+                className="flex flex-col gap-3 justify-center items-center mb-3"
               >
-                <Image src={image} alt="img-home" width={150} height={150} />
+                <div className="aspect-square w-40 inline-block overflow-hidden">
+                  <Image
+                    src={image}
+                    alt="img-home"
+                    width={1500}
+                    height={1500}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 {isUpdate && (
                   <button
                     type="button"
@@ -202,12 +210,17 @@ function SliderForm({
           </div>
         </div>
       )}
-      
+
       <div className="rounded-sm border border-stroke shadow-default bg-black/20 p-5 mt-5">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="md:flex items-end gap-5 mb-5">
             <div className="w-full">
-              <label htmlFor="key" className="mb-3 block text-base font-medium text-black">Slider </label>
+              <label
+                htmlFor="key"
+                className="mb-3 block text-base font-medium text-black"
+              >
+                Slider{" "}
+              </label>
               <select
                 {...register("key")}
                 id="key"
@@ -227,7 +240,11 @@ function SliderForm({
                 control={control}
                 render={({ field }) => (
                   <div>
-                    <label htmlFor="sliders" className="mb-3 block text-base font-medium text-black">Slider Image</label>
+                    <label
+                      htmlFor="sliders"
+                      className="my-5 block text-base font-medium text-black">
+                      Slider Image
+                    </label>
                     <input
                       type="file"
                       id="sliders"

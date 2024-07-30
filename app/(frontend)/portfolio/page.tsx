@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 async function getData() {
   try { 
-    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/post-key?key=portfolio`);
+    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/post-key?key=portfolio`,{next:{tags:["posts"]}});
     if (!res.ok) {
       throw new Error("Failed to fetch data");
     }

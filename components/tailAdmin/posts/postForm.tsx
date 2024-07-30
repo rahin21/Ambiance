@@ -143,7 +143,7 @@ function PostForm({ post }: { post?: postType }) {
           </div>
           <div className="md:flex gap-5">
             <>
-              <div className="border-2 flex flex-col items-center p-3 min-h-[15.3rem] md:mb-0 mb-5 border-black/40 w-full">
+              <div className="border-2 flex flex-col items-center p-3 h-[18rem] md:mb-0 mb-5 border-black/40 w-full">
                 <Controller
                   name="thumbnail"
                   control={control}
@@ -163,9 +163,9 @@ function PostForm({ post }: { post?: postType }) {
                       />
                       <label
                         htmlFor="thumbnail"
-                        className="capitalize flex justify-center items-center gap-2 rounded-md bg-rose-500 px-6 py-2 font-medium text-white hover:bg-opacity-90 cursor-pointer "
+                        className="capitalize flex justify-center lg:text-base text-xs items-center gap-2 rounded-md bg-rose-500 px-6 py-2 font-medium text-white hover:bg-opacity-90 cursor-pointer "
                       >
-                        <FaImage /> Select an image for thumbnail
+                        <FaImage /> Select thumbnail image
                       </label>
                     </div>
                   )}
@@ -189,7 +189,7 @@ function PostForm({ post }: { post?: postType }) {
                   )}
                 </div>
               </div>
-              <div className="border-2 flex flex-col items-center p-3 min-h-[15.3rem] border-black/40 w-full">
+              <div className="border-2 flex flex-col items-center p-3 h-[18rem] overflow-auto border-black/40 w-full">
                 <Controller
                   name="gallery"
                   control={control}
@@ -209,9 +209,9 @@ function PostForm({ post }: { post?: postType }) {
                       />
                       <label
                         htmlFor="gallery"
-                        className="capitalize flex justify-center items-center gap-2 rounded-md bg-rose-500 px-6 py-2  font-medium text-white hover:bg-opacity-90 cursor-pointer"
+                        className="capitalize flex justify-center lg:text-base text-xs items-center gap-2 rounded-md bg-rose-500 px-6 py-2 font-medium text-white hover:bg-opacity-90 cursor-pointer"
                       >
-                        <FaImages /> Select images for gallery
+                        <FaImages /> Select gallery images
                       </label>
                     </div>
                   )}
@@ -219,18 +219,20 @@ function PostForm({ post }: { post?: postType }) {
                 {errors.gallery && <p>{errors.gallery.message}</p>}
 
                 {/* Display the selected gallery images */}
-                <div className="flex flex-wrap gap-5 my-3">
+                
+                <div className="flex flex-wrap justify-center gap-5 my-3">
                   {selectedImagesGallery.length > 0 ? (
                     selectedImagesGallery.map((img, index) => (
                       <div
                         key={img}
-                        className="flex flex-col items-center gap-3"
+                        className="flex flex-col aspect-square overflow-hidden items-center gap-3"
                       >
                         <Image
                           src={img}
                           width={150}
                           height={300}
                           alt={`Selected ${index}`}
+                          className="w-full h-full object-cover"
                         />
                       </div>
                     ))

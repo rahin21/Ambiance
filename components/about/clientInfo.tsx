@@ -16,7 +16,7 @@ function ClientInfo({ about }: { about: aboutType[] }) {
       {about?.map((item) => (
         <div
           key={item.id}
-          className="flex lg:flex-row justify-between lg:items-start items-center flex-col pt-5 gap-8 lg:px-0 px-5 "
+          className="flex lg:flex-row justify-between lg:items-start items-center flex-col pt-5 gap-8 "
         >
           <div className="aspect-auto lg:w-[40%] w-full inline-block overflow-hidden ">
             <Image

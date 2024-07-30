@@ -60,7 +60,7 @@ function GalleryForm({
         });
 
         await axios.put(`/api/gallery/${gallery?.id}`, {
-          img: gallery?.imgs,
+          imgs: gallery?.imgs,
         });
         revalidateGallery();
         formData.append("targetDIR", `about/gallery`);
@@ -166,10 +166,10 @@ function GalleryForm({
         {isUpdate ? `Update` : `Add `} Gallery
       </h4>
       {isUpdate && (
-        <div className="border border-stroke bg-black/20 px-7.5 py-6 shadow-default mt-5">
+        <div className="border border-stroke bg-black/20 px-7.5 py-6 shadow-default mt-5 overflow-auto">
           <div className="flex justify-between mb-5">
             <h1 className="text-2xl font-semibold text-black capitalize">
-              Update Gallery
+              Gallery Images
             </h1>
           </div>
           <div className="flex gap-5">
@@ -218,7 +218,7 @@ function GalleryForm({
                       htmlFor="gallery"
                       className="capitalize flex justify-center items-center gap-2 rounded-md bg-rose-500 px-6 py-2 font-medium text-white hover:bg-opacity-90 cursor-pointer text-sm md:text-base"
                     >
-                      <FaImages /> Select images for Galler
+                      <FaImages /> Select Gallery Images
                     </label>
                   </div>
                 )}
@@ -226,9 +226,9 @@ function GalleryForm({
               {errors.files && <p>{errors.files.message}</p>}
               {/* Display the selected images */}
               {selectedImages.length > 0 ? (
-                <div className="flex flex-wrap gap-5 mt-5">
+                <div className="flex flex-wrap gap-5 mt-5 h-[20rem] overflow-auto">
                   {selectedImages.map((img, index) => (
-                    <div key={index} className="aspect-square w-auto inline-block overflow-hidden">    
+                    <div key={index} className="aspect-square lg:w-[23%] w-auto inline-block overflow-hidden">    
                       <Image
                         src={img}
                         width={150}

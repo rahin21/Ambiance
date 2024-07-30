@@ -19,7 +19,13 @@ async function News() {
 
   return (
     <div>
+      <h1 className="text-2xl font-semibold text-black capitalize">
+      Slider
+      </h1>
       <SliderInfo slider={slider} />
+      <h1 className="text-2xl font-semibold text-black capitalize my-5">
+      news posts
+      </h1>
       {posts.length > 0 && <PostTable post={posts} />}
     </div>
   );

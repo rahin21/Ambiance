@@ -65,7 +65,7 @@ type SliderFormData = z.infer<typeof sliderSchema>;
   });
 
   const [selectedImages, setSelectedImages] = useState<string[]>([]);
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const fileInputRef = useRef<HTMLInputElement >(null);
   const router = useRouter();
 
   const handleFileChange = (files: FileList) => {
@@ -241,8 +241,8 @@ type SliderFormData = z.infer<typeof sliderSchema>;
               </div>
             </div>
           )}
-          <div className="flex gap-5 mb-5">
-            <div className="w-full">
+          <div className="md:flex gap-5 mb-5">
+            <div className="w-full lg:mb-0 mb-5">
               <label
                 htmlFor="title"
                 className="mb-3 block text-base font-medium text-black"
@@ -312,7 +312,7 @@ type SliderFormData = z.infer<typeof sliderSchema>;
                     />
                     <label
                       htmlFor="file-upload"
-                      className="capitalize rounded-md  flex justify-center items-center gap-2 bg-rose-500 px-6 py-2 text-center font-medium text-white hover:bg-opacity-90 cursor-pointer w-fit"
+                      className="capitalize rounded-md  flex justify-center items-center gap-2 bg-rose-500 px-6 py-2 text-center font-medium text-white hover:bg-opacity-90 cursor-pointer md:w-fit"
                     >
                       <FaImage/> Upload Avatar
                     </label>

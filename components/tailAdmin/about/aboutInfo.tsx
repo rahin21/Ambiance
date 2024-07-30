@@ -7,7 +7,7 @@ import { aboutType } from "@/types/types";
 
 function AboutInfo({about}:{about:aboutType[]}) {
   return (
-    <div className="rounded-sm border border-stroke shadow-default bg-black/20 p-5 mt-5">
+    <div className="rounded-sm border border-stroke shadow-default bg-black/20 p-5 mt-5 overflow-auto">
 
     <table className="w-full text-xl text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-base text-gray-700 uppercase bg-black/20">

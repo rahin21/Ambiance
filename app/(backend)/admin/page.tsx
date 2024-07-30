@@ -17,12 +17,11 @@ async function page() {
   return (
     <div >
       <h1 className="text-xl font-semibold text-black capitalize">sliders</h1>
-      <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-7">
+      <div className="sm:grid lg:grid-cols-3 sm:grid-cols-2 gap-7">
         {sliders.map((slider: sliderType) => (
           <div key={slider.id} className="">
             <SliderInfo
               slider={slider}
-              className="h-fit max-h-[16rem] lg:h-[16rem] overflow-scroll no-scrollbar"
             />
           </div>
         ))}

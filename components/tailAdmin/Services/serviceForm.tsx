@@ -188,8 +188,8 @@ function ServiceForm({
       </h4>
       <div className="rounded-sm border border-stroke shadow-default bg-black/20 p-5 gap-5 text-black-2 font-medium">
         <form onSubmit={handleSubmit(onSubmit)} className="w-full">
-          <div className="flex gap-5 mb-5">
-            <div className="w-full">
+          <div className="md:flex gap-5 mb-5">
+            <div className="w-full lg:pb-0 pb-5">
               <label htmlFor="title" className="mb-3 block text-base font-medium text-black">Service Title</label>
               <input
                 {...register("title")}
@@ -275,8 +275,8 @@ function ServiceForm({
             </div>
           </>
 
-          <div className="flex gap-5 my-5">
-            <div className="w-full">
+          <div className="lg:flex gap-5 my-5">
+            <div className="w-full lg:pb-0 pb-5">
               <label htmlFor="link-title" className="mb-3 block text-base font-medium text-black">Link Title</label>
               <input
                 {...register("linkTitle")}

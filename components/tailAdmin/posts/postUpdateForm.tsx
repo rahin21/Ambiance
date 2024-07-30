@@ -205,9 +205,9 @@ function PostUpdateForm({
             />
             {errors.title && <p>{errors.title.message}</p>}
           </div>
-          <div className="flex gap-5">
+          <div className="lg:flex gap-5">
             <>
-              <div className="border-2 flex flex-col items-center p-3 min-h-[15.3rem] border-black/40 w-full">
+              <div className="border-2 flex flex-col items-center p-3 min-h-[15.3rem] border-black/40 w-full lg:mb-0 mb-5">
                 <Controller
                   name="thumbnail"
                   control={control}
@@ -227,9 +227,9 @@ function PostUpdateForm({
                       />
                       <label
                         htmlFor="thumbnail"
-                        className="capitalize flex justify-center items-center gap-2 rounded-md bg-rose-500 px-6 py-2 font-medium text-white hover:bg-opacity-90 cursor-pointer "
+                        className="capitalize flex justify-center items-center gap-2 rounded-md lg:text-base text-xs bg-rose-500 px-6 py-2 font-medium text-white hover:bg-opacity-90 cursor-pointer "
                       >
-                        <FaImage /> Select an image for thumbnail
+                        <FaImage /> Select thumbnail image
                       </label>
                     </div>
                   )}
@@ -241,7 +241,7 @@ function PostUpdateForm({
                   {selectedImagesThumbnail.length > 0 ? (
                     <Image
                       src={selectedImagesThumbnail}
-                      width={150}
+                      width={250}
                       height={300}
                       alt={`Selected image`}
                     />
@@ -253,7 +253,7 @@ function PostUpdateForm({
                   )}
                 </div>
               </div>
-              <div className="border-2 flex flex-col items-center p-3 min-h-[15.3rem] border-black/40 w-full">
+              <div className="border-2 flex flex-col items-center p-3 h-[18rem] overflow-auto border-black/40 w-full">
                 <Controller
                   name="gallery"
                   control={control}
@@ -273,9 +273,9 @@ function PostUpdateForm({
                       />
                       <label
                         htmlFor="gallery"
-                        className="capitalize flex justify-center items-center gap-2 rounded-md bg-rose-500 px-6 py-2  font-medium text-white hover:bg-opacity-90 cursor-pointer"
+                        className="capitalize flex justify-center items-center gap-2 rounded-md bg-rose-500 px-6 py-2 lg:text-base text-xs font-medium text-white hover:bg-opacity-90 cursor-pointer"
                       >
-                        <FaImages /> Select images for gallery
+                        <FaImages /> Select gallery images
                       </label>
                     </div>
                   )}
@@ -290,12 +290,16 @@ function PostUpdateForm({
                         key={img}
                         className="flex flex-col items-center gap-3"
                       >
+                        <div className="aspect-square w-[10rem] overflow-hidden">
+
                         <Image
                           src={img}
                           width={150}
                           height={300}
                           alt={`Selected ${index}`}
+                          className="w-full h-full object-cover"
                         />
+                        </div>
                         <button
                           type="button"
                           onClick={() => deleteImages(img)}

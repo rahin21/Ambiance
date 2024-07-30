@@ -22,18 +22,18 @@ async function Magazine() {
   })
   
   return (
-    <div className="flex flex-col items-center justify-center lg:mx-0 mx-5">
+    <div className="flex flex-col items-center justify-center ">
       <div className="h-[1px] w-full bg-gray-300 mt-8"></div>
       <h1 className=" text-lightText text-center font-palatino text-[20px] lg:tracking-[5px] tracking-[3px] py-8">
         GALLERY
       </h1>
 
       {/* magazine */}
-      <div className="lg:flex lg:flex-wrap md:grid md:grid-cols-3 md:gap-5 grid grid-cols-2 gap-3 justify-center">
+      <div className="flex flex-wrap gap-5 justify-center">
         {imgs?.map((img:string) => (
           <div
             key={img}
-            className="aspect-square lg:w-[325px] w-auto overflow-hidden"
+            className="aspect-square md:w-[23.90%] w-[45%] overflow-hidden"
           >
           <Image
             src={img}

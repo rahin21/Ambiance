@@ -20,7 +20,7 @@ function GalleryInfo({gallery}:{gallery:GalleryType}) {
           Edit
         </Link>
       </div>
-      <div className="flex flex-wrap justify-center lg:justify-start gap-5">
+      <div className="flex flex-wrap justify-center lg:justify-start gap-5 h-[20rem] overflow-y-auto">
         {gallery.imgs.map((image) => (
           <div key={image} className="aspect-square w-[150px] inline-block overflow-hidden">
             <Image src={image} alt="img-home" width={150} height={150} className="w-full h-full object-cover" />

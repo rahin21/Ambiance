@@ -16,6 +16,9 @@ async function Portfolio() {
 
   return (
     <div>
+      <h1 className="text-2xl font-semibold text-black capitalize mb-5">
+      portfolio posts
+      </h1>
       {posts.length > 0 ? (
         <PostTable post={posts} />
       ) : (
