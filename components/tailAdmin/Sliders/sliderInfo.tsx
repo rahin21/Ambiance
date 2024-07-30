@@ -14,7 +14,7 @@ function SliderInfo({
   return (
     <div
       className={cn(
-        `border border-stroke bg-black/20 p-5 shadow-default mt-8`,
+        `border border-stroke bg-black/20 p-5 shadow-default mt-5`,
         className
       )}
     >
