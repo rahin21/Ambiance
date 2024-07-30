@@ -130,7 +130,7 @@ function MenuForm({
           )}
         </div>
         {fields.map((field, index) => (
-          <div key={field.id} className="flex gap-3 w-full mb-4">
+          <div key={field.id} className="flex md:flex-row flex-col gap-3 w-full mb-4">
             <div className="w-full">
               <label className="mb-3 block text-sm font-medium text-black">
                 Name

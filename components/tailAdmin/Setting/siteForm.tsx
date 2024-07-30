@@ -121,7 +121,7 @@ function SiteForm({
           )}
         </div>
 
-        <div className="flex gap-3 w-full mb-4">
+        <div className="flex flex-col lg:flex-row md:flex-row gap-5 w-full mb-4">
           <div className="w-full">
             <label className="mb-3 block text-base font-medium text-black">
               Name
