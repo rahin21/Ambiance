@@ -4,6 +4,7 @@ import React from "react";
 import LinkOverLogo from "../linkOverLogo";
 import axios from "axios";
 import { GalleryType } from "@/types/types";
+import ImagePreviewer from "../portfolio/imagePreviewer";
 
 async function getData() {
   const res = await fetch(`${process.env.NEXTAUTH_URL}/api/gallery`);
@@ -27,24 +28,9 @@ async function Magazine() {
       <h1 className=" text-lightText text-center font-palatino text-[20px] lg:tracking-[5px] tracking-[3px] py-8">
         GALLERY
       </h1>
-
       {/* magazine */}
-      <div className="flex flex-wrap gap-5 justify-center">
-        {imgs?.map((img:string) => (
-          <div
-            key={img}
-            className="aspect-square md:w-[23.90%] w-[45%] overflow-hidden"
-          >
-          <Image
-            src={img}
-            width="1620"
-            height="1620"
-            alt="award"
-            className="h-full w-full object-cover my-5"
-          />
-          </div>
-        ))}
-      </div>
+      <ImagePreviewer images={imgs} />
+
       <div className="my-8">
         <LinkOverLogo link="/portfolio" linkHeader="OUR PORTFOLIO" />
       </div>

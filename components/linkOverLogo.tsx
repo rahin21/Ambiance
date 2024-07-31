@@ -16,7 +16,7 @@ function LinkOverLogo({
           className="absolute opacity-30 lg:w-[80px] w-[70px]"
           height="10"
           width="100"
-          src="/icons/main-logo.png"
+          src="/images/logo-sm-2.png"
           alt="logo"
         />
       

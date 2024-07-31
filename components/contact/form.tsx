@@ -106,7 +106,7 @@ function Form() {
           control={control}
           render={({ field }) => (
         <textarea
-          className="bg-primary border-none text-[#a7a1a4] h-[4.25rem] text-center leading-3 px-5 text-[16px] focus-visible:outline-[#a7a1a4] focus-visible:[outline-style:solid] py-2"
+          className="bg-primary border-none text-[#a7a1a4] h-[4.25rem] text-center px-5 text-[16px] focus-visible:outline-[#a7a1a4] focus-visible:[outline-style:solid] py-2"
           placeholder="DETAILS"
           {...field}
         />

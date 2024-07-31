@@ -18,10 +18,10 @@ const CopyRight = () => {
       </div>
       <div className="mt-4 mb-8 text-[#a7a1a4]">
         <Link
-          className="font-sans tracking-[2px] lg:text-lg text-xs text-center font-bold pt-5"
-          href={"https://www.instagram.com/lauraleeclarkinteriordesign/"}
+          className="font-sans tracking-[2px] lg:text-lg text-xs text-center font-bold pt-5 uppercase"
+          href={"https://www.instagram.com/ambiance.home"}
         >
-          JOIN THE CONVERSATION @ DEBORAHDIERSHAWINTERIORDESIGN
+          JOIN THE CONVERSATION @ Ambiance
         </Link>
       </div>
       <div className="h-[1px] w-full bg-slate-600"></div>

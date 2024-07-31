@@ -18,7 +18,7 @@ function Footer() {
         </div>
         <div className="p-1 flex sm:flex-row flex-col justify-center items-center sm:gap-3">
           <div className="footer-description footer-link-text">
-            © 2024 AMBIANCE 
+            © 1992 AMBIANCE 
           </div>
           <div className="footer-description footer-link-text px-1 "> . </div>
           <a

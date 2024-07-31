@@ -1,13 +1,47 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { GiHamburgerMenu } from "react-icons/gi";
 import useDisclosure from "@/hooks/useDisclosure";
 import Social from "./footer/social";
+import { settingType } from "@/types/types";
+import axios from "axios";
 
 type navItemType = { name: string; link: string }[];
 
 function Header({ navItems }: { navItems: navItemType | undefined  }) {
+
+  const [settings, setSetting] = useState<settingType[] | null>(null);
+  const [phone, setPhone] = useState<string | null>(null);
+  const [email, setEmail] = useState<string | null>(null);
+
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const res = await axios.get(`/api/setting-key?key=contact`);
+        setSetting(res.data);
+      } catch (err) {
+        console.log("Error fetching slider data");
+      }
+    };
+    getData();
+  }, []);
+
+  useEffect(() => {
+    if (settings) {
+      settings.find((setting) => {
+        if (setting.name === "phone") {
+          setPhone(setting.description);
+        }
+        if (setting.name === "email") {
+          setEmail(setting.description);
+        }
+      });
+    }
+  }, [settings]);
+
+
   const { Show, showMenu } = useDisclosure();
   return (
     <div className="">
@@ -32,19 +66,16 @@ function Header({ navItems }: { navItems: navItemType | undefined  }) {
 
         <div className="container font-openSans py-3 text-[13px] lg:block hidden">
           <Link
-            className=" tracking-[2px]"
-            href={"tel:2142657272"}
-            onClick={showMenu}
-          >
-            1.817.925.2478
-          </Link>
+          className="tracking-[2px]"
+          href={`tel:+1${phone?.replaceAll('-','')}`}
+        >
+          {phone || "phone"} 
+        </Link>
           <span className="px-5">.</span>
-          <Link
-            className="tracking-[2px] uppercase"
-            href={"email:info@ambiancedesigns.biz"}
-          >
-            info@ambiancedesigns.biz
-          </Link>
+
+          <Link className="tracking-[2px] uppercase" href={`mailto:${email}`}>
+          {email || "email"} 
+        </Link>
         </div>
         <div className={`pb-5 ${
                 Show ? "visible" : "hidden"

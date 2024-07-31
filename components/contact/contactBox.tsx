@@ -28,7 +28,7 @@ function ContactBox() {
       className="flex flex-col items-center bg-primary font-openSans text-[16px] tracking-[2px] font-semibold text-[#a7a1a4] p-4 min-w-[50%]"
     >
       <ContactInfo />
-      <h2 className="footer-header font-palatino text-lightText py-1 uppercase">
+      <h2 className="footer-header font-palatino text-lightText mt-5 py-1 uppercase">
         Connect With Us
       </h2>
       <div className="flex justify-center items-center gap-2 py-1">
