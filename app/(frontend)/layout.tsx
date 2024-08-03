@@ -26,7 +26,7 @@ const palatino = localfont({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL(`https://ambiance-sigma.vercel.app/`),
+  metadataBase: new URL(`https://ambiance-sigma.vercel.app`),
   title: {
     default:"Home - Ambiance",
     template:"%s - Ambiance",
