@@ -124,7 +124,6 @@ function PostForm({ post }: { post?: postType }) {
                 className="w-full rounded-lg bg-white border-[1.5px] border-stroke bg-transparent px-5 py-2 text-black text-lg outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter"
               >
                 <option value="portfolio">Portfolio</option>
-                <option value="news">News</option>
               </select>
               {errors.key && <p>{errors.key.message}</p>}
             </div>

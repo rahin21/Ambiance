@@ -8,12 +8,9 @@ async function PrivacyInformation() {
   return (
     <div>
       <h4 className="text-2xl font-semibold text-black mb-4">
-        Add Privacy Information
+        Privacy Information
       </h4>
-      <PrivacyTermForm privacy/>
-      {privacy && 
-      <PrivacyTable privacyTerms={privacy} privacy/>
-      }
+      <PrivacyTermForm privacy isUpdate privacyTerms={privacy}/>
     </div>
   );
 }

@@ -75,57 +75,50 @@ function PostUpdateForm({
       const formData = new FormData();
       const gallery: string[] = post?.gallery || [];
       let thumbnail = post?.thumbnail;
-      console.log(filesThumbnail);
-      // update
-      console.log(data.gallery);
-        if (filesThumbnail) {
-          thumbnail = `/uploads/post/${filesThumbnail.name}`;
-          formData.append(`file_0`, filesThumbnail || "");
-          await axios.delete(`/api/upload`, {
-            data: { locations: [post?.thumbnail] },
-          });
-        }
-        filesGallery.map((file, index) => {
-          if (file) {
-            formData.append(`file_${index}`, file);
-            gallery.push(`/uploads/post/${file.name}`);
-          }
+
+      if (filesThumbnail) {
+        thumbnail = `/uploads/post/${filesThumbnail.name}`;
+        formData.append(`file_0`, filesThumbnail || "");
+        await axios.delete(`/api/upload`, {
+          data: { locations: [post?.thumbnail] },
         });
-
-        const res1 = await axios.put(
-          `/api/post/${post?.id}`,
-          {
-            gallery: gallery,
-            title: data.title,
-            key: data.key,
-            thumbnail: thumbnail,
-          }
-        );
-        revalidatePost();
-        formData.append("targetDIR", "post");
-        if (filesThumbnail) {
-
-          const res = await fetch(`/api/upload`, {
-            method: "POST",
-            body: formData,
-          });
-          console.log(res1);
-          if (!res.ok) throw new Error(await res.text());
+      }
+      filesGallery.map((file, index) => {
+        if (file) {
+          formData.append(`file_${index}`, file);
+          gallery.push(`/uploads/post/${file.name}`);
         }
-        reset({
-          key: "",
-          title: "",
-          gallery: undefined,
-          thumbnail: undefined,
+      });
+
+      const res1 = await axios.put(`/api/post/${post?.id}`, {
+        gallery: gallery,
+        title: data.title,
+        key: data.key,
+        thumbnail: thumbnail,
+      });
+      revalidatePost();
+      formData.append("targetDIR", "post");
+      if (filesThumbnail) {
+        const res = await fetch(`/api/upload`, {
+          method: "POST",
+          body: formData,
         });
+        console.log(res1);
+        if (!res.ok) throw new Error(await res.text());
+      }
+      reset({
+        key: "",
+        title: "",
+        gallery: undefined,
+        thumbnail: undefined,
+      });
 
-        setSelectedImagesGallery([]);
-        setSelectedImagesThumbnail("");
-        router.push("/admin/posts");
-        if (fileInputRef.current) {
-          fileInputRef.current.value = "";
-        }
-
+      setSelectedImagesGallery([]);
+      setSelectedImagesThumbnail("");
+      router.push("/admin/posts");
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
     } catch (e: any) {
       console.error(e);
     }
@@ -133,15 +126,13 @@ function PostUpdateForm({
 
   async function deletePost() {
     try {
-      await axios
-        .delete(`/api/post/${post?.id}`)
-        .catch((error) => {
-          console.error(error);
-        });
-        await axios.delete(`/api/upload`, {
-          data: { locations: [post?.thumbnail, ...(post?.gallery || [])] },
-        });
-        revalidatePost();
+      await axios.delete(`/api/post/${post?.id}`).catch((error) => {
+        console.error(error);
+      });
+      await axios.delete(`/api/upload`, {
+        data: { locations: [post?.thumbnail, ...(post?.gallery || [])] },
+      });
+      revalidatePost();
     } catch (error) {
       console.log(error);
     }
@@ -160,8 +151,8 @@ function PostUpdateForm({
     }
     console.log(selectedImagesGallery);
     if (fileInputRef.current) {
-        fileInputRef.current.value = "";
-      }
+      fileInputRef.current.value = "";
+    }
     try {
       const res = await axios.put(`/api/post/${post.id}`, {
         title: post.title,
@@ -188,22 +179,40 @@ function PostUpdateForm({
       <div className="rounded-sm border border-stroke shadow-default bg-black/20 p-5 gap-5">
         <form onSubmit={handleSubmit(onSubmit)} className="w-full">
           <div className="flex gap-5 mb-5">
-            <input
-              {...register("key")}
-              defaultValue={post?.key}
-              type="text"
-              placeholder="Key"
-              className="w-full rounded-lg bg-white border-[1.5px] border-stroke bg-transparent px-5 py-2 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter"
-            />
-            {errors.key && <p>{errors.key.message}</p>}
-            <input
-              {...register("title")}
-              defaultValue={post?.title}
-              type="text"
-              placeholder="Title"
-              className="w-full rounded-lg bg-white border-[1.5px] border-stroke bg-transparent px-5 py-2 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter"
-            />
-            {errors.title && <p>{errors.title.message}</p>}
+            <div className="w-full">
+              <label
+                htmlFor="key"
+                className="mb-3 block text-base font-medium text-black"
+              >
+                Post
+              </label>
+              <select
+                {...register("key")}
+                id="key"
+                defaultValue={post?.key || "portfolio"}
+                className="w-full rounded-lg bg-white border-[1.5px] border-stroke bg-transparent px-5 py-2 text-black text-lg outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter"
+              >
+                <option value="portfolio">Portfolio</option>
+              </select>
+              {errors.key && <p>{errors.key.message}</p>}
+            </div>
+            <div className="w-full">
+              <label
+                htmlFor="title"
+                className="mb-3 block text-base font-medium text-black"
+              >
+                Title
+              </label>
+              <input
+                {...register("title")}
+                id="title"
+                defaultValue={post?.title}
+                type="text"
+                placeholder="Title"
+                className="w-full rounded-lg bg-white border-[1.5px] border-stroke bg-transparent px-5 py-2 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter"
+              />
+              {errors.title && <p>{errors.title.message}</p>}
+            </div>
           </div>
           <div className="lg:flex gap-5">
             <>
@@ -291,14 +300,13 @@ function PostUpdateForm({
                         className="flex flex-col items-center gap-3"
                       >
                         <div className="aspect-square w-[10rem] overflow-hidden">
-
-                        <Image
-                          src={img}
-                          width={150}
-                          height={300}
-                          alt={`Selected ${index}`}
-                          className="w-full h-full object-cover"
-                        />
+                          <Image
+                            src={img}
+                            width={150}
+                            height={300}
+                            alt={`Selected ${index}`}
+                            className="w-full h-full object-cover"
+                          />
                         </div>
                         <button
                           type="button"

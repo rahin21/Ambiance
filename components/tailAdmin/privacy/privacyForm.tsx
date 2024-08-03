@@ -10,6 +10,8 @@ import {
   useForm,
 } from "react-hook-form";
 import { z } from "zod";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const formSchema = z.object({
   description: z.string().min(1, "Description is required"),
@@ -61,15 +63,12 @@ function PrivacyTermForm({
           key: privacyTerms?.key,
           description: data.description,
         });
-        revalidatePrivacyTerm();
-        privacy&&  router.push("/admin/privacy/");
-        terms&&  router.push("/admin/terms-of-services/");
-
         // Handle successful response (e.g., redirect or show success message)
       } catch (error) {
         console.log("Error:", error);
         // Handle error (e.g., show error message)
       }
+      revalidatePrivacyTerm();
 
     } else {
 
@@ -91,20 +90,20 @@ function PrivacyTermForm({
       })
     }
   };
-  async function deleteHandler() {
-    axios
-      .delete(`/api/privacy-term/${key}`)
-      .then((response) => {
-        console.log(`${response}`);
-        revalidatePrivacyTerm();
-        privacy&&  router.push("/admin/privacy/");
-        terms&&  router.push("/admin/terms-of-services/");
+  // async function deleteHandler() {
+  //   axios
+  //     .delete(`/api/privacy-term/${key}`)
+  //     .then((response) => {
+  //       console.log(`${response}`);
+  //       revalidatePrivacyTerm();
+  //       privacy&&  router.push("/admin/privacy/");
+  //       terms&&  router.push("/admin/terms-of-services/");
         
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // }
 
   return (
     <div className="rounded-sm border border-stroke shadow-default bg-black/20">
@@ -119,11 +118,7 @@ function PrivacyTermForm({
               control={control}
               defaultValue={privacyTerms?.description}
               render={({ field }) => (
-                <textarea
-                  placeholder="description"
-                  className="w-full rounded-lg bg-white border-[1.5px] min-h-[10rem] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter"
-                  {...field}
-                />
+                <ReactQuill theme="snow" {...field} className="bg-white max-h-[60vh] overflow-auto" />
               )}
             />
             {errors.description && (
@@ -135,15 +130,6 @@ function PrivacyTermForm({
         </div>
 
         <div className="flex justify-end pt-4 gap-4">
-          {isUpdate && (
-            <button
-              type="button"
-              onClick={deleteHandler}
-              className="flex rounded-md bg-rose-600 px-6 py-2 text-center font-medium text-white hover:bg-gray-300"
-            >
-              Delete
-            </button>
-          )}
           <button
             type="submit"
             className="flex rounded-md bg-black px-6 py-2 text-center font-medium text-white hover:bg-opacity-90"
