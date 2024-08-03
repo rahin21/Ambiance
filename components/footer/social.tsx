@@ -25,12 +25,8 @@ function Social({className}:{className?:string}) {
           <Link key={item.name} className="icon-link" href={`${item.link}`}>
             {item.name === "facebook" ? (
               socialIcons.facebook
-            ) : item.name === "pinterest" ? (
-              socialIcons.pinterest
             ) : item.name == "instagram" ? (
               socialIcons.instagram
-            ) : item.name === "twitter" ? (
-              socialIcons.twitter
             ) : item.name === "google business" ? (
               socialIcons.googleBusiness
             ) : (

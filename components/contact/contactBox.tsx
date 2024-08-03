@@ -2,9 +2,7 @@
 import React from "react";
 import { FaFacebookF } from "react-icons/fa";
 import { ImInstagram } from "react-icons/im";
-import { FaPinterest } from "react-icons/fa";
 import { motion } from "framer-motion";
-import { BsTwitterX } from "react-icons/bs";
 import { SiGooglemybusiness } from "react-icons/si";
 import Social from "../footer/social";
 import ContactInfo from "./contactInfo";
@@ -12,8 +10,6 @@ import ContactInfo from "./contactInfo";
 export const socialIcons = {
   facebook: <FaFacebookF className=" text-2xl"/>,
   instagram: <ImInstagram className=" text-2xl"/>,
-  pinterest: <FaPinterest className=" text-2xl"/>,
-  twitter: <BsTwitterX className=" text-2xl"/>,
   googleBusiness: <SiGooglemybusiness className=" text-2xl"/>,
 };
 

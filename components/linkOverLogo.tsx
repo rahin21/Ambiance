@@ -13,9 +13,9 @@ function LinkOverLogo({
     <div className="group flex justify-center items-center mt-7 mb-5">
  
         <Image
-          className="absolute opacity-30 lg:w-[80px] w-[70px]"
+          className="absolute opacity-10 lg:w-[120px] w-[70px]"
           height="10"
-          width="100"
+          width="120"
           src="/images/logo-sm-2.png"
           alt="logo"
         />

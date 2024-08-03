@@ -8,7 +8,7 @@ const CopyRight = () => {
         <div className="flex justify-center items-center">
         <div className="h-[1px] w-full bg-slate-600"></div>
         <Image
-          src={"/icons/main-logo2.png"}
+          src={"/images/logo-sm.png"}
           width={70}
           height={100}
           alt="company logo"

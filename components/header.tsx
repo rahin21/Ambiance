@@ -98,7 +98,7 @@ function Header({ navItems }: { navItems: navItemType | undefined  }) {
         className="flex items-center justify-center"
       >
         <Image
-          src={"/images/logo.jpeg"}
+          src={"/images/logo.png"}
           width={220}
           height={100}
           alt="company logo"

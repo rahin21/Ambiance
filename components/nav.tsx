@@ -30,11 +30,11 @@ function Nav() {
           <div className="h-40 w-40 bg-black/25 rounded col-span-1 my-5"></div>
         </div>
         <div className="container grid grid-cols-5 gap-4 my-10">
-          <div className="h-2 bg-black/25 rounded col-span-1"></div>
-          <div className="h-2 bg-black/25 rounded col-span-1"></div>
-          <div className="h-2 bg-black/25 rounded col-span-1"></div>
-          <div className="h-2 bg-black/25 rounded col-span-1"></div>
-          <div className="h-2 bg-black/25 rounded col-span-1"></div>
+          <div className="h-8 bg-black/25 rounded col-span-1"></div>
+          <div className="h-8 bg-black/25 rounded col-span-1"></div>
+          <div className="h-8 bg-black/25 rounded col-span-1"></div>
+          <div className="h-8 bg-black/25 rounded col-span-1"></div>
+          <div className="h-8 bg-black/25 rounded col-span-1"></div>
         </div>
       </div>
     );

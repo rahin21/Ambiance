@@ -5,10 +5,10 @@ function ButtonOverLogo({children}:{children : string | JSX.Element | JSX.Elemen
   return (
     <div className="group flex justify-center items-center mt-7 mb-5">
           <Image
-            className="absolute opacity-30"
+            className="absolute opacity-10"
             height="10"
-            width="100"
-            src="/icons/main-logo.png"
+            width="120"
+            src="/images/logo-sm-2.png"
             alt="logo"
           />
           <button
