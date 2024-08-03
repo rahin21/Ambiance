@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   },
   description: "The Interior Design",
   openGraph: {
-    title: "Ambiance Shit",
+    title: "Ambiance",
     images: [{ url: image.src }],
   },
 };
