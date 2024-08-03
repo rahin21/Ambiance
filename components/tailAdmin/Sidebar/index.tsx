@@ -11,6 +11,8 @@ import { MdHomeRepairService } from "react-icons/md";
 import { MdOutlinePages } from "react-icons/md";
 import { BsFillPostcardFill } from "react-icons/bs";
 import { BiSolidDashboard } from "react-icons/bi";
+import { FaRegNewspaper } from "react-icons/fa";
+
 
 interface SidebarProps {
   sidebarOpen: boolean;

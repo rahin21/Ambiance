@@ -34,6 +34,7 @@
     "react-photo-view": "^1.2.4",
     "react-quill": "^2.0.0",
     "react-responsive-carousel": "^3.2.23",
+    "sharp": "^0.33.4",
     "swiper": "^11.1.4",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",

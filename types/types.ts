@@ -41,6 +41,14 @@ export type aboutType = {
   subTitle: string;
   description: string;
 };
+export type newsType = {
+  id: string;
+  thumbnail: string;
+  title: string;
+  description: string;
+  author: string;
+  time: string;
+};
 export type postType = {
   id: string;
   key: string;

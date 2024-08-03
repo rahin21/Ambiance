@@ -4,34 +4,27 @@ import Image from "next/image";
 import ClientInfo from "@/components/about/clientInfo";
 import Magazine from "@/components/about/magazine";
 import Loading from "../loading";
+import { getAboutData } from "@/constants/admin/aboutData";
 
 export const metadata: Metadata = {
   title: "About",
 };
 
-async function getData() {
-  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/about`);
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
+
+
+async function Page() {
+  const about = await getAboutData();
+
+  if (!about) {
+    return <Loading />;
   }
 
-  return res.json();
-}
-
-async function page() {
-
-  const about = await getData();
-
-  if(!about){
-    return(<Loading/>)
-  }
-  
   return (
     <div className="container">
-      <ClientInfo about={about}/>
-      <Magazine/>
+      <ClientInfo about={about} />
+      <Magazine />
     </div>
   );
 }
 
-export default page;
+export default Page;

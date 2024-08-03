@@ -80,6 +80,15 @@ model Post {
   gallery   String[]
 }
 
+model News {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  thumbnail String
+  title     String
+  description String
+  author   String
+  time    DateTime
+}
+
 model PrivacyTerms {
   id          String @id @default(auto()) @map("_id") @db.ObjectId
   key         String @unique
