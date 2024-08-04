@@ -60,8 +60,8 @@ function Gallery({
                 {data.title}
               </h1>
               <p className="semi-header font-dipotic text-xl font-medium">
-                {data.description.length > 40
-                  ? `${data.description.slice(0, 40)}...`
+                {data.description.length > 100
+                  ? `${data.description.slice(0, 100)}...`
                   : data.description}
               </p>
             </div>
